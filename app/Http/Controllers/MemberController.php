@@ -15,10 +15,12 @@ class MemberController extends Controller
     {
         return view('member.new_member');
     }
+   
     public function store(Request $request)
     {
        
         $mbr=new member;
+        $Memberdata=member::all();
 
         $this->validate($request,[
             'title'=>'required',
@@ -34,11 +36,9 @@ class MemberController extends Controller
             'registeredDate'=>'required',
             ]);
             
-            // if($mbr->fails())
-            // {
-            //     return redirect()->back()->withInput();
-            // }
 
+
+        
         $mbr->title=$request->title;
         $mbr->Category=$request->category;
         $mbr->name=$request->name;
@@ -48,11 +48,12 @@ class MemberController extends Controller
         $mbr->mobile=$request->Mobile;
         $mbr->birthday=$request->birthday;
         $mbr->gender=$request->gender;
-        $mbr->description=$request->Description->nullable();
+        $mbr->description=$request->Description;
         $mbr->regdate=$request->registeredDate;
 
         $mbr->save();
-        return redirect()->back();
+       // return view('member.search_member')->with('Mdata',$Memberdata);
+       return redirect()->back();
 
     }
 }

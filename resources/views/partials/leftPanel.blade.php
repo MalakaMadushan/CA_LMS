@@ -65,7 +65,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{!! url('/new_member') !!}"><i class="fa fa-circle-o"></i>New Member</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Search Menber</a></li>
+                    <li><a href="{!! url('/search_member') !!}"><i class="fa fa-circle-o"></i> Search Menber</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Member Account</a></li>
                 </ul>
             </li>

@@ -1,6 +1,6 @@
-# Laravel Admin Dashboard
+# Library Management System (www.codeaider.com)
 
-1. Clone this repo to your local machine using https://github.com/EgHoxhaj/laravel-admin-dashboard.git
+1. Clone this repo to your local machine
 
 2. Run composer install
 
@@ -14,9 +14,9 @@
 
 7. Register
 
-8. Login
+8. Login(default login email-info@codeaider.com , pw- codeaider)
 
 
 Template: AdminLTE Bootstrap Admin Dashboard
 
-
+https://www.codeaider.com
