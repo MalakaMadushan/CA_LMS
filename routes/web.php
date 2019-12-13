@@ -1,4 +1,5 @@
 <?php
+use App\member;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,8 @@ Route::get('/details_book', 'BookController@detailsbook')->name('details_book');
 Route::get('/new_member', 'MemberController@addmember')->name('new_member');
 Route::get('/new_user', 'UserController@adduser');
 Route::post('/savemember', 'MemberController@store');
-Route::get('/search_member', 'MemberController@searchmember')->name('search_member');
+
+Route::get('/search_member', function () {
+    $Memberdata=member::all();
+    return view('member.search_member')->with('Mdata',$Memberdata);
+});

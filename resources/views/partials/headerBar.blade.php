@@ -35,7 +35,7 @@
                                             Support Team
                                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                                         </h4>
-                                        <p>Why not buy a new awesome theme?</p>
+                                        
                                     </a>
                                 </li>
                                 <!-- end message -->
