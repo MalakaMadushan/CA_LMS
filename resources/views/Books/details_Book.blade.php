@@ -26,71 +26,143 @@
 
                         <div class="box-body">
                             <form action="#" method="post">
-                            <div class="form-row">
 
+                            <div class="form-row">
+                               
                                 <div class="form-group col-md-12">
+
+                                   <!--  Tab tittle start -->
                                 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
                                 <li class="nav-item">
-                                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Category</a>
+                                  <a class="nav-link active" id="pills-category-tab" data-toggle="pill" href="#pills-category" role="tab" aria-controls="pills-category" aria-selected="true">
+                                  Category</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Language</a>
+                                  <a class="nav-link" id="pills-language-tab" data-toggle="pill" href="#pills-language" role="tab" aria-controls="pills-language" aria-selected="false">
+                                  Language</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Publisher</a>
+                                  <a class="nav-link" id="pills-publisher-tab" data-toggle="pill" href="#pills-publisher" role="tab" aria-controls="pills-publisher" aria-selected="false">
+                                  Publisher</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Physical Medium</a>
+                                  <a class="nav-link" id="pills-phymedium-tab" data-toggle="pill" href="#pills-phymedium" role="tab" aria-controls="pills-phymedium" aria-selected="false">
+                                  Physical Medium</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Dewey Decimal</a>
+                                  <a class="nav-link" id="pills-ddc-tab" data-toggle="pill" href="#pills-ddc" role="tab" aria-controls="pills-ddc" aria-selected="false">
+                                  Dewey Decimal</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Rack No</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Row No</a>
-                                </li>
-                              </ul>
-                              <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                
-                                <div class="form-group col-md-6">
-                                  <br><br>
-                                  <hr>
-                                    <label for="authors">Category</label>
-                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Category:"> <br>
-                                    
-                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
-                                </div>
-                                </div>
-                                
-                                
-                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                <div class="form-group col-md-6">
-                                  <br><br>
-                                  <hr>
-                                    <label for="authors">Category</label>
-                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Category:"> <br>
-                                    
-                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
-                                </div>
-                                </div>
-                                </div>
-                                
-                                
-                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                
-                                </div>
-                              </div>
-                                </div>
-                                
-                                <div class="form-row">
-                                
-                                
-                                </div>
+                                  <a class="nav-link" id="pills-rackno-tab" data-toggle="pill" href="#pills-rackno" role="tab" aria-controls="pills-rackno" aria-selected="false">
+                                  Rack No</a>
 
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" id="pills-rowno-tab" data-toggle="pill" href="#pills-rowno" role="tab" aria-controls="pills-rowno" aria-selected="false">
+                                  Row No</a>
+                                </li>
+
+                              </ul>
+                              <!-- Tab title end -->
+
+                              <!-- tab content start  -->
+                              <div class="tab-content" id="pills-tabContent">
+                              <!-- category tab start -->
+                                <div class="tab-pane fade show active" id="pills-category" role="tabpanel" aria-labelledby="pills-category-tab">
+                                
+                                <div class="form-group col-md-6">
+                                  <br>
+                                  <hr>
+                                    <label for="authors">Category</label>
+                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Category:"> <br>
+                                    
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                                </div>
+                                <!-- category tab end -->
+                                
+                                <!-- language tab start -->
+                                <div class="tab-pane fade" id="pills-language" role="tabpanel" aria-labelledby="pills-language-tab">
+                                <div class="form-group col-md-6">
+                                  <br><br>
+                                  <hr>
+                                    <label for="authors">Language</label>
+                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Language:"> <br>
+                                    
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                                </div>
+                                <!-- language tab end -->
+                               
+                             <!-- publisher tab start -->
+                                <div class="tab-pane fade" id="pills-publisher" role="tabpanel" aria-labelledby="pills-publisher-tab">
+                                <div class="form-group col-md-6">
+                                  <br><br>
+                                  <hr>
+                                    <label for="authors">Publisher</label>
+                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Publisher:"> <br>
+                                    
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                                </div>
+                                <!-- publisher tab end -->
+
+                                 <!-- physical medium tab start -->
+                                 <div class="tab-pane fade" id="pills-phymedium" role="tabpanel" aria-labelledby="pills-phymedium-tab">
+                                <div class="form-group col-md-6">
+                                  <br><br>
+                                  <hr>
+                                    <label for="authors">Physical Medium</label>
+                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Physical Medium:"> <br>
+                                    
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                                </div>
+                                <!-- physical medium tab end -->
+
+                                 <!-- ddc tab start -->
+                                 <div class="tab-pane fade" id="pills-ddc" role="tabpanel" aria-labelledby="pills-ddc-tab">
+                                <div class="form-group col-md-6">
+                                  <br><br>
+                                  <hr>
+                                    <label for="authors">Dewey Decimal </label>
+                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Dewey Decimal:"> <br>
+                                    
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                                </div>
+                                <!-- ddc tab end -->
+
+                                <!-- Rack no  tab start -->
+                                <div class="tab-pane fade" id="pills-rackno" role="tabpanel" aria-labelledby="pills-rackno-tab">
+                                <div class="form-group col-md-6">
+                                  <br><br>
+                                  <hr>
+                                    <label for="authors">Rack No </label>
+                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Rack No:"> <br>
+                                    
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                                </div>
+                                <!-- Rack no tab end -->
+
+                                <!-- row no tab start -->
+                                <div class="tab-pane fade" id="pills-rowno" role="tabpanel" aria-labelledby="pills-rowno-tab">
+                                <div class="form-group col-md-6">
+                                  <br><br>
+                                  <hr>
+                                    <label for="authors">Row No</label>
+                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Row No:"> <br>
+                                    
+                                    <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                                </div>
+                                <!-- row no tab end -->
+                              
                             </div> 
+                             <!-- tab content end  -->
+                            </div>
                             </div>
                             
                             </form>
