@@ -84,7 +84,7 @@
                                     <thead>
                                         <tr>
                                         <th scope="col">Category</th>
-                                        <th scope="col">Update</th>
+                                        <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
