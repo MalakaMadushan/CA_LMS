@@ -25,16 +25,19 @@
                         </div>
 
                         <div class="box-body">
-                            <form action="#" method="post">
+                            <form action="/savebook" method="post">
+                            {{ csrf_field() }}
                             <div class="form-row">
 
                                 <div class="form-group col-md-6">
-                                    <label for="accessionnumber">Accession Number</label>
-                                    <input type="text" class="form-control" name="accessionnumber" placeholder="Accession Number:">
+                                    <label for="accessionNo">Accession Number</label>
+                                    <input type="text" class="form-control" name="accessionNo" value="{{old('accessionNo')}}" placeholder="Accession Number:">
+                                    <span class="text-danger">{{ $errors->first('accessionNo') }}</span>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="isbn">ISBN</label>
-                                    <input type="text" class="form-control" name="isbn" placeholder="ISBN">
+                                    <input type="text" class="form-control" name="isbn"  value="{{old('isbn')}}"  placeholder="ISBN">
+                                    <span class="text-danger">{{ $errors->first('isbn') }}</span>
                                 </div>
 
                             </div>
@@ -43,11 +46,13 @@
                                 
                                 <div class="form-group col-md-12">
                                     <label for="book_title">Title</label>
-                                    <textarea class="form-control" id="book_title" placeholder="Title" rows="2"></textarea>
+                                    <textarea class="form-control" id="book_title" name="book_title" value="{{old('book_title')}}" placeholder="Title" rows="2"></textarea>
+                                    <span class="text-danger">{{ $errors->first('book_title') }}</span>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="authors">Authors</label>
-                                    <textarea class="form-control" id="authors" placeholder="Author" rows="2"></textarea>
+                                    <textarea class="form-control" id="authors" name="authors" value="{{old('authors')}}" placeholder="Author" rows="2"></textarea>
+                                    <span class="text-danger">{{ $errors->first('authors') }}</span>
                                 </div>
                                 
                             </div>
@@ -57,6 +62,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="book_category">Category</label> &nbsp; &nbsp;
                                     <select class="form-control" id="book_category">
+                                    <option value="" selected disabled hidden>Choose here</option>
                                     <option>History</option>
                                     <option>Science & Technology</option>
                                     <option>Art & Litreture</option>
@@ -66,12 +72,40 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_category">New Category</label>  &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#categoryModal"><i class="fa fa-plus"></i></button>
+
+                                <!-- start Modal Category-->
+                                    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="categoryModalTitle">Add Category</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <label for="category">Category</label>
+                                            <input type="text" class="form-control" name="category" placeholder="Enter Your New Category:"> <br>
+                                    
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- end modal -->
+
+
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="language">Language</label>
                                     <select class="form-control" id="language">
+                                    <option value="" selected disabled hidden>Choose here</option>
                                     <option>Sinhala</option>
                                     <option>English</option>
                                     <option>Tamil</option>
@@ -79,7 +113,33 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_language">New Language</label>  &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#languageModal"><i class="fa fa-plus"></i></button>
+
+                                <!-- start Modal language -->
+                                <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="languageModalTitle">Add Language</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <label for="authors">Language</label>
+                                            <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Language:"> <br>
+                                    
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- end modal -->
+
                                 </div>
                                 
                             </div>
@@ -89,6 +149,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="publisher">Publisher</label>
                                     <select class="form-control" id="publisher">
+                                    <option value="" selected disabled hidden>Choose here</option>
                                     <option>Sarasavi</option>
                                     <option>M.D.Gunasena</option>
                                     <option>Rathna</option>
@@ -96,12 +157,38 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_publisher">New Publisher</label>  &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#publisherModal"><i class="fa fa-plus"></i></button>
+
+                                <!-- start Modal Publisher-->
+                                <div class="modal fade" id="publisherModal" tabindex="-1" role="dialog" aria-labelledby="publisherModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="publisherModalTitle">Add Publisher</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <label for="authors">Publisher</label>
+                                            <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Publisher:"> <br>
+                                    
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- end modal -->
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="phymedium">Physical Medium</label>
                                     <select class="form-control" id="phymedium">
+                                    <option value="" selected disabled hidden>Choose here</option>
                                     <option>A</option>
                                     <option>B</option>
                                     <option>C</option>
@@ -109,7 +196,32 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_phymedium">New Physical Medium</label> 
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#phymediumModal"><i class="fa fa-plus"></i></button>
+
+                                   <!-- start Modal Phy medium-->
+                                   <div class="modal fade" id="phymediumModal" tabindex="-1" role="dialog" aria-labelledby="phymediumModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="phymediumModalTitle">Add Physical Medium</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <label for="authors">Physical Medium</label>
+                                            <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Physical Medium:"> <br>
+                                    
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- end modal -->
                                 </div>
 
                             </div>
@@ -120,6 +232,7 @@
                             <div class="form-group col-md-4">
                                     <label for="dewey_decimal">Dewey Decimal Classification</label>
                                     <select class="form-control" id="dewey_decimal">
+                                    <option value="" selected disabled hidden>Choose here</option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -127,12 +240,38 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_dewey_decimal"> New DDC </label> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ddcModal"><i class="fa fa-plus"></i></button>
+
+                                 <!-- start Modal DDC-->
+                                 <div class="modal fade" id="ddcModal" tabindex="-1" role="dialog" aria-labelledby="ddcModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="ddcModalTitle">Add dewey Decimal</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <label for="authors">Dewey Decimal </label>
+                                            <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Dewey Decimal:"> <br>
+                                    
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- end modal -->
                                 </div>
                                 
                                 <div class="form-group col-md-4">
                                     <label for="purchase_date" >Purchase Date</label>
-                                    <input class="form-control" type="date" value="2019-12-01" id="purchase_date">
+                                    <input class="form-control" type="date" name="purchase_date" value="{{old('purchase_date')}} id="purchase_date">
+                                    <span class="text-danger">{{ $errors->first('purchase_date') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
                               
@@ -143,6 +282,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="edition">Edition</label>
                                     <select class="form-control" id="edition">
+                                    <option value="" selected disabled hidden>Choose here</option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -151,7 +291,8 @@
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                     <label for="price">Price</label>
-                                    <input type="value" class="form-control" name="price" placeholder="Price:">
+                                    <input type="value" class="form-control" name="price"  value="{{old('price')}}" placeholder="Price:">
+                                    <span class="text-danger">{{ $errors->first('price') }}</span>
                                 </div>
 
 
@@ -160,18 +301,21 @@
 
                             <div class="form-group col-md-4">
                                     <label for="publishyear">Publication year</label>
-                                    <input class="form-control" type="month" value="2019-01" id="purchasedate">
+                                    <input class="form-control" type="month" name="publishyear"value="{{old('publishyear')}}" id="purchasedate">
+                                    <span class="text-danger">{{ $errors->first('publishyear') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                     <label for="phy_details">Physical Details</label>
-                                    <input type="text" class="form-control" name="phydetails" placeholder="Physical Details">
+                                    <input type="text" class="form-control" name="phydetails" value="{{old('phydetails')}}" placeholder="Physical Details">
+                                    <span class="text-danger">{{ $errors->first('phydetails') }}</span>
                                 </div>
                                 </div>
                                 <div class="form-row">
                                 <div class="form-group col-md-4">
                                 <label for="rackno">Rack No</label>
                                     <select class="form-control" id="rackno">
+                                    <option value="" selected disabled hidden>Choose here</option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -181,6 +325,7 @@
                                 <div class="form-group col-md-4">
                                 <label for="rowno">Row No</label>
                                     <select class="form-control" id="rowno">
+                                    <option value="" selected disabled hidden>Choose here</option>
                                     <option>A</option>
                                     <option>B</option>
                                     <option>C</option>
@@ -190,7 +335,8 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="note">Note</label>
-                                    <textarea class="form-control" id="note" placeholder="Note" rows="3"></textarea>
+                                    <textarea class="form-control" id="note" name="note" placeholder="Note" value="{{old('note')}}" rows="3"></textarea>
+                                    <span class="text-danger">{{ $errors->first('note') }}</span>
                                 </div>
 
                             </div>
@@ -216,7 +362,8 @@
                                 <div class="form-group col-md-12"> </div>
                                
                                 <div class="form-group col-md-6">
-                                    <textarea class="form-control" id="bar_Qr_code" rows="4"></textarea>
+                                    <textarea class="form-control" id="bar_Qr_code" name="bar_Qr_code" value="{{old('bar_Qr_code')}}" rows="4"></textarea>
+                                    <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span>
                                 </div>
                                 <div class="form-group col-md-2">
                                 &nbsp; &nbsp;&nbsp; 
@@ -228,17 +375,17 @@
 
                             </div>
                             
-                            </form>
+                            
                         </div>
                         
                         <div class="box-footer clearfix pull-right">
-                                <button type="button" class="btn btn-primary btn-md" id="save_book">
+                                <button type="submit" class="btn btn-primary btn-md" id="save_book">
                                 <i class="fa fa-floppy-o"></i> Save</button>
                                 &nbsp; &nbsp;
                                 <button type="button" class="btn btn-warning btn-md" id="reset_book">
                                 <i class="fa fa-times"></i> Reset</button>
                         </div>
-
+                        </form>
                     </div>
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
