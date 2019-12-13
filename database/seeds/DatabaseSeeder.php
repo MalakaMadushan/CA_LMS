@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'name'=>'code Aider',
             'email'=>'info@codeaider.com',
             'email_verified_at'=>'2019-1-1',
-            'password'=>'ca',
+            'password'=>'$2y$10$Q.W8O4YmZtiM76aOTxsk3eFkk9.tnFojqDWucOGM4okjQUDIWzLHO',
             ]
     ];
     $insert= DB::table('users')->insert($mul_rows_users);
