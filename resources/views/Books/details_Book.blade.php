@@ -84,8 +84,8 @@
                                     <thead>
                                         <tr>
                                         <th scope="col">Category</th>
-                                        <th scope="col">Edit</th>
-                                        <th scope="col">Delete</th>
+                                        <th scope="col" class="col-sm-1">Edit</th>
+                                        <th scope="col" class="col-sm-1">Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -104,10 +104,6 @@
                                         
                                     </tbody>
                                     </table>
-
-
-
-
                                 </div>
                                 <!-- category tab end -->
                                 
@@ -121,6 +117,31 @@
                                     
                                     <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
                                 </div>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Language</th>
+                                        <th scope="col" class="col-sm-1">Edit</th>
+                                        <th scope="col" class="col-sm-1">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <th scope="row">1</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    </table>
                                 </div>
                                 <!-- language tab end -->
                                
@@ -134,6 +155,30 @@
                                     
                                     <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Publisher</th>
+                                        <th scope="col" class="col-sm-1">Edit</th>
+                                        <th scope="col" class="col-sm-1">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <th scope="row">1</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    </table>
                                 </div>
                                 <!-- publisher tab end -->
 
@@ -147,6 +192,30 @@
                                     
                                     <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Physical Medium</th>
+                                        <th scope="col" class="col-sm-1">Edit</th>
+                                        <th scope="col" class="col-sm-1">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <th scope="row">1</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    </table>
                                 </div>
                                 <!-- physical medium tab end -->
 
@@ -160,6 +229,30 @@
                                     
                                     <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Dewey Decimal</th>
+                                        <th scope="col" class="col-sm-1">Edit</th>
+                                        <th scope="col" class="col-sm-1">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <th scope="row">1</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    </table>
                                 </div>
                                 <!-- ddc tab end -->
 
@@ -173,6 +266,30 @@
                                     
                                     <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Rack No</th>
+                                        <th scope="col" class="col-sm-1">Edit</th>
+                                        <th scope="col" class="col-sm-1">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <th scope="row">1</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    </table>
                                 </div>
                                 <!-- Rack no tab end -->
 
@@ -186,6 +303,30 @@
                                     
                                     <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
                                 </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Row No</th>
+                                        <th scope="col" class="col-sm-1">Edit</th>
+                                        <th scope="col" class="col-sm-1">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <th scope="row">1</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    </table>
                                 </div>
                                 <!-- row no tab end -->
                               
