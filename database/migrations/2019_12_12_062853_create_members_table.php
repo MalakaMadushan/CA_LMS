@@ -24,7 +24,7 @@ class CreateMembersTable extends Migration
             $table->string('mobile');
             $table->date('birthday');
             $table->string('gender');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->date('regdate');
             $table->timestamps();
         });

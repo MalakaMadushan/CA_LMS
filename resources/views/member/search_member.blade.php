@@ -7,130 +7,99 @@
             <h2> &nbsp Members</h2> 
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fa fa-book"></i> Books</a></li>
-                    <li class="active"><i class="fa fa-search"></i> Search Book</li>
+                    <li><a href="#"><i class="fa fa-suers"></i> Members</a></li>
+                    <li class="active"><i class="fa fa-user"></i> Search Member</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-
             <div class="row">
                 <!-- --------------------------- section 1------------------------------------- -->
                 <section class="col-lg-12 connectedSortable">
  
                     <div class="box box-info">
                         <div class="box-header ">
-                           <div class="pull-left header"> <h4> <i class="fa fa-search"> Search Books</i></h4></div>
+                           <div class="pull-left header"> <h4> <i class="fa fa-search"> Search Members</i></h4></div>
                         </div>
 
-                        <div class="box-body">
-                            <form action="#" method="post">
-
-
-                            <div class="form-row">
-                            <div class="form-check form-check-inline">  &nbsp; &nbsp;
+                    <div class="box-body">
+                        <div class="form-row">
+                            <div class="col-lg-12 col-md-12">
+                            <div class="form-check form-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1"> Category</label> &nbsp; &nbsp; &nbsp;
+                                <label class="form-check-label" for="inlineCheckbox1"> Member ID</label> &nbsp; &nbsp;
                                 
                               
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2"> Language</label> &nbsp; &nbsp; &nbsp;
+                                <label class="form-check-label" for="inlineCheckbox2"> Category</label> &nbsp; &nbsp; 
 
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2"> Publisher</label> &nbsp; &nbsp; &nbsp;
+                                <label class="form-check-label" for="inlineCheckbox2"> Name</label> &nbsp; &nbsp; 
 
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2"> Author</label> &nbsp; &nbsp; &nbsp;
-
-                                
-                                </div><br>
-                            
+                                <label class="form-check-label" for="inlineCheckbox2"> NIC</label> &nbsp; &nbsp;
                             </div>
-                            <div class="form-row">
+                            </div>
+                        </div>
 
-                                <div class="form-group col-md-6">
-                                    <label for="search_book">Search Books</label>
-                                    <input type="text" class="form-control" name="search_book" placeholder="Search Book :">
-                                   <br> 
-                                    <button type="button" class="btn btn-primary btn-md" id="search_book">
-                                     <i class="fa fa-search"></i> Search </button>
-                                </div>
-                                
+                        <div class="form-row">
+                            <div class="form-group  col-md-10">
+                                <input type="text" class="form-control" name="search_book" placeholder="Search Book :">
+                            </div>
+                            <div class="form-group col-md-2 text-left">
+                                <a href="/recodeMember/" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>Search</a>&nbsp;
+                            </div>
+                        </div>
+                                <hr cla="hr1">
                                 <div class="form-row">
                                 
-                                <table class="table table-hover">
-                                    <thead>
+                                <table class="table">
+                                    <thead class="thead-dark">
                                         <tr>
-                                        <th scope="col">Accession No</th>
-                                        <th scope="col">ISBN</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Author</th>
+                                        <th scope="col">Member ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Address1</th>
+                                        <th scope="col">Address2</th>
                                         <th scope="col">Category</th>
-                                        <th scope="col">Language</th>
-                                        <th scope="col">Publisher</th>
-                                        <th scope="col">Place</th>
+                                        <th scope="col">NIC</th>
+                                        <th scope="col">Mobile</th>
+                                        <th scope="col">Registerd Date</th>
                                         <th scope="col">status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($Mdata as $data)
                                         <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Harry Potter abc</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>5C</td>
-                                        <td>
-                                        <button type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp;</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </td></button>
+                                            <td>{{$data->id}}</td>
+                                            <td>{{$data->name}}</td>
+                                            <td>{{$data->address1}}</td>
+                                            <td>{{$data->address2}}</td>
+                                            <td>{{$data->Category}}</td>
+                                            <td>{{$data->nic}}</td>
+                                            <td>{{$data->mobile}}</td>
+                                            <td>{{$data->regdate}}</td>
+                                            <td>
+                                                <a href="/updateMember/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>&nbsp;
+                                                <a href="/deleteMember/{{$data->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp;
+                                                <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>&nbsp;
+
+                                            </td>
                                         </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>1A</td>
-                                        <td>
-                                        <button type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp;</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </td></button>
-                                         </td>
-                                        </tr>
-                                        
+                                    @endforeach
                                     </tbody>
-                                    </table>
+                                </table>
+
                                 </div>
 
-                            </div> 
                             </div>
-                            
-                            </form>
                         </div>
                                 
-                           
-
-                                
-
-                           
-                        
-                        <!-- <div class="box-footer clearfix pull-right">
-                                <button type="button" class="btn btn-primary btn-md" id="save_book">
-                                <i class="fa fa-floppy-o"></i> Save</button>
-                                &nbsp; &nbsp;
-                                <button type="button" class="btn btn-warning btn-md" id="reset_book">
-                                <i class="fa fa-times"></i> Reset</button>
-                        </div> -->
-
-                    </div>
-                   
+ 
                     <!-- --------------------------end section1----------------------------------------------- -->
 
                 </section>
+            </div>
 
 
 
