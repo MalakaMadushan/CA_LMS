@@ -15,6 +15,10 @@ class MemberController extends Controller
     {
         return view('member.new_member');
     }
+    public function searchmember()
+    {
+        return view('member.search_member');
+    }
     public function store(Request $request)
     {
        
