@@ -29,8 +29,10 @@ class BookController extends Controller
     {
 
         // $book =new book;
-
+        
+        // validation part add new book
         $this->validate($request,[
+
             'accessionNo'=>'required|max:100|min:5',
             'isbn'=>'required|max:100|min:5',
             'book_title'=>'required',
@@ -41,6 +43,7 @@ class BookController extends Controller
             'publishyear'=>'required',
             'bar_Qr_code'=>'required',
             'note'=>'required',
+
             ]);
 
             // $book->accessionnumber=$request->accessionnumber;
