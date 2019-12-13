@@ -79,6 +79,35 @@
                                     
                                     <button type="button" class="btn btn-success"><i class="fa fa-plus"></i> Add</button>
                                 </div>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <th scope="row">1</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        <tr>
+                                        <th scope="row">2</th>
+                                        <td> <button type="button" class="btn btn-success btn-md"><i class="fa fa-pencil"></i></button></td>
+                                        <td>
+                                        <button type="button" class="btn btn-danger btn-md"><i class="fa fa-trash"></i></button></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                    </table>
+
+
+
+
                                 </div>
                                 <!-- category tab end -->
                                 
