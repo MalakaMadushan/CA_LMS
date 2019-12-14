@@ -52,5 +52,20 @@ class DatabaseSeeder extends Seeder
             ]
     ];
     $insert= DB::table('users')->insert($mul_rows_users);
+
+    $mul_rows_mem_cat= [
+            
+        ['category'=>'Student'],
+        ['category'=>'Goverment'],
+        ['category'=>'Privete'],
+        ['category'=>'VIP'],
+        ['category'=>'Other']
+ 
+    ];
+    $insert= DB::table('member_categories')->insert($mul_rows_mem_cat);
+
+
+
+
     }
 }

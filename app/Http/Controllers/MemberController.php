@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Entities\Models\User;
 use App\member;
+use App\member_category;
 use Session;
 
 class MemberController extends Controller
@@ -20,7 +21,6 @@ class MemberController extends Controller
     {
        
         $mbr=new member;
-        $Memberdata=member::all();
 
         $this->validate($request,[
             'title'=>'required',
@@ -36,8 +36,6 @@ class MemberController extends Controller
             'registeredDate'=>'required',
             ]);
             
-
-
         
         $mbr->title=$request->title;
         $mbr->Category=$request->category;
@@ -52,24 +50,29 @@ class MemberController extends Controller
         $mbr->regdate=$request->registeredDate;
 
         $mbr->save();
-       // return view('member.search_member')->with('Mdata',$Memberdata);
-       return redirect()->back();
+       return redirect()->back()->with('success','Member Add successfully!');
 
     }
 
-    // public function delete($id)
-    // {
-    //     $mbr=member::find($id);
-    //     $mbr->delete();
-    //     return redirect()->back();
-
-    // }
-
     public function delete(Request $request)
     {
-        $mbr=member::find($request->memid);
-        $mbr->delete();
+        $mbr1=new member;
+        $mbr1=member::find($request->memid);
+        $mbr1->delete();
         return redirect()->back();
+
+    }
+
+    public function addcategory(Request $request)
+    {
+        $mbr2=new member_category;
+        $this->validate($request,[
+            'new_data'=>'required',
+            ]);
+            
+        $mbr2->category=$request->new_data;
+        $mbr2->save();
+       return redirect();
 
     }
 }

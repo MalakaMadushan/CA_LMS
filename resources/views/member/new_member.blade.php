@@ -19,7 +19,7 @@
                 
                 <section class="col-lg-12 connectedSortable">
     <!-- -------------------------------------- add member----------------------------------------------------------------------------- -->
- 
+                @include('modal_add')
                 
                 <div class="col-md-12 col-lg-12 connectedSortable">
  
@@ -27,9 +27,9 @@
                         <div class="box-header ">
                            <div class="pull-left header"> <h4><i class="fa fa-user"> Add New Member</i></h4></div>
                         </div>
-
+                        
                         <div class="box-body">
-                            <form action="/savemember" method="post">
+                            <form action="/savemember" method="post" name=mamber_save id=mamber_save>
                             {{ csrf_field() }}
                                 <div class="form-group">
                                 <div class="form-check-inline" >
@@ -57,9 +57,12 @@
                                         <option>Privet</option>
                                         <option>Other</option>
                                         </select>
+
                                         <span class="text-danger">{{ $errors->first('category') }}</span>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6 text-left">
+                                        <label for="categry">&nbsp;</label><br>
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-opp_name="Member Category" onclick="add_by_modal('/save_member_cat')" ><i class="fa fa-plus"></i></button><label for="categry">&nbsp; New Category</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -124,13 +127,7 @@
                                     <div class="form-group col-md-6">
                                     </div>
                                 </div>
-                                <!-- --------------- -->
-                                <!-- @foreach($errors->all() as $error)
-                                     <div class="alert alert-danger" role="alert">
-                                    {{$error}}
-                                     </div>
-                                    @endforeach -->
-                                <!-- --------------- -->
+                                
                                 <div class="box-footer clearfix pull-right">
                                 <button type="submit" class="btn btn-success btn-md" id="save_member">Save
                                 <i class="fa fa-floppy-o"></i></button>

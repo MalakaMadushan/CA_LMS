@@ -94,7 +94,6 @@
                 </div>
                 <form method="post" action="/memberupdate" id="edit_member">
                      {{ csrf_field() }}
-                     {{ method_field('PUT') }}
                     <div class="modal-body">
               
                         <label for="name">Name</label>
@@ -144,12 +143,6 @@
     </div>
     <!-- end modal delete ------------------------------------------------------------------------------------------>
 
-    @section('scriptsM')
-
-
-
-
-    @stop
 
 @endsection
 

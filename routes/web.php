@@ -33,12 +33,15 @@ Route::post('/savebook', 'BookController@store');
 
 //member routing path
 Route::get('/new_member', 'MemberController@addmember')->name('new_member');
-Route::get('/new_user', 'UserController@adduser');
 Route::post('/savemember', 'MemberController@store');
+Route::post('/deleteMember', 'MemberController@delete');
+Route::post('/save_member_cat', 'MemberController@addcategory');
 
 Route::get('/search_member', function () {
     $Memberdata=member::all();
     return view('member.search_member')->with('Mdata',$Memberdata);
 
 });
-Route::post('/deleteMember', 'MemberController@delete');
+
+//member routing path
+Route::get('/new_user', 'UserController@adduser');

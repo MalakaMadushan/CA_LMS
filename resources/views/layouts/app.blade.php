@@ -93,7 +93,7 @@
 
 
 
-<!-- member function--------datatable&modal------------------------ -->
+<!------- member function---delete modal------------------------ -->
 <script>
     $('#Modal_delete').on('show.bs.modal', function (event) {
   
@@ -108,14 +108,40 @@
   document.getElementById("memname").innerHTML = m_name;
 })
 
-
 $(document).ready(function() {
   $('#mdatatable').DataTable();
   } );  
 
 </script>
-<!-- -------------------------------------------------------- -->
-  
+<!------- function---add modal------------------------ -->
+<script>
+   
+function add_by_modal(rout) {
+
+$('#addModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var opp = button.data('opp_name') 
+  var modal = $(this)
+ 
+  document.getElementById("opp_title").innerHTML = 'Add New '+ opp;
+  document.getElementById("opp_lbl").innerHTML = opp;
+  document.getElementById("modalform").action = rout;
+})
+}
+
+</script>
+<!-- ---------------------------/-------------------------------- -->
+
+<!-- ---------------------alert Auto Close----------------------- -->
+<script>
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1500);
+
+</script>
+<!-- ---------------------------/------------------------------- -->
 
 </body>
 </html>
