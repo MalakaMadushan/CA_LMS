@@ -18,6 +18,9 @@ use App\member;
 
 Auth::routes();
 
+Route::get('users-list', 'UserController@usersList'); 
+Route::get('users', 'UserController@users');
+
 Route::get('/', 'HomeController@dashboardV1')->name('dashboard-v1');
 Route::get('/dashboard', 'HomeController@dashboardV1')->name('dashboard-v1');
 // Route::get('/dashboard-v2', 'HomeController@dashboardV2')->name('dashboard-v2');
@@ -36,4 +39,6 @@ Route::post('/savemember', 'MemberController@store');
 Route::get('/search_member', function () {
     $Memberdata=member::all();
     return view('member.search_member')->with('Mdata',$Memberdata);
+
 });
+Route::post('/deleteMember', 'MemberController@delete');

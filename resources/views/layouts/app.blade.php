@@ -31,6 +31,8 @@
     <link href="https://fonts.googleapis.com/css?family=Buda:300&display=swap" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
 
+    
+
     <!-- Font Awesome -->
     <link href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- Ionicons -->
@@ -63,6 +65,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
@@ -93,6 +96,30 @@
 
 
 
+
+<!-- member function--------datatable&modal------------------------ -->
+<script>
+    $('#Modal_delete').on('show.bs.modal', function (event) {
+  
+  var button = $(event.relatedTarget) 
+
+  var m_id = button.data('memberid') 
+  var m_name = button.data('membername')
+  var modal = $(this)
+
+ // modal.find('.modal-body #memid').val(m_id);
+  document.getElementById("memid").value= m_id; 
+  document.getElementById("memname").innerHTML = m_name;
+})
+
+
+$(document).ready(function() {
+  $('#mdatatable').DataTable();
+  } );  
+
+</script>
+<!-- -------------------------------------------------------- -->
+  
 
 </body>
 </html>
