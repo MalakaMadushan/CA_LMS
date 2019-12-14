@@ -11,7 +11,6 @@
                     <li class="active"><i class="fa fa-user"></i> Search Member</li>
             </ol>
         </section>
-
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -81,7 +80,9 @@
                                             <td>{{$data->regdate}}</td>
                                             <td>
                                                 <a href="/updateMember/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>&nbsp;
-                                                <a href="/deleteMember/{{$data->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>&nbsp;
+
+                                                <a href= "#" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete"><i class="fa fa-trash" ></i></a>&nbsp;
+
                                                 <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>&nbsp;
 
                                             </td>
@@ -109,4 +110,24 @@
         </section>
         <!-- /.content -->
     </div>
+<!-- start modal delete-------------------------------------------------------------------------------------------- -->
+    <div class="modal modal-default fade" id="Modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Are you sure Delete Member - {{$data->name}}?</h4>
+                </div>
+                <form method="post">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="/deleteMember/{{$data->id}}" class="btn btn-danger "><i class="fa fa-trash"></i> &nbsp; Delete</a>&nbsp;
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end modal delete ------------------------------------------------------------------------------------------>
+
+    
 @endsection
