@@ -56,4 +56,12 @@ class MemberController extends Controller
        return redirect()->back();
 
     }
+
+    public function delete($id)
+    {
+        $mbr=member::find($id);
+        $mbr->delete();
+        return redirect()->back();
+
+    }
 }

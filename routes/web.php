@@ -36,4 +36,6 @@ Route::post('/savemember', 'MemberController@store');
 Route::get('/search_member', function () {
     $Memberdata=member::all();
     return view('member.search_member')->with('Mdata',$Memberdata);
+
 });
+Route::get('/deleteMember/{id}', 'MemberController@delete');
