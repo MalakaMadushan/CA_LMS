@@ -1,59 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
+<div>
         <!-- Content Header (Page header) -->
-        <section class="content-fulid mt-1">
+    <section class="content-fulid mt-1">
             <h2> &nbsp Members</h2> 
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="#"><i class="fa fa-suers"></i> Members</a></li>
                     <li class="active"><i class="fa fa-user"></i> Search Member</li>
             </ol>
-        </section>
+    </section>
         <!-- Main content -->
-        <section class="content">
-            <div class="row">
+    <section class="content">
+        <div class="row">
                 <!-- --------------------------- section 1------------------------------------- -->
-                <section class="col-lg-12 connectedSortable">
+            <section class="col-lg-12 connectedSortable">
  
-                    <div class="box box-info">
+                <div class="box box-info">
                         <div class="box-header ">
                            <div class="pull-left header"> <h4> <i class="fa fa-search"> Search Members</i></h4></div>
                         </div>
 
                     <div class="box-body">
-                        <div class="form-row">
-                            <div class="col-lg-12 col-md-12">
-                            <div class="form-check form-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" for="inlineCheckbox1"> Member ID</label> &nbsp; &nbsp;
-                                
-                              
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2"> Category</label> &nbsp; &nbsp; 
-
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2"> Name</label> &nbsp; &nbsp; 
-
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" for="inlineCheckbox2"> NIC</label> &nbsp; &nbsp;
-                            </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group  col-md-10">
-                                <input type="text" class="form-control" name="search_book" placeholder="Search Book :">
-                            </div>
-                            <div class="form-group col-md-2 text-left">
-                                <a href="/recodeMember/" class="btn btn-primary btn-sm"><i class="fa fa-search"></i>Search</a>&nbsp;
-                            </div>
-                        </div>
-                                <hr cla="hr1">
                                 <div class="form-row">
                                 
-                                <table class="table" id="datatable">
+                                <table class="table " id="mdatatable">
                                     <thead class="thead-dark">
                                         <tr>
                                         <th scope="col">Member ID</th>
@@ -70,6 +42,7 @@
                                     <tbody>
                                     @foreach($Mdata as $data)
                                         <tr>
+                                       
                                             <td>{{$data->id}}</td>
                                             <td>{{$data->name}}</td>
                                             <td>{{$data->address1}}</td>
@@ -104,13 +77,10 @@
             </div>
 
 
-
-            </div>
-            <!-- /.row (main row) -->
-
         </section>
-        <!-- /.content -->
     </div>
+
+
 
     <!-- start edit Modal--------------------------------------------------------------------------------->
     <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="categoryModalTitle" aria-hidden="true">
@@ -174,9 +144,18 @@
     </div>
     <!-- end modal delete ------------------------------------------------------------------------------------------>
 
-<!-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script> -->
+    @section('scriptsM')
+
+
+
+
+    @stop
 
 @endsection
+
+
+
+
+
 
 

@@ -18,6 +18,9 @@ use App\member;
 
 Auth::routes();
 
+Route::get('users-list', 'UserController@usersList'); 
+Route::get('users', 'UserController@users');
+
 Route::get('/', 'HomeController@dashboardV1')->name('dashboard-v1');
 Route::get('/dashboard', 'HomeController@dashboardV1')->name('dashboard-v1');
 // Route::get('/dashboard-v2', 'HomeController@dashboardV2')->name('dashboard-v2');
