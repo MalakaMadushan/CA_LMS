@@ -38,4 +38,4 @@ Route::get('/search_member', function () {
     return view('member.search_member')->with('Mdata',$Memberdata);
 
 });
-Route::get('/deleteMember/{id}', 'MemberController@delete');
+Route::post('/deleteMember', 'MemberController@delete');

@@ -31,6 +31,8 @@
     <link href="https://fonts.googleapis.com/css?family=Buda:300&display=swap" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
 
+    <link href=" https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+
     <!-- Font Awesome -->
     <link href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- Ionicons -->
@@ -87,6 +89,38 @@
 
 <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+
+<script>
+
+  
+//     $('#edit').on('show.bs.modal', function (event) {
+  
+//         var button = $(event.relatedTarget) 
+//         var title = button.data('mytitle') 
+//         var modal = $(this)
+  
+//         modal.find('.modal-body #title').val(title);
+
+//   })
+  
+  
+    $('#Modal_delete').on('show.bs.modal', function (event) {
+  
+        var button = $(event.relatedTarget) 
+  
+        var m_id = button.data('memberid') 
+        var m_name = button.data('membername')
+        var modal = $(this)
+  
+       // modal.find('.modal-body #memid').val(m_id);
+        document.getElementById("memid").value= m_id; 
+        document.getElementById("memname").innerHTML = m_name;
+  })
+  
+  
+  </script>
+  
 
 </body>
 </html>

@@ -53,7 +53,7 @@
                                 <hr cla="hr1">
                                 <div class="form-row">
                                 
-                                <table class="table">
+                                <table class="table" id="datatable">
                                     <thead class="thead-dark">
                                         <tr>
                                         <th scope="col">Member ID</th>
@@ -81,7 +81,8 @@
                                             <td>
                                                 <a href="/updateMember/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>&nbsp;
 
-                                                <a href= "#" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete"><i class="fa fa-trash" ></i></a>&nbsp;
+                                                <button class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-memberid="{{$data->id}}" data-membername="{{$data->name}}"><i class="fa fa-trash" ></i></button>&nbsp;
+                                                
 
                                                 <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>&nbsp;
 
@@ -110,18 +111,62 @@
         </section>
         <!-- /.content -->
     </div>
+
+    <!-- start edit Modal--------------------------------------------------------------------------------->
+    <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="categoryModalTitle" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                 <div class="modal-header">
+                    <h5 class="modal-title" id="upadate_member">Add Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                     </button>
+                </div>
+                <form method="post" action="/memberupdate" id="edit_member">
+                     {{ csrf_field() }}
+                     {{ method_field('PUT') }}
+                    <div class="modal-body">
+              
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name"> <br>                                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- end modal ------------------------------------------------------------------------------------------------------>
+
 <!-- start modal delete-------------------------------------------------------------------------------------------- -->
     <div class="modal modal-default fade" id="Modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Are you sure Delete Member - {{$data->name}}?</h4>
+                    <h4 class="modal-title" id="myModalLabel">Remove Member</h4>
                 </div>
-                <form method="post">
+                <form method="post" action="/deleteMember">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+
+                        <input type="hidden" id="memid" name="memid">
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <h5 id="myModalLabel">Are you sure Remove - </h5>
+                            </div>
+                            <div class="col-md-8">
+                                <h4><label type="text"  id="memname"></label></h4>
+                            </div>
+                        </div>
+                         
+
+                    </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="/deleteMember/{{$data->id}}" class="btn btn-danger "><i class="fa fa-trash"></i> &nbsp; Delete</a>&nbsp;
+                    <button type="submit" class="btn btn-danger "><i class="fa fa-trash"></i> &nbsp; Delete</button>
                 </div>
                 </form>
             </div>
@@ -129,5 +174,9 @@
     </div>
     <!-- end modal delete ------------------------------------------------------------------------------------------>
 
-    
+<!-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script> -->
+
 @endsection
+
+
