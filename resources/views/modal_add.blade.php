@@ -1,4 +1,4 @@
-<!-- start Modal for add one data-->
+
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form id="modalform" method="post" action="#">
+        <form name="addmodal" id="modalform" method="post" action="#">
         {{ csrf_field() }}
         <div class="modal-body">
         <label for="category" id="opp_lbl"></label>
@@ -22,8 +22,7 @@
             <button type="button" class="btn btn-warning" data-dismiss="modal">Close &nbsp;<i class="fa fa-times"></i></button>
             
         </div>
-        <form>
+        </form>
         </div>
     </div>
     </div>
-<!-- end modal -->

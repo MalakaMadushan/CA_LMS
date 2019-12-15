@@ -34,19 +34,19 @@ Route::post('/savebook', 'BookController@store');
 
 //member routing path
 Route::post('/save_member', 'MemberController@store');
+
 Route::post('/deleteMember', 'MemberController@delete');
+
 Route::post('/save_member_cat', 'MemberController@addcategory');
 
-Route::get('/search_member', function () {
-    $Memberdata=member::all();
-    return view('member.search_member')->with('Mdata',$Memberdata);
+Route::get('/new_member', 'MemberController@newmember');
 
-});
+Route::get('/search_member', 'MemberController@allmember');
 
-Route::get('/new_member', function () {
-    $Memberdata=member_category::all();
-    return view('member.new_member')->with('Mdata',$Memberdata);
-});
+Route::post('/update_member', 'MemberController@updatemember');
 
-//member routing path
-Route::get('/new_user', 'UserController@adduser');
+Route::get('/update_member_view/{id}', 'MemberController@updateview');
+
+Route::get('/update_member_view_modal/{id}', 'MemberController@updateview_modal');
+
+Route::get('/back', 'MemberController@back');
