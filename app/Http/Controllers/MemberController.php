@@ -56,23 +56,34 @@ class MemberController extends Controller
 
     public function delete(Request $request)
     {
-        $mbr1=new member;
-        $mbr1=member::find($request->memid);
-        $mbr1->delete();
+        $mbr=new member;
+        $mbr=member::find($request->memid);
+        $mbr->delete();
         return redirect()->back();
 
     }
 
     public function addcategory(Request $request)
     {
-        $mbr2=new member_category;
-        $this->validate($request,[
-            'new_data'=>'required',
+        $mbr=new member_category;
+        // $this->validate($request,[
+        //     'new_data'=>'required|max:50|min:3'
+        //     ]);
+
+
+            $validator = Validator::make($request->all(), [
+                'new_data'=>'required|max:50|min:3'
             ]);
             
-        $mbr2->category=$request->new_data;
-        $mbr2->save();
-       return redirect();
+            if ($validator->fails()) {
+                return redirect()->back()->with('warning','Something Went Wrong!');
+            } else {
+                $mbr->category=$request->new_data;
+                $mbr->save();
+                return redirect()->back()->with('success','Category Add successfully!');
+            }
+            
+        
 
     }
 }

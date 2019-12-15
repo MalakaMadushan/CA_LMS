@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form id="modalform" method="post" action="/deleteMember">
+        <form id="modalform" method="post" action="#">
         {{ csrf_field() }}
         <div class="modal-body">
         <label for="category" id="opp_lbl"></label>

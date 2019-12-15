@@ -128,7 +128,9 @@ $('#addModal').on('show.bs.modal', function (event) {
   document.getElementById("modalform").action = rout;
 })
 }
-
+$('#addModal').on('hidden.bs.modal', function() {
+  this.modal('show');
+});
 </script>
 <!-- ---------------------------/-------------------------------- -->
 

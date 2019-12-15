@@ -19,7 +19,7 @@
                 
                 <section class="col-lg-12 connectedSortable">
     <!-- -------------------------------------- add member----------------------------------------------------------------------------- -->
-                @include('modal_add')
+    
                 
                 <div class="col-md-12 col-lg-12 connectedSortable">
  
@@ -27,9 +27,9 @@
                         <div class="box-header ">
                            <div class="pull-left header"> <h4><i class="fa fa-user"> Add New Member</i></h4></div>
                         </div>
-                        
+                        @include('flash_massage')
                         <div class="box-body">
-                            <form action="/savemember" method="post" name=mamber_save id=mamber_save>
+                            <form action="/save_member" method="post" name=mamber_save id=mamber_save>
                             {{ csrf_field() }}
                                 <div class="form-group">
                                 <div class="form-check-inline" >
@@ -52,17 +52,19 @@
                                     <div class="form-group col-md-6">
                                         <label for="categry">Category : </label>
                                         <select class="form-control"name="category" value="{{old('category')}}">
-                                        <option>Student</option>
-                                        <option>Goverment</option>
-                                        <option>Privet</option>
-                                        <option>Other</option>
+                                        <option value="" disabled selected>Select Member's Category</option>
+                                        @foreach($Mdata as $item)
+                                            <option value="{{ $item->id }}">{{ $item->category }}</option>
+                                        @endforeach
+                                
                                         </select>
 
                                         <span class="text-danger">{{ $errors->first('category') }}</span>
                                     </div>
                                     <div class="form-group col-md-6 text-left">
                                         <label for="categry">&nbsp;</label><br>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-opp_name="Member Category" onclick="add_by_modal('/save_member_cat')" ><i class="fa fa-plus"></i></button><label for="categry">&nbsp; New Category</label>
+                                        
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-backdrop="static" data-opp_name="Member Category" onclick="add_by_modal('/save_member_cat')" ><i class="fa fa-plus"></i></button><label for="categry">&nbsp; New Category</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -156,4 +158,5 @@
         </section>
         <!-- /.content -->
     </div>
+    @include('modal_add')
 @endsection
