@@ -94,6 +94,11 @@
 
 
 <!------- member function---delete modal------------------------ -->
+
+
+
+
+<!-- member function--------datatable&modal------------------------ -->
 <script>
     $('#Modal_delete').on('show.bs.modal', function (event) {
   
