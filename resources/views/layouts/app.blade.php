@@ -113,6 +113,17 @@
   document.getElementById("memname").innerHTML = m_name;
 })
 
+// <!--end  member function--------datatable&modal------------------------ -->
+
+$(document).ready(function() {
+  $('#mdatatable').DataTable();
+  $('#book_datatable').DataTable();
+
+  
+  } );  
+ 
+</script>
+<!-- -------------------------------------------------------- -->
 $(document).ready(function() {
   $('#mdatatable').DataTable();
 
