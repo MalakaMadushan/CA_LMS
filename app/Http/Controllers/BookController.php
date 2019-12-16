@@ -74,18 +74,5 @@ class BookController extends Controller
             return redirect()->back();
     }
 
-    public function importExportView()
-    {
-       return view('import');
-    }
-    public function export() 
-    {
-        return Excel::download(new BookExport, 'book.xlsx');
-    }
-    public function import() 
-    {
-        Excel::import(new BookImport,request()->file('file'));
-           
-        return back();
-    }
+   
 }
