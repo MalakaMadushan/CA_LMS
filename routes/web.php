@@ -31,6 +31,10 @@ Route::get('/search_book', 'BookController@searchbook')->name('search_book');
 Route::get('/details_book', 'BookController@detailsbook')->name('details_book');
 Route::post('/savebook', 'BookController@store');
 
+//book lending routing path
+Route::get('/issue_book', 'BookLendingController@issuebook')->name('issue_book');
+Route::get('/return_book', 'BookLendingController@returnbook')->name('return_book');
+
 //member routing path
 Route::get('/new_member', 'MemberController@addmember')->name('new_member');
 Route::get('/new_user', 'UserController@adduser');

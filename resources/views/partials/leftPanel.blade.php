@@ -51,8 +51,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Issue Books</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Retun Books</a></li>
+                    <li><a href="{!! url('/issue_book') !!}"><i class="fa fa-circle-o"></i>Issue Books</a></li>
+                    <li><a href="{!! url('/return_book') !!}"><i class="fa fa-circle-o"></i> Retun Books</a></li>
                 </ul>
             </li>
             <li class="treeview">
