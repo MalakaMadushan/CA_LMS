@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Entities\Models\User;
 use App\book;
 use Session;
+use App\Exports\BookExport;
+use App\Imports\BookImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class BookController extends Controller
 {
@@ -68,5 +72,20 @@ class BookController extends Controller
 
             $book->save();
             return redirect()->back();
+    }
+
+    public function importExportView()
+    {
+       return view('import');
+    }
+    public function export() 
+    {
+        return Excel::download(new BookExport, 'book.xlsx');
+    }
+    public function import() 
+    {
+        Excel::import(new BookImport,request()->file('file'));
+           
+        return back();
     }
 }

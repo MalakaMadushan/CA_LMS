@@ -81,6 +81,7 @@
                     <li><a href="#"><i class="fa fa-circle-o"></i> Books Category</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Members Category</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Barcode Genarete</a></li>
+                    <li><a href="{!! url('/importecport') !!}"><i class="fa fa-circle-o"></i> Import And Export</a></li>
                 </ul>
             </li>
             <li class="treeview">
