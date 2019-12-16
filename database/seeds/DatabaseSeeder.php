@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $mul_rows_membrs= [
                 [ 
                 'title'=>'Mr',
-                'category'=>'Student',
+                'categoryid'=>'1',
                 'name'=>'Shanuka Alahkoon',
                 'Address1'=>'Kegalle',
                 'Address2'=>'Sri lanka',
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
                 
                 [  
                 'title'=>'Mr',
-                'category'=>'Student',
+                'categoryid'=>'2',
                 'name'=>'Malaka Madushan',
                 'Address1'=>'Ambalanyhota',
                 'Address2'=>'Sri lanka',
@@ -52,5 +52,20 @@ class DatabaseSeeder extends Seeder
             ]
     ];
     $insert= DB::table('users')->insert($mul_rows_users);
+
+    $mul_rows_mem_cat= [
+            
+        ['category'=>'Student'],
+        ['category'=>'Goverment'],
+        ['category'=>'Privete'],
+        ['category'=>'VIP'],
+        ['category'=>'Other']
+ 
+    ];
+    $insert= DB::table('member_categories')->insert($mul_rows_mem_cat);
+
+
+
+
     }
 }
