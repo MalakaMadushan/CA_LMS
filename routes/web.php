@@ -1,6 +1,7 @@
 <?php
 use App\member;
 use App\book;
+use App\member_category;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,13 +41,20 @@ Route::get('/search_book', function () {
 
 
 //member routing path
-Route::get('/new_member', 'MemberController@addmember')->name('new_member');
-Route::get('/new_user', 'UserController@adduser');
-Route::post('/savemember', 'MemberController@store');
+Route::post('/save_member', 'MemberController@store');
 
-Route::get('/search_member', function () {
-    $Memberdata=member::all();
-    return view('member.search_member')->with('Mdata',$Memberdata);
-
-});
 Route::post('/deleteMember', 'MemberController@delete');
+
+Route::post('/save_member_cat', 'MemberController@addcategory');
+
+Route::get('/new_member', 'MemberController@newmember');
+
+Route::get('/search_member', 'MemberController@allmember');
+
+Route::post('/update_member', 'MemberController@updatemember');
+
+Route::get('/update_member_view/{id}', 'MemberController@updateview');
+
+Route::get('/update_member_view_modal/{id}', 'MemberController@updateview_modal');
+
+Route::get('/back', 'MemberController@back');

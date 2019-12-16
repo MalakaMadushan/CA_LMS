@@ -46,18 +46,8 @@
 <section>
     <div class="wrapper" style="height: auto; min-height: 100%;">
         <div>
-            @include('partials.leftPanel')
-        </div>
-        <div>
-            @include('partials.headerBar')
-        </div>
-        <div>
-            <div class="content-wrapper">
                 @yield('content')
-            </div>
-        </div>
-        <div>
-            @include('partials.footer')
+
         </div>
     </div>
 </section>
@@ -92,46 +82,23 @@
 <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 
 
-
-<!------- member function---delete modal------------------------ -->
-
-
-
-
-<!-- member function--------datatable&modal------------------------ -->
-<script>
-    $('#Modal_delete').on('show.bs.modal', function (event) {
-  
-  var button = $(event.relatedTarget) 
-
-  var m_id = button.data('memberid') 
-  var m_name = button.data('membername')
-  var modal = $(this)
-
- // modal.find('.modal-body #memid').val(m_id);
-  document.getElementById("memid").value= m_id; 
-  document.getElementById("memname").innerHTML = m_name;
-})
-
-// <!--end  member function--------datatable&modal------------------------ -->
-
-$(document).ready(function() {
-  $('#mdatatable').DataTable();
-  $('#book_datatable').DataTable();
-
-  
+<script type="text/javascript">
+   $(document).ready(function() {
+    $('#name').val("{{$selectdata->name}}");
+    $('#address1').val("{{$selectdata->address1}}");
+    $('#address2').val("{{$selectdata->address2}}");
+    $('#nic').val("{{$selectdata->nic}}");
+    $('#mobile').val("{{$selectdata->mobile}}");
+    $('#birthday').val("{{$selectdata->birthday}}");
+    $('#description').val("{{$selectdata->description}}");
+    $('#registeredDate').val("{{$selectdata->regdate}}");
+    $("#category").val("{{$selectdata->Categoryid}}");
+    $('input:radio[name="title"]').filter('[value="{{$selectdata->title}}"]').attr('checked', true);
+    $('input:radio[name="gender"]').filter('[value="{{$selectdata->gender}}"]').attr('checked', true);
+    
   } );  
- 
 </script>
-<!-- -------------------------------------------------------- -->
-$(document).ready(function() {
-  $('#mdatatable').DataTable();
 
-  
-
-  });  
-
-</script>
 <!------- function---add modal------------------------ -->
 <script>
    
@@ -159,15 +126,6 @@ window.setTimeout(function() {
 }, 1500);
 
 </script>
-<!-- ---------------------------/------------------------------- -->
-<!-- <script type="text/javascript">
-@if (count($errors) > 0)
-    $('#addModal').modal('show');
-@endif
-</script> -->
-
-
-
 
 </body>
 </html>
