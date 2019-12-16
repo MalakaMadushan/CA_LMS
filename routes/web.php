@@ -64,4 +64,4 @@ Route::get('/back', 'MemberController@back');
 //Support routing Path
 Route::get('export', 'SupportController@export')->name('export');
 Route::get('importExportView', 'SupportController@importExportView');
-Route::post('import', 'SupportController@import')->name('import');
+Route::post('import_book', 'SupportController@import');

@@ -9,7 +9,9 @@
                     <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="#"><i class="fa fa-book"></i> Books</a></li>
                     <li class="active"><i class="fa fa-plus"></i> Add Book</li>
-            </ol>
+                </ol>
+                
+
         </section>
 
         <!-- Main content -->
@@ -22,8 +24,11 @@
                     <div class="box box-info">
                         <div class="box-header ">
                            <div class="pull-left header"> <h4> <i class="fa fa-plus"> Add New Books</i></h4></div>
+                           <div class="pull-right">
+                                <h4><button class="btn btn-warning btn-md" data-toggle="modal" data-target="#import_book_excel" ><i class="fa fa-file-excel-o"></i></button></h4>
+                           </div>
                         </div>
-
+                        @include('flash_massage')
                         <div class="box-body">
                             <form action="/savebook" method="post">
                             {{ csrf_field() }}
@@ -41,6 +46,7 @@
                                 </div>
 
                             </div>
+
                                 
                             <div class="form-row">
                                 
@@ -391,8 +397,9 @@
                     </div>
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
-
+                    @include('Support.import_export_modal')
                 </section>
+
 
 
 
@@ -452,4 +459,7 @@ $("#save_book").click(function(){
         
 
 
+
+
+        
 @endsection
