@@ -28,7 +28,7 @@ class MemberController extends Controller
         $mbr=member::find($id);
         //$mbr = DB::table('members')->find($id);
         $Memberdata=member_category::all();
-        return view('member.update_member_modal')->with('selectdata',$mbr)->with('udata',$Memberdata);   
+        return view('member.update_member_modal');   
     }
     public function newmember()
     {
