@@ -40,9 +40,7 @@ Route::get('/search_book', function () {
 
 
 
-Route::get('export', 'BookController@export')->name('export');
-Route::get('importExportView', 'BookController@importExportView');
-Route::post('import', 'BookController@import')->name('import');
+
 
 //member routing path
 Route::post('/save_member', 'MemberController@store');
@@ -64,4 +62,6 @@ Route::get('/update_member_view_modal/{id}', 'MemberController@updateview_modal'
 Route::get('/back', 'MemberController@back');
 
 //Support routing Path
-Route::get('/importecport', 'SupportController@importexport');
+Route::get('export', 'SupportController@export')->name('export');
+Route::get('importExportView', 'SupportController@importExportView');
+Route::post('import', 'SupportController@import')->name('import');
