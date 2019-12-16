@@ -11,7 +11,7 @@
                 <div class="box-header ">
                    <div class="pull-left header"> <h4> <i class="fa fa-search"> Import Books From Excel File</i></h4>
                     <div class="card-body">
-                        <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+                        <form action="/import_book" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="file" name="file" class="form-control">
                             <br>
