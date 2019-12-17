@@ -9,7 +9,9 @@
                     <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="#"><i class="fa fa-book"></i> Books</a></li>
                     <li class="active"><i class="fa fa-plus"></i> Add Book</li>
-            </ol>
+                </ol>
+                
+
         </section>
 
         <!-- Main content -->
@@ -22,8 +24,11 @@
                     <div class="box box-info">
                         <div class="box-header ">
                            <div class="pull-left header"> <h4> <i class="fa fa-plus"> Add New Books</i></h4></div>
+                           <div class="pull-right">
+                                <h4><button class="btn btn-warning btn-md" data-toggle="modal" data-target="#import_book_excel" ><i class="fa fa-file-excel-o"></i></button></h4>
+                           </div>
                         </div>
-
+                        @include('flash_massage')
                         <div class="box-body">
                             <form action="/savebook" method="post">
                             {{ csrf_field() }}
@@ -31,16 +36,17 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="accessionNo">Accession Number</label>
-                                    <input type="text" class="form-control" name="accessionNo" value="{{old('accessionNo')}}" placeholder="Accession Number:">
+                                    <input type="text" class="form-control" id="book_aNo" name="accessionNo" value="{{old('accessionNo')}}" placeholder="Accession Number:">
                                     <span class="text-danger">{{ $errors->first('accessionNo') }}</span>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="isbn">ISBN</label>
-                                    <input type="text" class="form-control" name="isbn"  value="{{old('isbn')}}"  placeholder="ISBN">
+                                    <input type="text" class="form-control" id="book_isbn" name="isbn"  value="{{old('isbn')}}"  placeholder="ISBN">
                                     <span class="text-danger">{{ $errors->first('isbn') }}</span>
                                 </div>
 
                             </div>
+
                                 
                             <div class="form-row">
                                 
@@ -61,7 +67,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="book_category">Category</label> &nbsp; &nbsp;
-                                    <select class="form-control" id="book_category">
+                                    <select class="form-control" id="book_category" name="book_category">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     <option>History</option>
                                     <option>Science & Technology</option>
@@ -104,7 +110,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="language">Language</label>
-                                    <select class="form-control" id="language">
+                                    <select class="form-control" id="language" name="language">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     <option>Sinhala</option>
                                     <option>English</option>
@@ -148,7 +154,7 @@
                                 
                                 <div class="form-group col-md-4">
                                     <label for="publisher">Publisher</label>
-                                    <select class="form-control" id="publisher">
+                                    <select class="form-control" id="publisher" name="publisher">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     <option>Sarasavi</option>
                                     <option>M.D.Gunasena</option>
@@ -187,7 +193,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="phymedium">Physical Medium</label>
-                                    <select class="form-control" id="phymedium">
+                                    <select class="form-control" id="phymedium" name="phymedium">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     <option>A</option>
                                     <option>B</option>
@@ -231,7 +237,7 @@
 
                             <div class="form-group col-md-4">
                                     <label for="dewey_decimal">Dewey Decimal Classification</label>
-                                    <select class="form-control" id="dewey_decimal">
+                                    <select class="form-control" id="dewey_decimal" name="dewey_decimal">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -281,7 +287,7 @@
                                 
                                 <div class="form-group col-md-4">
                                     <label for="edition">Edition</label>
-                                    <select class="form-control" id="edition">
+                                    <select class="form-control" id="edition" name="edition">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -301,7 +307,7 @@
 
                             <div class="form-group col-md-4">
                                     <label for="publishyear">Publication year</label>
-                                    <input class="form-control" type="month" name="publishyear"value="{{old('publishyear')}}" id="purchasedate">
+                                    <input class="form-control" type="year" name="publishyear"value="{{old('publishyear')}}" id="purchasedate">
                                     <span class="text-danger">{{ $errors->first('publishyear') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
@@ -314,7 +320,7 @@
                                 <div class="form-row">
                                 <div class="form-group col-md-4">
                                 <label for="rackno">Rack No</label>
-                                    <select class="form-control" id="rackno">
+                                    <select class="form-control" id="rackno" name="rackno">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     <option>1</option>
                                     <option>2</option>
@@ -324,7 +330,7 @@
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                 <label for="rowno">Row No</label>
-                                    <select class="form-control" id="rowno">
+                                    <select class="form-control" id="rowno" name="rowno">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     <option>A</option>
                                     <option>B</option>
@@ -347,23 +353,25 @@
                                 <label for="br_qr_code">BarCode Or QRCode</label>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="bar_code"> BarCode
+                                        <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
                                         </label> 
                                         &nbsp;
                                         <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="qr_code"> QRCode
+                                        <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode
                                         </label>
+                                       
                                         &nbsp;  &nbsp;
                                         <button type="button" class="btn btn-info btn-lg" id="generate_code">Generate
-                                        <i class="fa fa-barcode"></i></button>
-                                        
+                                        <i class="fa fa-barcode"></i></button>   &nbsp;  &nbsp;
+                                        <span class="text-danger">{{ $errors->first('br_qr_code') }}</span>
+                                        </div>
 
                                 </div>
                                 <div class="form-group col-md-12"> </div>
                                
                                 <div class="form-group col-md-6">
                                     <textarea class="form-control" id="bar_Qr_code" name="bar_Qr_code" value="{{old('bar_Qr_code')}}" rows="4"></textarea>
-                                    <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span>
+                                    <!-- <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span> -->
                                 </div>
                                 <div class="form-group col-md-2">
                                 &nbsp; &nbsp;&nbsp; 
@@ -379,7 +387,7 @@
                         </div>
                         
                         <div class="box-footer clearfix pull-right">
-                                <button type="submit" class="btn btn-primary btn-md" id="save_book">
+                                <button type="submit" class="btn btn-primary btn-md" value="Save" id="save_book" onclick="showAlert();" >
                                 <i class="fa fa-floppy-o"></i> Save</button>
                                 &nbsp; &nbsp;
                                 <button type="button" class="btn btn-warning btn-md" id="reset_book">
@@ -389,8 +397,9 @@
                     </div>
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
-
+                    @include('Support.import_export_modal')
                 </section>
+
 
 
 
@@ -400,4 +409,57 @@
         </section>
         <!-- /.content -->
     </div>
+@endsection
+
+@section('js')
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.0.1/dist/js/adminlte.min.js"></script>
+
+<!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.js"></script> -->
+<!-- <script >
+$("#save_book").click(function(){
+
+    var newbook = {
+                    book_aNo: $("#InputCusID").val().trim(),
+                    book_isbn: $("#InputCusName").val().trim(),
+                    book_title: $("#InputAddress").val().trim()
+                    book_Author: $("#InputAddress").val().trim()
+                };
+
+    var ajaxConfig = {
+                    method: "POST",
+                    url:"http://localhost:8000/savebook",
+                    async: true,
+                    contentType: "application/json",
+                    data: JSON.stringify(newbook)
+                }
+
+
+                $.ajax(ajaxConfig).done(function(response,statusText,jxhr){
+                    alert("Added Successfully");
+                    loadAllCustomers();
+                    $('button[type="reset"]').trigger("click");
+                }).fail(function(jxhr,statusText,error){
+                    alert("Unable to save the customer, try again");
+                    console.log(error);
+                });
+
+}
+</script> -->
+
+        <!-- <div class="alert alert-success alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Success! message sent successfully.
+        </div> -->
+        
+
+
+
+
+        
 @endsection

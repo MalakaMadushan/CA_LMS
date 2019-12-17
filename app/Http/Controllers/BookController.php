@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Entities\Models\User;
 use App\book;
 use Session;
+use App\Exports\BookExport;
+use App\Imports\BookImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class BookController extends Controller
 {
@@ -28,7 +32,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
 
-        // $book =new book;
+        $book =new book;
         
         // validation part add new book
         $this->validate($request,[
@@ -41,14 +45,34 @@ class BookController extends Controller
             'purchase_date'=>'required',
             'phydetails'=>'required',
             'publishyear'=>'required',
-            'bar_Qr_code'=>'required',
+            'br_qr_code'=>'required',
             'note'=>'required',
 
             ]);
 
-            // $book->accessionnumber=$request->accessionnumber;
+            $book->accessionNo=$request->accessionNo;
+            $book->isbn=$request->isbn;
+            $book->book_title=$request->book_title;
+            $book->authors=$request->authors;
+            $book->book_category=$request->book_category;
+            $book->language=$request->language;
+            $book->publisher=$request->publisher;
+            $book->phymedium=$request->phymedium;
+            $book->dewey_decimal=$request->dewey_decimal;
+            $book->purchase_date=$request->purchase_date;
+            $book->edition=$request->edition;
+            $book->price=$request->price;
+            $book->publishyear=$request->publishyear;
+            $book->phydetails=$request->phydetails;
+            $book->rackno=$request->rackno;
+            $book->rowno=$request->rowno;
+            $book->note=$request->note;
+            $book->br_qr_code=$request->br_qr_code;
+            
 
-            // $book->save();
-            // return redirect()->back();
+            $book->save();
+            return redirect()->back();
     }
+
+   
 }

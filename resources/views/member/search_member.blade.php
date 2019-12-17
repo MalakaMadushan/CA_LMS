@@ -47,14 +47,15 @@
                                             <td>{{$data->name}}</td>
                                             <td>{{$data->address1}}</td>
                                             <td>{{$data->address2}}</td>
-                                            <td>{{$data->Category}}</td>
+                                            <td>{{$data->category}}</td>
                                             <td>{{$data->nic}}</td>
                                             <td>{{$data->mobile}}</td>
                                             <td>{{$data->regdate}}</td>
                                             <td>
-                                                <a href="/updateMember/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>&nbsp;
+                                                <!-- <a href="/update_member_view_modal/{{$data->id}}" class="btn btn-success btn-sm" data-toggle="modal" data-target="#updateMember" data-memberid="{{$data->id}}"><i class="fa fa-pencil" ></i></a>&nbsp;  -->
+                                                <a href="/update_member_view/{{$data->id}}" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-pencil" ></i></a>&nbsp; 
 
-                                                <button class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-memberid="{{$data->id}}" data-membername="{{$data->name}}"><i class="fa fa-trash" ></i></button>&nbsp;
+                                                <a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-memberid="{{$data->id}}" data-membername="{{$data->name}}"><i class="fa fa-trash" ></i></a>&nbsp;
                                                 
 
                                                 <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>&nbsp;
@@ -82,33 +83,7 @@
 
 
 
-    <!-- start edit Modal--------------------------------------------------------------------------------->
-    <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="categoryModalTitle" aria-hidden="true">
-         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                 <div class="modal-header">
-                    <h5 class="modal-title" id="upadate_member">Add Category</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                     </button>
-                </div>
-                <form method="post" action="/memberupdate" id="edit_member">
-                     {{ csrf_field() }}
-                     {{ method_field('PUT') }}
-                    <div class="modal-body">
-              
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" name="name"> <br>                                    
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-<!-- end modal ------------------------------------------------------------------------------------------------------>
+    
 
 <!-- start modal delete-------------------------------------------------------------------------------------------- -->
     <div class="modal modal-default fade" id="Modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -144,13 +119,7 @@
     </div>
     <!-- end modal delete ------------------------------------------------------------------------------------------>
 
-    @section('scriptsM')
-
-
-
-
-    @stop
-
+@include('member.update_member_modal')
 @endsection
 
 
