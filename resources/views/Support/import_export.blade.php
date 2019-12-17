@@ -14,10 +14,13 @@
                         <form action="/import_book" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="file" name="file" class="form-control">
+                            <textarea rows="4" cols="30" name="txt1" id="txt1" class="form-control"></textarea>
                             <br>
                             <button class="btn btn-success">Import Book Data</button>
                             <a class="btn btn-warning" href="{{ route('export') }}">Export Book Data</a>
+                           
                         </form>
+                        <button name="btn1" class="btn btn-warning btn1" id="view_bdtaa" >view Book Data</button>
                         <!-- <div>{!!DNS1D::getBarcodeHTML(8889899, 'C39')!!}</div><br>
                         <div>{!!DNS2D::getBarcodeSVG(5436564, 'QRCODE')!!}</div><br> -->
                         <br><br><br>

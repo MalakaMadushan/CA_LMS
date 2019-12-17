@@ -10,6 +10,7 @@ use App\member;
 use App\member_category;
 use Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 
 class MemberController extends Controller

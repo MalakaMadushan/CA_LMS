@@ -119,6 +119,10 @@ $(document).ready(function() {
   $('#mdatatable').DataTable();
   $('#book_datatable').DataTable();
 
+  $("#view_bdtaa").click(function(){
+    //alert("The paragraph was clicked.");
+    $("#txt1").html("Hello World");
+  });
   
   } );  
  
@@ -142,16 +146,6 @@ $('#addModal').on('show.bs.modal', function (event) {
 
 </script>
 
-<!------- function---barcode genarete------------------------ -->
-<script>
-   
-function codeGenarete() {
-    //var acc_no= document.getElementById("book_aNo").innerHTML;
-    alert("acc_no");
-    //document.getElementById("bar_Qr_code").innerHTML = '{!!DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70)!!}';
-}
-
-</script>
 
 <!-- ---------------------alert Auto Close----------------------- -->
 <script>
@@ -163,14 +157,6 @@ window.setTimeout(function() {
 
 </script>
 <!-- ---------------------------/------------------------------- -->
-<!-- <script type="text/javascript">
-@if (count($errors) > 0)
-    $('#addModal').modal('show');
-@endif
-</script> -->
-
-
-
 
 </body>
 </html>

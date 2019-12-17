@@ -361,24 +361,21 @@
                                         </label>
                                        
                                         &nbsp;  &nbsp;
-                                        <button type="button" class="btn btn-info btn-md" id="generate_code" onclick='codeGenarete()' >Generate
-                                        <i class="fa fa-barcode"></i></button>   &nbsp;  &nbsp;
-                                        <!-- <span class="text-danger">{{ $errors->first('br_qr_code') }}</span> -->
-                                        <div id="code_view">
-                                        </div>
-                                        </div>
+                                        
+                                        <a href="{!! url('/genarete_code') !!}"><i class="fa fa-circle-o"></i>Genarete</a>
+                                      
+                                        <button class="btn btn-light" onclick="codeGenarete1()">Advance Genarete</button>
+                                    </div>
 
                                 </div>
-                                <div class="form-group col-md-12"> </div>
+                                <div class="form-group col-md-12"> 
+                                    <div class="form-group col-md-6">
+                                        <textarea class="form-control" id="bar_Qr_code" name="bar_Qr_code" value="{{old('bar_Qr_code')}}" rows="4"></textarea>
+                                        <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span>
+                                    </div>
+                                </div>
                                
-                                <div class="form-group col-md-6">
-                                    <textarea class="form-control" id="bar_Qr_code" name="bar_Qr_code" value="{{old('bar_Qr_code')}}" rows="4"></textarea>
-                                    <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span>
-                                </div>
-                                <div class="form-group col-md-2">
-                                &nbsp; &nbsp;&nbsp; 
-                                <button type="button" class="btn btn-light"><label for="advancedgen"><i class="fa fa-cog"></i> Advanced Generate </label></button>
-                                </div>
+                                
                             </div>
 
                                 

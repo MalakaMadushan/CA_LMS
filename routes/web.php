@@ -3,6 +3,7 @@ use App\member;
 use App\book;
 use App\member_category;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,9 +37,11 @@ Route::get('/search_book', function () {
     $Bookdata=book::all();
     return view('books.search_book')->with('Bdata',$Bookdata);
 
+
 });
 
-
+Route::any('/genarete_code', 'SupportController@codeview')->name('books.new_book');
+//Route::patch('/genarete_code',['as' => 'books.new_book']);
 
 
 

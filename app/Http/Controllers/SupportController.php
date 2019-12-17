@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Exports\BookExport;
 use App\Imports\BookImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Input;
 
 class SupportController extends Controller
 {
@@ -32,6 +33,13 @@ class SupportController extends Controller
             return back()->with('warning','Plese Select the Excel File');
         }
     }
-
+    public static function codeview() 
+    {
+        $acc_no=Input::get('accessionNo');
+        dd($acc_no);
+        Input::replace(['bar_Qr_code' => 'new value']);
+        //return view('member.search_member');
+        return redirect()->back();
+    }
 
 }
