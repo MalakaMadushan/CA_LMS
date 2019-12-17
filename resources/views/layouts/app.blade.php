@@ -115,6 +115,24 @@
 
 // <!--end  member function--------datatable&modal------------------------ -->
 
+
+// start book delete function
+
+$('#book_delete').on('show.bs.modal', function (event) {
+  
+  var button = $(event.relatedTarget) 
+
+  var b_id = button.data('bookid') 
+  var b_title = button.data('book_title')
+  var modal = $(this)
+
+ 
+  document.getElementById("book_id").value= b_id; 
+  document.getElementById("bookname").innerHTML = b_title;
+})
+
+// end book delete function
+
 $(document).ready(function() {
   $('#mdatatable').DataTable();
   $('#book_datatable').DataTable();

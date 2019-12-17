@@ -25,48 +25,42 @@
                         </div>
 
                         <div class="box-body">
-                            <form action="" method="get">
-                            
-                            <div class="row">
+
+<!-----------------------------------------form start--------------------------------------------------->
+                        <form class="form-inline" method="" action="">
+                        {{csrf_field()}}
+
+                            <div class="form-group mx-sm-4 mb-2">
+                            <label for="">Books ID : </label>&nbsp;
+                            <input type="password" class="form-control" id="" placeholder="Books ID">
+                            </div>
+                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
+                            <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
+
+                            <div class="form-group col-md-6">
+
+                            <div class="form-group mx-sm-4 mb-2">
+                            <label for="">Member ID : </label>&nbsp;
+                            <input type="password" class="form-control" id="" placeholder="Member ID">
+                            </div>
+                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
+                            <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
 
 
-                                <div class="form-group col-md-4">
-                                    <label for="book_category">Member ID</label> &nbsp; &nbsp;
-                                    <input type="text" class="form-control" name="phydetails" value="{{old('phydetails')}}" placeholder="Member ID :">
-                                </div>
-                                <div class="form-group col-md-1">
-                                <label for="new_category">search</label>  &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#categoryModal"><i class="fa fa-search"></i></button>
 
-                                
-                                </div>
-
-                                <div class="form-group col-md-4">
-                                    <label for="language">Books ID</label>
-                                    <input type="text" class="form-control" name="phydetails" value="{{old('phydetails')}}" placeholder="Book ID :">
-                                </div>
-                                <div class="form-group col-md-1">
-                                <label for="new_language">search</label>  &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#languageModal"><i class="fa fa-search"></i></button>
-
-                               
-
-                                </div>
-                                
-                            </div>&nbsp; &nbsp;
+                           </div>
+                            <br><br>
                             <div class="row">
                                 <div class="col-lg-12">
                                 <!-- small box -->
-                                <div class="small-box bg-aqua" style="height:4rem;">
-                                <div class="text-center inner">
+                                <div class="small-box bg-aqua" style="height:2.1rem;">
+                                <div class="d-flex p-2">
                                 
-                                <h4>1505414 - &nbsp;
-                                Hirantha Rthnayaka
+                                <h4 class="d-flex p-2 text-center">1505414 - &nbsp;
+                                Hirantha Rathnayaka
                                 &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                                 <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                                 </h4>
-                                
-
                                 
                                 </div>
                              </div>
@@ -80,14 +74,13 @@
                                     <thead>
                                         <tr>&nbsp; &nbsp;
                                         <th scope="col">#</th>
+                                        <th scope="col">Accession No:</th>
+                                        <th scope="col">ISBN</th>
                                         <th scope="col">Book Id</th>
                                         <th scope="col">Book Name</th>
                                         <th scope="col">Author</th>
-                                        <th scope="col">Availability</th>
                                         <th scope="col">Publisher</th>
-                                        <th scope="col">Issuing Date</th>
-                                        <th scope="col">Last Borrowing Date</th>
-                                        <th scope="col">status</th>
+                                        <th scope="col">Issueing Date</th>
                                         
                                         </tr>
                                     </thead>
@@ -95,24 +88,24 @@
                                         <tr>
                                         <th scope="row">1</th>
                                         <td>554461</td>
-                                        <td>Harry Potter abc</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
+                                        <td>456354645</td>
+                                        <td>124</td>
+                                        <td>Harry Potter</td>
                                         <td>Otto</td>
-                                        <td>2019/12/10</td>
+                                        <td>Sarasavi</td>
                                         <td>2019/12/25</td>
                                         <td>
-                                        <button type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp;</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </td></button>
+                                        <a href="" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp;</a>
+                                        <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </td></a>
                                         </tr>
                                         <tr>
                                         <th scope="row">2</th>
                                         <td>646649</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>2019/12/02</td>
+                                        <td>454445424</td>
+                                        <td>1120</td>
+                                        <td>Palu Diwayina</td>
+                                        <td>jakob malowa</td>
+                                        <td>Gunasena</td>
                                         <td>2019/12/16</td>
                                         <td>
                                         <button type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp;</button>
@@ -127,13 +120,15 @@
                             
                         
                         <div class="box-footer clearfix pull-right">
-                                <button type="submit" class="btn btn-primary btn-md" id="save_book">
+                                <button type="submit" class="btn btn-primary btn-md" id="issue_book">
                                 <i class="fa fa-floppy-o"></i> Save</button>
                                 &nbsp; &nbsp;
-                                <button type="button" class="btn btn-warning btn-md" id="reset_book">
+                                <button type="button" class="btn btn-warning btn-md" id="reset_issue">
                                 <i class="fa fa-times"></i> Reset</button>
-                        </div>
+                        </div> 
                         </form>
+
+    <!-------------------------------form End-------------------------------------------------------------------------------------->                    
                     </div>
                    
                     <!-- --------------------------end section1----------------------------------------------- -->

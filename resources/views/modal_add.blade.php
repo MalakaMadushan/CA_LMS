@@ -3,10 +3,11 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h3 class="modal-title" id="opp_title"></h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
+            <h3 class="modal-title" id="opp_title"></h3>
+            
         </div>
         <form name="addmodal" id="modalform" method="post" action="#">
         {{ csrf_field() }}

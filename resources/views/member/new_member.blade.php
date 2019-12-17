@@ -64,7 +64,8 @@
                                     <div class="form-group col-md-6 text-left">
                                         <label for="categry">&nbsp;</label><br>
                                         
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-backdrop="static" data-opp_name="Member Category" onclick="add_by_modal('/save_member_cat')" ><i class="fa fa-plus"></i></button><label for="categry">&nbsp; New Category</label>
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-backdrop="static" data-opp_name="Member Category" onclick="add_by_modal('/save_member_cat')" >
+                                        <i class="fa fa-plus"></i></button><label for="categry">&nbsp; New Category</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
