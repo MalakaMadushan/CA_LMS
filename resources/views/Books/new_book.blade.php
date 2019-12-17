@@ -37,7 +37,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="accessionNo">Accession Number</label>
                                     <input type="text" class="form-control" id="book_aNo" name="accessionNo" value="{{old('accessionNo')}}" placeholder="Accession Number:">
-                                    <span class="text-danger">{{ $errors->first('accessionNo') }}</span>
+                                    <span class="text-danger" >{{ $errors->first('accessionNo') }}</span>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="isbn">ISBN</label>
@@ -361,9 +361,11 @@
                                         </label>
                                        
                                         &nbsp;  &nbsp;
-                                        <button type="button" class="btn btn-info btn-lg" id="generate_code">Generate
+                                        <button type="button" class="btn btn-info btn-md" id="generate_code" onclick='codeGenarete()' >Generate
                                         <i class="fa fa-barcode"></i></button>   &nbsp;  &nbsp;
-                                        <span class="text-danger">{{ $errors->first('br_qr_code') }}</span>
+                                        <!-- <span class="text-danger">{{ $errors->first('br_qr_code') }}</span> -->
+                                        <div id="code_view">
+                                        </div>
                                         </div>
 
                                 </div>
@@ -371,7 +373,7 @@
                                
                                 <div class="form-group col-md-6">
                                     <textarea class="form-control" id="bar_Qr_code" name="bar_Qr_code" value="{{old('bar_Qr_code')}}" rows="4"></textarea>
-                                    <!-- <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span> -->
+                                    <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span>
                                 </div>
                                 <div class="form-group col-md-2">
                                 &nbsp; &nbsp;&nbsp; 

@@ -42,6 +42,18 @@ Route::get('/search_book', function () {
 
 
 
+//book lending routing path
+Route::get('/issue_book', 'BookLendingController@issuebook')->name('issue_book');
+Route::get('/return_book', 'BookLendingController@returnbook')->name('return_book');
+
+//Board of Survey
+Route::get('/new_survey', 'BoardSurveyController@newsurvey')->name('newsurvey');
+Route::get('/latest_survey', 'BoardSurveyController@latestsurvey')->name('latestsurvey');
+Route::get('/past_survey', 'BoardSurveyController@pastsurvey')->name('pastsurvey');
+
+
+
+
 //member routing path
 Route::post('/save_member', 'MemberController@store');
 

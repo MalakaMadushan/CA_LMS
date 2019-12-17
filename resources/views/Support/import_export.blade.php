@@ -18,6 +18,22 @@
                             <button class="btn btn-success">Import Book Data</button>
                             <a class="btn btn-warning" href="{{ route('export') }}">Export Book Data</a>
                         </form>
+                        <!-- <div>{!!DNS1D::getBarcodeHTML(8889899, 'C39')!!}</div><br>
+                        <div>{!!DNS2D::getBarcodeSVG(5436564, 'QRCODE')!!}</div><br> -->
+                        <br><br><br>
+                        <div>{!!DNS1D::getBarcodeHTML("Shanuka123456", "C39",1,70,"Black", true)!!}</div><br>
+                        <div>{!!DNS1D::getBarcodeHTML("Shanuka123456", "C39+",1,70,"Black", true)!!}</div><br>
+                        <div>{!!DNS1D::getBarcodeHTML("Shanuka123456", "C128",1,70,"Black", true)!!}</div><br>
+                        <div>{!!DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70)!!}</div><br>
+                        <div>{!!DNS1D::getBarcodeHTML("4445645656", "CODE11")!!}</div><br>
+                        
+            
+                   
+                        <!-- <div>{!!DNS1D::getBarcodeHTML(6435636, 'MSI+')!!}</div><br>
+                        <div>{!!DNS1D::getBarcodeHTML(25547, 'POSTNET')!!}</div><br> -->
+
+
+                        
                     </div>
                    </div>
                 </div>

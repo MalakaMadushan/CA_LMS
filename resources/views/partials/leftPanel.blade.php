@@ -51,8 +51,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i>Issue Books</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Retun Books</a></li>
+                    <li><a href="{!! url('/issue_book') !!}"><i class="fa fa-circle-o"></i>Issue Books</a></li>
+                    <li><a href="{!! url('/return_book') !!}"><i class="fa fa-circle-o"></i> Retun Books</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -86,7 +86,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-laptop"></i>
+                    <i class="fa fa-file-pdf-o"></i>
                     <span>Reports</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -104,7 +104,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-laptop"></i>
+                    <i class="fa fa-user-circle-o"></i>
                     <span>Users</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -118,22 +118,28 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-circle-o"></i> Settings </a>
+                <a href="#"><i class="fa fa-cogs"></i> Settings </a>
             </li>
             
-            <li>
+            <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <i class="fa fa-briefcase"></i>
+                    <span>Board of Survey</span>
                     <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="{!! url('/new_survey') !!}"><i class="fa fa-circle-o"></i>New</a></li>
+                    <li><a href="{!! url('/latest_survey') !!}"><i class="fa fa-circle-o"></i>Latest</a></li>
+                    <li><a href="{!! url('/past_survey') !!}"><i class="fa fa-circle-o"></i> Past</a></li>
+
+                </ul>
             </li>
             
 
 
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+        
         <li><a href="#"><i class="fa fa-sign-out text-red"></i> <span>LogOut</span></a></li>
         </ul>
     </section>
