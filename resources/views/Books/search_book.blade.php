@@ -28,7 +28,7 @@
             <div class="box-body">
                 <div class="form-row">
                                                 
-                    <table class="table " id="book_datatable">
+                    <table class="table form-check-inline " id="book_datatable">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Book ID</th>
@@ -46,7 +46,7 @@
                         @foreach($Bdata as $data)
                             <tr>
                             <td>{{$data->id}}</td>                        
-                            <td>{{$data->accessionNo}}</td>                     
+                            <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>                  
                             <td>{{$data->book_title}}</td>                               
                             <td>{{$data->authors}}</td>                               
                             <td>{{$data->book_category}}</td>                               
@@ -54,9 +54,13 @@
                             <td>{{$data->publisher}}</td>      
                             <td>{{$data->rackno}}{{$data->rowno}}</td>                                                      
                             <td>
-                             <a href="/updateBook/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>&nbsp;                                                            
-                             <button class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-bookid="{{$data->id}}" data-bookname="{{$data->name}}"><i class="fa fa-trash" ></i></button>&nbsp;                              
-                             <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>&nbsp;                                   
+                            <div class="form-group">
+                                <div class="form-check-inline">
+                                    <a href="/updateBook/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>&nbsp;                                                            
+                                    <button class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-bookid="{{$data->id}}" data-bookname="{{$data->name}}"><i class="fa fa-trash" ></i></button>&nbsp;                              
+                                    <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>&nbsp;                                   
+                                </div>
+                             </div>
                              </td>
                              </tr>                                  
                              @endforeach                                       
