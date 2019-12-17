@@ -34,12 +34,12 @@
 	@endif
 
 
-	@if ($errors->any())
+	<!-- @if ($errors->any())
 	<div class="alert alert-danger">
 		<button type="button" class="close" data-dismiss="alert">×</button>	
 		Oppretion Not Complete
 	</div>
-	@endif
+	@endif -->
 	</div>
 	<div class="col-md-2"></div>
 </div>

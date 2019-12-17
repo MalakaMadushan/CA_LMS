@@ -51,6 +51,20 @@ Route::post('/save_Book_Ddecimal', 'BookController@addDdecimal');
 
 
 
+
+
+//book lending routing path
+Route::get('/issue_book', 'BookLendingController@issuebook')->name('issue_book');
+Route::get('/return_book', 'BookLendingController@returnbook')->name('return_book');
+
+//Board of Survey
+Route::get('/new_survey', 'BoardSurveyController@newsurvey')->name('newsurvey');
+Route::get('/latest_survey', 'BoardSurveyController@latestsurvey')->name('latestsurvey');
+Route::get('/past_survey', 'BoardSurveyController@pastsurvey')->name('pastsurvey');
+
+
+
+
 //member routing path
 Route::post('/save_member', 'MemberController@store');
 
@@ -69,3 +83,8 @@ Route::get('/update_member_view/{id}', 'MemberController@updateview');
 Route::get('/update_member_view_modal/{id}', 'MemberController@updateview_modal');
 
 Route::get('/back', 'MemberController@back');
+
+//Support routing Path
+Route::get('export', 'SupportController@export')->name('export');
+Route::get('importExportView', 'SupportController@importExportView');
+Route::post('import_book', 'SupportController@import');

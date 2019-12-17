@@ -141,15 +141,7 @@ $(document).ready(function() {
   } );  
  
 </script>
-<!-- -------------------------------------------------------- -->
-$(document).ready(function() {
-  $('#mdatatable').DataTable();
-
-  
-
-  });  
-
-</script>
+<!-- ------------------------------------------------- -->
 <!------- function---add modal------------------------ -->
 <script>
    
@@ -164,6 +156,17 @@ $('#addModal').on('show.bs.modal', function (event) {
   document.getElementById("opp_lbl").innerHTML = opp;
   document.getElementById("modalform").action = rout;
 })
+}
+
+</script>
+
+<!------- function---barcode genarete------------------------ -->
+<script>
+   
+function codeGenarete() {
+    //var acc_no= document.getElementById("book_aNo").innerHTML;
+    alert("acc_no");
+    //document.getElementById("bar_Qr_code").innerHTML = '{!!DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70)!!}';
 }
 
 </script>

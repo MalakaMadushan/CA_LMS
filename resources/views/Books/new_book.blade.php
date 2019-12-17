@@ -9,7 +9,9 @@
                     <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="#"><i class="fa fa-book"></i> Books</a></li>
                     <li class="active"><i class="fa fa-plus"></i> Add Book</li>
-            </ol>
+                </ol>
+                
+
         </section>
 
         <!-- Main content -->
@@ -22,6 +24,9 @@
                     <div class="box box-info">
                         <div class="box-header ">
                            <div class="pull-left header"> <h4> <i class="fa fa-plus"> Add New Books</i></h4></div>
+                           <div class="pull-right">
+                                <h4><button class="btn btn-warning btn-md" data-toggle="modal" data-target="#import_book_excel" ><i class="fa fa-file-excel-o"></i></button></h4>
+                           </div>
                         </div>
                        
                         <div class="box-body">
@@ -33,7 +38,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="accessionNo">Accession Number</label>
                                     <input type="text" class="form-control" id="book_aNo" name="accessionNo" value="{{old('accessionNo')}}" placeholder="Accession Number:">
-                                    <span class="text-danger">{{ $errors->first('accessionNo') }}</span>
+                                    <span class="text-danger" >{{ $errors->first('accessionNo') }}</span>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="isbn">ISBN</label>
@@ -42,6 +47,7 @@
                                 </div>
 
                             </div>
+
                                 
                             <div class="form-row">
                                 
@@ -242,9 +248,11 @@
                                         </label>
                                        
                                         &nbsp;  &nbsp;
-                                        <button type="button" class="btn btn-info btn-lg" id="generate_code">Generate
+                                        <button type="button" class="btn btn-info btn-md" id="generate_code" onclick='codeGenarete()' >Generate
                                         <i class="fa fa-barcode"></i></button>   &nbsp;  &nbsp;
-                                        <span class="text-danger">{{ $errors->first('br_qr_code') }}</span>
+                                        <!-- <span class="text-danger">{{ $errors->first('br_qr_code') }}</span> -->
+                                        <div id="code_view">
+                                        </div>
                                         </div>
 
                                 </div>
@@ -252,7 +260,7 @@
                                
                                 <div class="form-group col-md-6">
                                     <textarea class="form-control" id="bar_Qr_code" name="bar_Qr_code" value="{{old('bar_Qr_code')}}" rows="4"></textarea>
-                                    <!-- <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span> -->
+                                    <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span>
                                 </div>
                                 
                             </div>
@@ -275,8 +283,9 @@
                     </div>
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
-
+                    @include('Support.import_export_modal')
                 </section>
+
 
 
 
@@ -336,4 +345,7 @@ $("#save_book").click(function(){
         
 
 
+
+
+        
 @endsection

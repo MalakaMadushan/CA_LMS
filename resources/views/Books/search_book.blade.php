@@ -28,7 +28,7 @@
             <div class="box-body">
                 <div class="form-row">
                                                 
-                    <table class="table " id="book_datatable">
+                    <table class="table form-check-inline " id="book_datatable">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Book ID</th>
@@ -46,7 +46,7 @@
                         @foreach($Bdata as $data)
                             <tr>
                             <td>{{$data->id}}</td>                        
-                            <td>{{$data->accessionNo}}</td>                     
+                            <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>                  
                             <td>{{$data->book_title}}</td>                               
                             <td>{{$data->authors}}</td>                               
                             <td>{{$data->book_category_id}}</td>                               
