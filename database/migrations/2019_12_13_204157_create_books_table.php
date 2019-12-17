@@ -19,11 +19,11 @@ class CreateBooksTable extends Migration
             $table->string('isbn');
             $table->string('book_title');
             $table->string('authors');
-            $table->string('book_category');
-            $table->string('language');
-            $table->string('publisher');
-            $table->string('phymedium');
-            $table->string('dewey_decimal');
+            $table->string('book_category_id');
+            $table->string('language_id');
+            $table->string('publisher_id');
+            $table->string('phymedium_id');
+            $table->string('dewey_decimal_id');
             $table->date('purchase_date');
             $table->string('edition');
             $table->string('price');

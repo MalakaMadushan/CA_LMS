@@ -29,14 +29,25 @@ Route::get('/dashboard', 'HomeController@dashboardV1')->name('dashboard-v1');
 
 //book routing path
 Route::get('/new_book', 'BookController@addbook')->name('new_book');
+
 // Route::get('/search_book', 'BookController@searchbook')->name('search_book');
 Route::get('/details_book', 'BookController@detailsbook')->name('details_book');
+
 Route::post('/savebook', 'BookController@store');
+
 Route::get('/search_book', function () {
     $Bookdata=book::all();
     return view('books.search_book')->with('Bdata',$Bookdata);
 
 });
+
+Route::post('/deleteBook', 'BookController@delete');
+Route::get('/back', 'BookController@back');
+Route::post('/save_Book_category', 'BookController@addcategory');
+Route::post('/save_Book_language', 'BookController@addlanguage');
+Route::post('/save_Book_publisher', 'BookController@addpublisher');
+Route::post('/save_Book_phymedium', 'BookController@addphymedium');
+Route::post('/save_Book_Ddecimal', 'BookController@addDdecimal');
 
 
 
