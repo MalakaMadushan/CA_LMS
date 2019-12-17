@@ -65,6 +65,72 @@ class DatabaseSeeder extends Seeder
     $insert= DB::table('member_categories')->insert($mul_rows_mem_cat);
 
 
+    $mul_rows_books= [
+            
+        [  
+        'accessionNo'=>'123456',
+        'isbn'=>'5546612',
+        'book_title'=>'Ahethuka Sarisaranna',
+        'authors'=>'Iroshan premarathna',
+        'book_category_id'=>'Art & Litreture',
+        'language_id'=>'Sinhala',
+        'publisher_id'=>'Sarasavi',
+        'phymedium_id'=>'A',
+        'dewey_decimal_id'=>'1',
+        'purchase_date'=>'2019-12-01',
+        'edition'=>'1',
+        'price'=>'250',
+        'publishyear'=>'2019',
+        'phydetails'=>'120 pages',
+        'rackno'=>'1',
+        'rowno'=>'A',
+        'note'=>'Love Poem',
+        'br_qr_code'=>'bar_code'
+        ],
+        [  
+            'accessionNo'=>'156456',
+            'isbn'=>'89564612',
+            'book_title'=>'AMMA',
+            'authors'=>'W.A.De Silva',
+            'book_category_id'=>'Art & Litreture',
+            'language_id'=>'Sinhala',
+            'publisher_id'=>'Sadeepa',
+            'phymedium_id'=>'A',
+            'dewey_decimal_id'=>'2',
+            'purchase_date'=>'2017-12-01',
+            'edition'=>'3',
+            'price'=>'750',
+            'publishyear'=>'2012',
+            'phydetails'=>'470 pages',
+            'rackno'=>'1',
+            'rowno'=>'E',
+            'note'=>'Best Quality',
+            'br_qr_code'=>'bar_code'
+        ],
+        [  
+            'accessionNo'=>'1247966',
+            'isbn'=>'86784542',
+            'book_title'=>'Harry potter',
+            'authors'=>'J.K Rowling',
+            'book_category_id'=>'Fiction & Translated',
+            'language_id'=>'English',
+            'publisher_id'=>'Wijitha Yapa',
+            'phymedium_id'=>'A',
+            'dewey_decimal_id'=>'2',
+            'purchase_date'=>'2016-02-01',
+            'edition'=>'3',
+            'price'=>'1750',
+            'publishyear'=>'2012',
+            'phydetails'=>'570 pages',
+            'rackno'=>'2',
+            'rowno'=>'B',
+            'note'=>'fantacy mystery thriller book',
+            'br_qr_code'=>'bar_code'
+            ]
+        
+];
+$insert= DB::table('books')->insert($mul_rows_books);
+
 
 
     }

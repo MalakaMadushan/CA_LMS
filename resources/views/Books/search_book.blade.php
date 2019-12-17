@@ -49,19 +49,19 @@
                             <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>                  
                             <td>{{$data->book_title}}</td>                               
                             <td>{{$data->authors}}</td>                               
-                            <td>{{$data->book_category}}</td>                               
-                            <td>{{$data->language}}</td>                               
-                            <td>{{$data->publisher}}</td>      
+                            <td>{{$data->book_category_id}}</td>                               
+                            <td>{{$data->language_id}}</td>                               
+                            <td>{{$data->publisher_id}}</td>      
                             <td>{{$data->rackno}}{{$data->rowno}}</td>                                                      
                             <td>
-                            <div class="form-group">
-                                <div class="form-check-inline">
-                                    <a href="/updateBook/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>&nbsp;                                                            
-                                    <button class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-bookid="{{$data->id}}" data-bookname="{{$data->name}}"><i class="fa fa-trash" ></i></button>&nbsp;                              
-                                    <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>&nbsp;                                   
-                                </div>
-                             </div>
-                             </td>
+                            <a href="/update_member_view/{{$data->id}}" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-pencil" ></i></a> 
+
+                            <a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#book_delete" data-bookid="{{$data->id}}" data-book_title="{{$data->book_title}}"><i class="fa fa-trash" ></i></a>&nbsp;
+
+
+                            <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>
+
+                            </td>
                              </tr>                                  
                              @endforeach                                       
                          </tbody>
@@ -73,15 +73,82 @@
                     </div>
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
-
                 </section> 
-
-
-
             </div>
             <!-- /.row (main row) -->
-
         </section>
         <!-- /.content -->
     </div>
+
+
+    <!-- start book modal delete-------------------------------------------------------------------------------------------- -->
+   
+    <div class="modal fade" id="book_delete" tabindex="-1" role="dialog" aria-labelledby="phymediumModalTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                            <h4 class="modal-title" id="myModalLabel">Remove Book</h4>
+                                        </div>
+                                        <form method="post" action="/deleteBook">
+                                         {{ csrf_field() }}
+                                        <div class="modal-body">
+
+                                                <input type="hidden" id="book_id" name="book_id">
+                                                <div class="row form-group">
+                                                    <div class="col-md-6">
+                                                        <h5 id="myModalLabel">Are you sure Remove Book - </h5>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <h4><label type="text"  id="bookname"></label></h4>
+                                                    </div>
+                                                </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> &nbsp; Delete</button>
+                                        </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+
+
+   <!-- <div class="modal modal-default fade" id="Modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Remove Book</h4>
+                </div>
+                <form method="post" action="/deleteBook">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+
+                        <input type="hidden" id="book_id" name="book_id">
+                        <div class="row form-group">
+                            <div class="col-md-4">
+                                <h5 id="myModalLabel">Are you sure Remove Book - </h5>
+                            </div>
+                            <div class="col-md-8">
+                                <h4><label type="text"  id="bookname"></label></h4>
+                            </div>
+                        </div>
+                         
+
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger "><i class="fa fa-trash"></i> &nbsp; Delete</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div> -->
+    <!-- end book modal delete ------------------------------------------------------------------------------------------>
+
 @endsection

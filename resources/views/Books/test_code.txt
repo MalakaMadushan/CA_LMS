@@ -1,0 +1,18 @@
+//--------------get input value and pass anothre html--------------
+<script>
+$(document).ready(function() {
+    $('#mdatatable').DataTable();
+    $('#book_datatable').DataTable();
+
+    $("#book_aNo").change(function(){
+        var _code=$("#book_aNo").val();
+        <?php
+        $br= DNS1D::getBarcodeHTML("4445645656", "PHARMA2T");
+
+        ?>
+        $("#code_view_bq").html('<?php echo($br);?>');
+        
+    }); 
+  });  
+  ;
+</script>

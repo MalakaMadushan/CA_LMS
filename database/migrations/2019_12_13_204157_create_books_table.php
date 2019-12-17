@@ -19,11 +19,11 @@ class CreateBooksTable extends Migration
             $table->string('isbn')->nullable();
             $table->string('book_title');
             $table->string('authors')->nullable();
-            $table->string('book_category')->nullable();
-            $table->string('language')->nullable();
-            $table->string('publisher')->nullable();
-            $table->string('phymedium')->nullable();
-            $table->string('dewey_decimal')->default(0);
+            $table->string('book_category_id')->nullable();
+            $table->string('language_id')->nullable();
+            $table->string('publisher_id')->nullable();
+            $table->string('phymedium_id')->nullable();
+            $table->string('dewey_decimal_id')->default(0);
             $table->date('purchase_date')->nullable();//default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('edition')->nullable();
             $table->string('price')->default(0.00);

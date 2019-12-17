@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
+<div>
         <!-- Content Header (Page header) -->
         <section class="content-fulid mt-1">
             <h2> &nbsp Books</h2> 
@@ -28,17 +28,31 @@
                                 <h4><button class="btn btn-warning btn-md" data-toggle="modal" data-target="#import_book_excel" ><i class="fa fa-file-excel-o"></i></button></h4>
                            </div>
                         </div>
-                        @include('flash_massage')
+                       
                         <div class="box-body">
-                            <form action="/savebook" method="post">
+                        @include('flash_massage')
+                            <form action="/savebook" method="post" name="book_save" id="book_save">
                             {{ csrf_field() }}
                             <div class="form-row">
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="accessionNo">Accession Number</label>
                                     <input type="text" class="form-control" id="book_aNo" name="accessionNo" value="{{old('accessionNo')}}" placeholder="Accession Number:">
                                     <span class="text-danger" >{{ $errors->first('accessionNo') }}</span>
                                 </div>
+                                <div class="form-group col-md-2">
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label"></label>
+                                            <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
+                                            <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode
+                                            <!-- <button class="btn btn-primary"><i class="fa fa-circle-o">Genarete</i></button> -->
+
+                                    </div>
+                                    <div id="code_view_bq" class="form-group">
+                                    {!!DNS1D::getBarcodeSVG("Code Aider", "C128",1,50)!!}
+                                    </div>
+                                </div>
+
                                 <div class="form-group col-md-6">
                                     <label for="isbn">ISBN</label>
                                     <input type="text" class="form-control" id="book_isbn" name="isbn"  value="{{old('isbn')}}"  placeholder="ISBN">
@@ -67,84 +81,36 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="book_category">Category</label> &nbsp; &nbsp;
-                                    <select class="form-control" id="book_category" name="book_category">
+                                    <select class="form-control" id="book_category" name="book_category" value="{{old('category')}}">
                                     <option value="" selected disabled hidden>Choose here</option>
-                                    <option>History</option>
-                                    <option>Science & Technology</option>
-                                    <option>Art & Litreture</option>
-                                    <option>Fiction & Translated</option>
-                                    <option>Kids & fairy tales</option>
+                                    @foreach($Cat_data as $item)
+                                            <option value="{{ $item->id }}">{{ $item->category }}</option>
+                                        @endforeach
                                     </select>
+                                    <span class="text-danger">{{ $errors->first('category') }}</span>
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_category">New Category</label>  &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#categoryModal"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"  data-backdrop="static" data-opp_name="Book Category"
+                                onclick="add_by_modal('/save_Book_category')"><i class="fa fa-plus"></i></button>
 
-                                <!-- start Modal Category-->
-                                    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="categoryModalTitle">Add Category</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <label for="category">Category</label>
-                                            <input type="text" class="form-control" name="category" placeholder="Enter Your New Category:"> <br>
-                                    
-                                            
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <!-- end modal -->
-
-
+                                
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="language">Language</label>
-                                    <select class="form-control" id="language" name="language">
+                                    <select class="form-control" id="language" name="language" value="{{old('language')}}">
                                     <option value="" selected disabled hidden>Choose here</option>
-                                    <option>Sinhala</option>
-                                    <option>English</option>
-                                    <option>Tamil</option>
+                                    @foreach($Lang_data as $item)
+                                            <option value="{{ $item->id }}">{{ $item->language }}</option>
+                                        @endforeach
                                     </select>
+                                    <span class="text-danger">{{ $errors->first('language') }}</span>
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_language">New Language</label>  &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#languageModal"><i class="fa fa-plus"></i></button>
-
-                                <!-- start Modal language -->
-                                <div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="languageModalTitle">Add Language</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <label for="authors">Language</label>
-                                            <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Language:"> <br>
-                                    
-                                            
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <!-- end modal -->
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-backdrop="static" data-opp_name="Book Language"
+                                onclick="add_by_modal('/save_Book_language')"><i class="fa fa-plus"></i></button>
 
                                 </div>
                                 
@@ -154,80 +120,36 @@
                                 
                                 <div class="form-group col-md-4">
                                     <label for="publisher">Publisher</label>
-                                    <select class="form-control" id="publisher" name="publisher">
+                                    <select class="form-control" id="publisher" name="publisher" value="{{old('publisher')}}">
                                     <option value="" selected disabled hidden>Choose here</option>
-                                    <option>Sarasavi</option>
-                                    <option>M.D.Gunasena</option>
-                                    <option>Rathna</option>
+                                    @foreach($Pub_data as $item)
+                                            <option value="{{ $item->id }}">{{ $item->publisher}}</option>
+                                        @endforeach
                                     </select>
+                                    <span class="text-danger">{{ $errors->first('publisher') }}</span>
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_publisher">New Publisher</label>  &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#publisherModal"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-backdrop="static" data-opp_name="Book Publisher"
+                                onclick="add_by_modal('/save_Book_publisher')"><i class="fa fa-plus"></i></button>
 
-                                <!-- start Modal Publisher-->
-                                <div class="modal fade" id="publisherModal" tabindex="-1" role="dialog" aria-labelledby="publisherModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="publisherModalTitle">Add Publisher</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <label for="authors">Publisher</label>
-                                            <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Publisher:"> <br>
-                                    
-                                            
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <!-- end modal -->
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="phymedium">Physical Medium</label>
-                                    <select class="form-control" id="phymedium" name="phymedium">
+                                    <select class="form-control" id="phymedium" name="phymedium" value="{{old('phymedium')}}">
                                     <option value="" selected disabled hidden>Choose here</option>
-                                    <option>A</option>
-                                    <option>B</option>
-                                    <option>C</option>
+                                    @foreach($PhyMdm_data as $item)
+                                            <option value="{{ $item->id }}">{{ $item->phymedium}}</option>
+                                        @endforeach
                                     </select>
+                                    <span class="text-danger">{{ $errors->first('phymedium') }}</span>
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_phymedium">New Physical Medium</label> 
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#phymediumModal"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-backdrop="static" data-opp_name="Book Physical Medium"
+                                onclick="add_by_modal('/save_Book_phymedium')"><i class="fa fa-plus"></i></button>
 
-                                   <!-- start Modal Phy medium-->
-                                   <div class="modal fade" id="phymediumModal" tabindex="-1" role="dialog" aria-labelledby="phymediumModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="phymediumModalTitle">Add Physical Medium</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <label for="authors">Physical Medium</label>
-                                            <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Physical Medium:"> <br>
-                                    
-                                            
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <!-- end modal -->
                                 </div>
 
                             </div>
@@ -237,41 +159,19 @@
 
                             <div class="form-group col-md-4">
                                     <label for="dewey_decimal">Dewey Decimal Classification</label>
-                                    <select class="form-control" id="dewey_decimal" name="dewey_decimal">
+                                    <select class="form-control" id="dewey_decimal" name="dewey_decimal" value="{{old('dewey_decimal')}}">
                                     <option value="" selected disabled hidden>Choose here</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
+                                    @foreach($DDC_data as $item)
+                                            <option value="{{ $item->id }}">{{ $item->dewey_decimal}}</option>
+                                        @endforeach
                                     </select>
+                                    <span class="text-danger">{{ $errors->first('dewey_decimal') }}</span>
                                 </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_dewey_decimal"> New DDC </label> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ddcModal"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-backdrop="static" data-opp_name="Book Dewey Decimal"
+                                onclick="add_by_modal('/save_Book_Ddecimal')"><i class="fa fa-plus"></i></button>
 
-                                 <!-- start Modal DDC-->
-                                 <div class="modal fade" id="ddcModal" tabindex="-1" role="dialog" aria-labelledby="ddcModalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="ddcModalTitle">Add dewey Decimal</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <label for="authors">Dewey Decimal </label>
-                                            <input type="text" class="form-control" name="accessionnumber" placeholder="Enter Your New Dewey Decimal:"> <br>
-                                    
-                                            
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <!-- end modal -->
                                 </div>
                                 
                                 <div class="form-group col-md-4">
@@ -347,70 +247,35 @@
 
                             </div>
 
-                            <div class="form-row">
-                                
-                                <div class="form-group col-md-12">
-                                <label for="br_qr_code">BarCode Or QRCode</label>
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
-                                        </label> 
-                                        &nbsp;
-                                        <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode
-                                        </label>
-                                       
-                                        &nbsp;  &nbsp;
-                                        <button type="button" class="btn btn-info btn-md" id="generate_code" onclick='codeGenarete()' >Generate
-                                        <i class="fa fa-barcode"></i></button>   &nbsp;  &nbsp;
-                                        <!-- <span class="text-danger">{{ $errors->first('br_qr_code') }}</span> -->
-                                        <div id="code_view">
-                                        </div>
-                                        </div>
 
-                                </div>
-                                <div class="form-group col-md-12"> </div>
-                               
-                                <div class="form-group col-md-6">
-                                    <textarea class="form-control" id="bar_Qr_code" name="bar_Qr_code" value="{{old('bar_Qr_code')}}" rows="4"></textarea>
-                                    <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span>
-                                </div>
-                                <div class="form-group col-md-2">
-                                &nbsp; &nbsp;&nbsp; 
-                                <button type="button" class="btn btn-light"><label for="advancedgen"><i class="fa fa-cog"></i> Advanced Generate </label></button>
-                                </div>
-                            </div>
-
-                                
-
-                            </div>
-                            
-                            
-                        </div>
-                        
                         <div class="box-footer clearfix pull-right">
-                                <button type="submit" class="btn btn-primary btn-md" value="Save" id="save_book" onclick="showAlert();" >
-                                <i class="fa fa-floppy-o"></i> Save</button>
-                                &nbsp; &nbsp;
-                                <button type="button" class="btn btn-warning btn-md" id="reset_book">
-                                <i class="fa fa-times"></i> Reset</button>
-                        </div>
+                            <button type="submit" class="btn btn-primary btn-md" value="Save" id="save_book" onclick="showAlert();" >
+                            <i class="fa fa-floppy-o"></i> Save</button>
+                            &nbsp; &nbsp;
+                            <button type="button" class="btn btn-warning btn-md" id="reset_book">
+                            <i class="fa fa-times"></i> Reset</button>
+                        </div>   
                         </form>
+                            </div>
+                            
+                            
+                        </div>
+                    </section>
+                        
+                       
+                        
                     </div>
+                     @include('modal_add')
+                </section>
+            </div>
+  
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
                     @include('Support.import_export_modal')
-                </section>
-
-
-
-
-            </div>
+                
             <!-- /.row (main row) -->
+           
 
-        </section>
-        <!-- /.content -->
-    </div>
 @endsection
 
 @section('js')

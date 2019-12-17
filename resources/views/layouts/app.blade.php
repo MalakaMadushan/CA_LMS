@@ -6,12 +6,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="_token" content="{{ csrf_token() }}" /> 
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    
 
     <!-- Styles -->
     <link href="{{ asset('app.css') }}" rel="stylesheet">
@@ -115,13 +117,64 @@
 
 // <!--end  member function--------datatable&modal------------------------ -->
 
-$(document).ready(function() {
-  $('#mdatatable').DataTable();
-  $('#book_datatable').DataTable();
 
+// start book delete function
+
+$('#book_delete').on('show.bs.modal', function (event) {
   
-  } );  
+  var button = $(event.relatedTarget) 
+
+  var b_id = button.data('bookid') 
+  var b_title = button.data('book_title')
+//   var modal = $(this)
+
  
+  document.getElementById("book_id").value= b_id; 
+  document.getElementById("bookname").innerHTML = b_title;
+})
+
+// end book delete function
+
+  $(document).ready(function() {
+
+    $('#mdatatable').DataTable();
+    $('#book_datatable').DataTable();
+// --------------------------------------------------
+    $("#book_aNo").change(function(){
+        var selectOption = $("#book_aNo").val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            method: 'POST',
+            data: { selectOption: selectOption },
+            url: '/codeview',  //**Eg. URL in route
+            success: function(response){
+                if(response.success) {
+                    //$('#code_view_bq').html(response.codebq);
+                    $genaretedbar=response.codebq;
+                    alert('success');
+                }       
+            },
+
+                // .done(function(response) {
+                // console.log("response");
+                // //do something with the response
+                // })
+                // .fail(function() {
+                //     console.log("error");
+                // })
+                // .always(function() {
+                //     console.log("complete");
+                // });
+        });
+    });
+});
+  
 </script>
 <!-- ------------------------------------------------- -->
 <!------- function---add modal------------------------ -->
@@ -142,16 +195,6 @@ $('#addModal').on('show.bs.modal', function (event) {
 
 </script>
 
-<!------- function---barcode genarete------------------------ -->
-<script>
-   
-function codeGenarete() {
-    //var acc_no= document.getElementById("book_aNo").innerHTML;
-    alert("acc_no");
-    //document.getElementById("bar_Qr_code").innerHTML = '{!!DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70)!!}';
-}
-
-</script>
 
 <!-- ---------------------alert Auto Close----------------------- -->
 <script>
@@ -163,14 +206,6 @@ window.setTimeout(function() {
 
 </script>
 <!-- ---------------------------/------------------------------- -->
-<!-- <script type="text/javascript">
-@if (count($errors) > 0)
-    $('#addModal').modal('show');
-@endif
-</script> -->
-
-
-
 
 </body>
 </html>

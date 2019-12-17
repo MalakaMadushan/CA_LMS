@@ -18,6 +18,7 @@
                               <div class="card-body">
                               <div class="form-group">
                                     <input type="file" name="file" class="form-control">
+                                    <input type="text" name="txt1" class="form-control">
                               </div>
                               <br>
 
@@ -29,6 +30,7 @@
                   <button class="btn btn-success" type="submit">Import Book Data</button>
                   <!-- <a class="btn btn-success" href="{!! url('/import_book') !!}">Import Book Data</a> -->
                   <a class="btn btn-warning" href="{{ route('export') }}">Export Book Data</a>
+                  
                   
                   </div>
                   </form>
