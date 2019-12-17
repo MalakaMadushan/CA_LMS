@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
+<div>
         <!-- Content Header (Page header) -->
         <section class="content-fulid mt-1">
             <h2> &nbsp Books</h2> 
@@ -35,11 +35,24 @@
                             {{ csrf_field() }}
                             <div class="form-row">
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="accessionNo">Accession Number</label>
                                     <input type="text" class="form-control" id="book_aNo" name="accessionNo" value="{{old('accessionNo')}}" placeholder="Accession Number:">
                                     <span class="text-danger" >{{ $errors->first('accessionNo') }}</span>
                                 </div>
+                                <div class="form-group col-md-2">
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label"></label>
+                                            <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
+                                            <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode
+                                            <!-- <button class="btn btn-primary"><i class="fa fa-circle-o">Genarete</i></button> -->
+
+                                    </div>
+                                    <div id="code_view_bq" class="form-group">
+                                    {!!DNS1D::getBarcodeSVG("Code Aider", "C128",1,50)!!}
+                                    </div>
+                                </div>
+
                                 <div class="form-group col-md-6">
                                     <label for="isbn">ISBN</label>
                                     <input type="text" class="form-control" id="book_isbn" name="isbn"  value="{{old('isbn')}}"  placeholder="ISBN">
@@ -234,66 +247,35 @@
 
                             </div>
 
-                            <div class="form-row">
-                                
-                                <div class="form-group col-md-12">
-                                <label for="br_qr_code">BarCode Or QRCode</label>
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
-                                        </label> 
-                                        &nbsp;
-                                        <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode
-                                        </label>
-                                       
-                                        &nbsp;  &nbsp;
-                                        
-                                        <a href="{!! url('/genarete_code') !!}"><i class="fa fa-circle-o"></i>Genarete</a>
-                                      
-                                        <button class="btn btn-light" onclick="codeGenarete1()">Advance Genarete</button>
-                                    </div>
 
-                                </div>
-                                <div class="form-group col-md-12"> </div>
-                               
-                                <div class="form-group col-md-6">
-                                    <textarea class="form-control" id="bar_Qr_code" name="bar_Qr_code" value="{{old('bar_Qr_code')}}" rows="4"></textarea>
-                                    <span class="text-danger">{{ $errors->first('bar_Qr_code') }}</span>
-                                </div>
-                                
-                            </div>
-
-                                
-
-                            </div>
-                            
-                            
-                        </div>
-                        
                         <div class="box-footer clearfix pull-right">
-                                <button type="submit" class="btn btn-primary btn-md" value="Save" id="save_book" onclick="showAlert();" >
-                                <i class="fa fa-floppy-o"></i> Save</button>
-                                &nbsp; &nbsp;
-                                <button type="button" class="btn btn-warning btn-md" id="reset_book">
-                                <i class="fa fa-times"></i> Reset</button>
-                        </div>
+                            <button type="submit" class="btn btn-primary btn-md" value="Save" id="save_book" onclick="showAlert();" >
+                            <i class="fa fa-floppy-o"></i> Save</button>
+                            &nbsp; &nbsp;
+                            <button type="button" class="btn btn-warning btn-md" id="reset_book">
+                            <i class="fa fa-times"></i> Reset</button>
+                        </div>   
                         </form>
+                            </div>
+                            
+                            
+                        </div>
+                    </section>
+                        
+                       
+                        
                     </div>
+                     @include('modal_add')
+                </section>
+            </div>
+  
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
                     @include('Support.import_export_modal')
-                </section>
-
-
-
-
-            </div>
+                
             <!-- /.row (main row) -->
-            @include('modal_add')
-        </section>
-        <!-- /.content -->
-    </div>
+           
+
 @endsection
 
 @section('js')

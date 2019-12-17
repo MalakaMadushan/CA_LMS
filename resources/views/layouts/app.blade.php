@@ -6,12 +6,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="_token" content="{{ csrf_token() }}" /> 
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    
 
     <!-- Styles -->
     <link href="{{ asset('app.css') }}" rel="stylesheet">
@@ -124,7 +126,7 @@ $('#book_delete').on('show.bs.modal', function (event) {
 
   var b_id = button.data('bookid') 
   var b_title = button.data('book_title')
-  var modal = $(this)
+//   var modal = $(this)
 
  
   document.getElementById("book_id").value= b_id; 
@@ -133,17 +135,46 @@ $('#book_delete').on('show.bs.modal', function (event) {
 
 // end book delete function
 
-$(document).ready(function() {
-  $('#mdatatable').DataTable();
-  $('#book_datatable').DataTable();
+  $(document).ready(function() {
 
-  $("#view_bdtaa").click(function(){
-    //alert("The paragraph was clicked.");
-    $("#txt1").html("Hello World");
-  });
+    $('#mdatatable').DataTable();
+    $('#book_datatable').DataTable();
+// --------------------------------------------------
+    $("#book_aNo").change(function(){
+        var selectOption = $("#book_aNo").val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            method: 'POST',
+            data: { selectOption: selectOption },
+            url: '/codeview',  //**Eg. URL in route
+            success: function(response){
+                if(response.success) {
+                    //$('#code_view_bq').html(response.codebq);
+                    $genaretedbar=response.codebq;
+                    alert('success');
+                }       
+            },
+
+                // .done(function(response) {
+                // console.log("response");
+                // //do something with the response
+                // })
+                // .fail(function() {
+                //     console.log("error");
+                // })
+                // .always(function() {
+                //     console.log("complete");
+                // });
+        });
+    });
+});
   
-  } );  
- 
 </script>
 <!-- ------------------------------------------------- -->
 <!------- function---add modal------------------------ -->

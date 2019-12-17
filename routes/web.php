@@ -91,3 +91,4 @@ Route::get('/back', 'MemberController@back');
 Route::get('export', 'SupportController@export')->name('export');
 Route::get('importExportView', 'SupportController@importExportView');
 Route::post('import_book', 'SupportController@import');
+Route::post('/codeview', 'SupportController@codeview');
