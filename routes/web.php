@@ -92,3 +92,6 @@ Route::get('export', 'SupportController@export')->name('export');
 Route::get('importExportView', 'SupportController@importExportView');
 Route::post('import_book', 'SupportController@import');
 Route::post('/codeview', 'SupportController@codeview');
+Route::get('pdfviewMember',array('as'=>'pdfviewMember','uses'=>'SupportController@pdfviewMember'));
+Route::get('pdfbarcodeall',array('as'=>'pdfbarcodeall','uses'=>'SupportController@pdfbarcodeall'));
+//Route::get('/pdfviewMember', 'SupportController@pdfviewMember');
