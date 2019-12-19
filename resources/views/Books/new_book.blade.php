@@ -43,8 +43,8 @@
                                 <div class="form-group col-md-2">
                                     <div class="form-check-inline">
                                         <label class="form-check-label"></label>
-                                            <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
-                                            <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode
+                                            <!-- <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
+                                            <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode -->
                                             <!-- <button class="btn btn-primary"><i class="fa fa-circle-o">Genarete</i></button> -->
 
                                     </div>

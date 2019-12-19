@@ -22,12 +22,25 @@
  
         <div class="box box-info">
          <div class="box-header ">
-            <div class="pull-left header"> <h4> <i class="fa fa-search"> Search Books</i></h4></div>
+            <div class="row">
+                    <div class="pull-left header col-md-10"> 
+                       <div class="pull-left header"> <h4> <i class="fa fa-search"> Search Books</i></h4></div>
+                    </div>
+                     <div class="pull-right header col-md-2"> 
+                        <div class="form-check-inline">
+                           <a href="{{ route('pdfbarcodeall',['download'=>'pdf']) }}" target="_blank"class=""><i class="fa fa-file-pdf-o m-right-xs"></i>PDF</a>&nbsp;
+                            <a href="#" target="_blank"class=""><i class="fa fa-file-excel-o m-right-xs"></i>Excel</a>&nbsp;
+                            <a href="#" target="_blank"class=""><i class="fa fa-file-word-o m-right-xs"></i>Word</a>&nbsp;
+
+                        </div>      
+                    </div>
+            </div>
+            
          </div>
 
             <div class="box-body">
                 <div class="form-row">
-                                                
+                                   
                     <table class="table form-check-inline " id="book_datatable">
                         <thead class="thead-dark">
                             <tr>
