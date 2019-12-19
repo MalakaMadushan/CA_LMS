@@ -36,12 +36,14 @@ Route::get('/details_book', 'BookController@detailsbook')->name('details_book');
 
 Route::post('/savebook', 'BookController@store');
 
-Route::get('/search_book', function () {
-    $Bookdata=book::all();
-    return view('books.search_book')->with('Bdata',$Bookdata);
+// Route::get('/search_book', function () {
+//     $Bookdata=book::all();
+//     return view('books.search_book')->with('Bdata',$Bookdata);
 
 
-});
+// });
+Route::get('/search_book', 'BookController@allbook');
+
 Route::post('/deleteBook', 'BookController@delete');
 Route::get('/back', 'BookController@back');
 Route::post('/save_Book_category', 'BookController@addcategory');
@@ -49,6 +51,10 @@ Route::post('/save_Book_language', 'BookController@addlanguage');
 Route::post('/save_Book_publisher', 'BookController@addpublisher');
 Route::post('/save_Book_phymedium', 'BookController@addphymedium');
 Route::post('/save_Book_Ddecimal', 'BookController@addDdecimal');
+Route::post('/update_book', 'BookController@updatebook');
+
+ Route::get('/update_book_view/{id}', 'BookController@updateview');
+ 
 
 
 Route::any('/genarete_code', 'SupportController@codeview')->name('books.new_book');
