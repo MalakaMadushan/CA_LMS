@@ -157,22 +157,36 @@ $('#book_delete').on('show.bs.modal', function (event) {
                 if(response.success) {
                     //$('#code_view_bq').html(response.codebq);
                     $genaretedbar=response.codebq;
+                    //alert('success');
+                }       
+            },
+        });
+    });
+
+    // ----------------------------------------------------------------------------
+
+    $("#member_id").change(function(){
+        var memberid = $("#member_id").val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            method: 'POST',
+            data: { memberid: memberid },
+            url: '/member_view',
+            success: function(response){
+                if(response.success) {
+                    $('#member_Name').html(response.member_nme);
                     alert('success');
                 }       
             },
-
-                // .done(function(response) {
-                // console.log("response");
-                // //do something with the response
-                // })
-                // .fail(function() {
-                //     console.log("error");
-                // })
-                // .always(function() {
-                //     console.log("complete");
-                // });
         });
     });
+    // -----------------------------------------------------------------------
 });
   
 </script>

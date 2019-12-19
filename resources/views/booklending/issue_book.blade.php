@@ -32,7 +32,7 @@
 
                             <div class="form-group mx-sm-4 mb-2">
                             <label for="">Books ID : </label>&nbsp;
-                            <input type="password" class="form-control" id="" placeholder="Books ID">
+                            <input type="text" class="form-control" id="" placeholder="Books ID">
                             </div>
                             <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
                             <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
@@ -41,7 +41,7 @@
 
                             <div class="form-group mx-sm-4 mb-2">
                             <label for="">Member ID : </label>&nbsp;
-                            <input type="password" class="form-control" id="" placeholder="Member ID">
+                            <input type="text" class="form-control" id="member_id" placeholder="Member ID">
                             </div>
                             <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
                             <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
@@ -56,8 +56,7 @@
                                 <div class="small-box bg-aqua" style="height:2.1rem;">
                                 <div class="d-flex p-2">
                                 
-                                <h4 class="d-flex p-2 text-center">1505414 - &nbsp;
-                                Hirantha Rathnayaka
+                                <h4 id="member_Name"class="d-flex p-2 text-center">
                                 &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                                 <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                                 </h4>
