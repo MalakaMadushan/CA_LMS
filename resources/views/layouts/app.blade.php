@@ -134,12 +134,15 @@ $('#book_delete').on('show.bs.modal', function (event) {
 })
 
 // end book delete function
+</script>
+<script>
 
   $(document).ready(function() {
-    document.getElementById("member_id").focus();
+    
 
     $('#mdatatable').DataTable();
     $('#book_datatable').DataTable();
+    document.getElementById("member_id").focus();
 // --------------------------------------------------
     $("#book_aNo").change(function(){
         var selectOption = $("#book_aNo").val();
