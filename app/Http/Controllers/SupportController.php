@@ -81,7 +81,7 @@ class SupportController extends Controller
 
     public function pdfbarcodeall(Request $request)
     {
-        $barcde = DB::table('books')->pluck('accessionNo');
+        $barcde = DB::table('Member')->pluck('accessionNo');
         return view('Reports.barcode_print')->with('code',$barcde);
         
         // if($request->has('download')){
