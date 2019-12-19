@@ -65,6 +65,7 @@ Route::any('/genarete_code', 'SupportController@codeview')->name('books.new_book
 //book lending routing path
 Route::get('/issue_book', 'BookLendingController@issuebook')->name('issue_book');
 Route::get('/return_book', 'BookLendingController@returnbook')->name('return_book');
+Route::post('/barrowbook_d','BookLendingController@barrowbookview');
 
 //Board of Survey
 Route::get('/new_survey', 'BoardSurveyController@newsurvey')->name('newsurvey');
