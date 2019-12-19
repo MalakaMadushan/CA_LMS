@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // --------------------------------------------------------------------
         $mul_rows_membrs= [
                 [ 
                 'title'=>'Mr',
@@ -41,7 +42,7 @@ class DatabaseSeeder extends Seeder
                 ]
         ];
         $insert= DB::table('members')->insert($mul_rows_membrs);
-        
+    //--------------------------------------------------------------------
         $mul_rows_users= [
             
             [  
@@ -52,7 +53,7 @@ class DatabaseSeeder extends Seeder
             ]
     ];
     $insert= DB::table('users')->insert($mul_rows_users);
-
+// --------------------------------------------------------------------
     $mul_rows_mem_cat= [
             
         ['category'=>'Student'],
@@ -64,7 +65,7 @@ class DatabaseSeeder extends Seeder
     ];
     $insert= DB::table('member_categories')->insert($mul_rows_mem_cat);
 
-
+// ---------------------------------------------------------------
     $mul_rows_books= [
             
         [  
@@ -130,8 +131,64 @@ class DatabaseSeeder extends Seeder
         
 ];
 $insert= DB::table('books')->insert($mul_rows_books);
+// -----------------------------------------------------------------
 
+$mul_rows_book_cat= [
+            
+    ['category'=>'N/A'],
+    ['category'=>'Art'],
+    ['category'=>'Science'],
+    ['category'=>'Buddist'],
+    ['category'=>'Other']
 
+];
+$insert= DB::table('book_categories')->insert($mul_rows_book_cat);
+// -----------------------------------------------------------------
+$mul_rows_book_pub= [
+            
+    ['publisher'=>'N/A'],
+    ['publisher'=>'Gunasena'],
+    ['publisher'=>'Wasana'],
+    ['publisher'=>'Malpiyali'],
+    ['publisher'=>'Codeaider']
+
+];
+$insert= DB::table('book_publishers')->insert($mul_rows_book_pub);
+// --------------------------------------------------------------
+$mul_rows_book_lang= [
+            
+    ['language'=>'N/A'],
+    ['language'=>'Sinhala'],
+    ['language'=>'English'],
+    ['language'=>'Tamil'],
+    ['language'=>'Hindi']
+
+];
+$insert= DB::table('book_languages')->insert($mul_rows_book_lang);
+
+// --------------------------------------------------------------
+$mul_rows_book_physical= [
+            
+    ['phymedia'=>'N/A'],
+    ['phymedia'=>'Paper'],
+    ['phymedia'=>'CD'],
+    ['phymedia'=>'DVD'],
+    
+
+];
+$insert= DB::table('book_phymedia')->insert($mul_rows_book_physical);
+// --------------------------------------------------------------
+$mul_rows_book_ddecimal= [
+            
+    ['ddecimal'=>'0'],
+    ['ddecimal'=>'1'],
+    ['ddecimal'=>'1.1'],
+    ['ddecimal'=>'1.2'],
+    
+
+];
+$insert= DB::table('book_dds')->insert($mul_rows_book_ddecimal);
+// -------------------------------------------------------------
 
     }
 }

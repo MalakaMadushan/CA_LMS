@@ -46,6 +46,7 @@
                             <tr>
                                 <th scope="col">Book ID</th>
                                 <th scope="col">Accession No</th>
+                                <th scope="col">Barcode</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Author</th>
                                 <th scope="col">Category</th>
@@ -59,7 +60,8 @@
                         @foreach($Bdata as $data)
                             <tr>
                             <td>{{$data->id}}</td>                        
-                            <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>                  
+                            <td>{{$data->accessionNo}}</td> 
+                            <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>
                             <td>{{$data->book_title}}</td>                               
                             <td>{{$data->authors}}</td>                               
                             <td>{{$data->category}}</td>                               
