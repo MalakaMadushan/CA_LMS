@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Entities\Models\User;
 use App\member;
+use App\book;
 use Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -25,5 +26,13 @@ class BookLendingController extends Controller
         $memID = $request->memberid;
         $mbr=member::find($memID);
         return response()->json(['success' => true, 'member_nme' => $mbr->name." - ".$mbr->id]);
+    }
+
+    public function barrowbookview(Request $request)
+    {
+        // $Bid = $request->bookid;
+        // $data=book::find($Bid);
+        $data2 = book::where('accessionNo',$request->bookid)->get();
+        return response()->json($data2);
     }
 }

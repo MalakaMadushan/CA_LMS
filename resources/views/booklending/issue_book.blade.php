@@ -32,10 +32,11 @@
 
                             <div class="form-group mx-sm-4 mb-2">
                             <label for="">Books ID : </label>&nbsp;
-                            <input type="text" class="form-control" id="" placeholder="Books ID">
+                            <input type="text" class="form-control" id="bookB_details" placeholder="Books ID">
                             </div>
-                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
-                            <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
+                            <button type="button" class="btn btn-primary" id="addbarrow"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></button>
+                            
 
                             <div class="form-group col-md-6">
 
@@ -43,8 +44,9 @@
                             <label for="">Member ID : </label>&nbsp;
                             <input type="text" class="form-control" id="member_id" placeholder="Member ID">
                             </div>
-                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
                             <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
+                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
+                           
 
 
 
@@ -69,52 +71,22 @@
 
                             <div class="form-row ">
                                 
-                                <table class="table table-hover">
+                                <table class="table table-hover" id="BookTable">
                                     <thead>
-                                        <tr>&nbsp; &nbsp;
-                                        <th scope="col">#</th>
-                                        <th scope="col">Accession No:</th>
-                                        <th scope="col">ISBN</th>
-                                        <th scope="col">Book Id</th>
-                                        <th scope="col">Book Name</th>
-                                        <th scope="col">Author</th>
-                                        <th scope="col">Publisher</th>
-                                        <th scope="col">Issueing Date</th>
-                                        
-                                        </tr>
+                                    <tr>
+                                        <td>Accession No</td>
+                                        <td>Title</td>
+                                        <td>Authors</td>
+                                        <td>&nbsp;</td>
+                                        <!-- <td><a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a></td> -->
+                                    </tr>    
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                        <th scope="row">1</th>
-                                        <td>554461</td>
-                                        <td>456354645</td>
-                                        <td>124</td>
-                                        <td>Harry Potter</td>
-                                        <td>Otto</td>
-                                        <td>Sarasavi</td>
-                                        <td>2019/12/25</td>
-                                        <td>
-                                        <a href="" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp;</a>
-                                        <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </td></a>
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">2</th>
-                                        <td>646649</td>
-                                        <td>454445424</td>
-                                        <td>1120</td>
-                                        <td>Palu Diwayina</td>
-                                        <td>jakob malowa</td>
-                                        <td>Gunasena</td>
-                                        <td>2019/12/16</td>
-                                        <td>
-                                        <button type="button" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp;</button>
-                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </td></button>
-                                         </td>
-                                        </tr>
-                                        
+
+                                    <tbody id="bookdata">
+                                           
                                     </tbody>
-                                    </table>
-                                    </div>
+                                </table>
+                            </div>
 
                             
                         
