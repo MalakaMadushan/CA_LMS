@@ -141,7 +141,7 @@
                                     <div class="form-group col-md-6">
                                     </div>
                                 </div>
-                              
+                            
                                 <div class="box-footer clearfix pull-right">
                                 <button type="submit" class="btn btn-success btn-md" id="save_member">Save
                                 <i class="fa fa-floppy-o"></i></button>

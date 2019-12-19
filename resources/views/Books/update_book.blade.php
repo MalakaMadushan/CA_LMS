@@ -1,10 +1,11 @@
-@extends('layouts.app')
+
+@extends('layouts.include')
 
 @section('content')
 <div>
         <!-- Content Header (Page header) -->
         <section class="content-fulid mt-1">
-            <h2> &nbsp Books</h2> 
+        <h2>&nbsp Update Books </h2>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                     <li><a href="#"><i class="fa fa-book"></i> Books</a></li>
@@ -23,7 +24,7 @@
  
                     <div class="box box-info">
                         <div class="box-header ">
-                           <div class="pull-left header"> <h4> <i class="fa fa-plus"> Add New Books</i></h4></div>
+                           <div class="pull-left header"> <h4> <i class="fa fa-plus"> Update Books</i></h4></div>
                            <div class="pull-right">
                                 <h4><button class="btn btn-warning btn-md" data-toggle="modal" data-target="#import_book_excel" ><i class="fa fa-file-excel-o"></i></button></h4>
                            </div>
@@ -176,7 +177,7 @@
                                 
                                 <div class="form-group col-md-4">
                                     <label for="purchase_date" >Purchase Date</label>
-                                    <input class="form-control" type="date" name="purchase_date" value="{{old('purchase_date')}} id="purchase_date">
+                                    <input class="form-control" type="date" id="purchase_date" name="purchase_date" value="{{old('purchase_date')}} id="purchase_date">
                                     <span class="text-danger">{{ $errors->first('purchase_date') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
@@ -197,7 +198,7 @@
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                     <label for="price">Price</label>
-                                    <input type="value" class="form-control" name="price"  value="{{old('price')}}" placeholder="Price:">
+                                    <input type="value" class="form-control" id="price" name="price"  value="{{old('price')}}" placeholder="Price:">
                                     <span class="text-danger">{{ $errors->first('price') }}</span>
                                 </div>
 
@@ -207,13 +208,13 @@
 
                             <div class="form-group col-md-4">
                                     <label for="publishyear">Publication year</label>
-                                    <input class="form-control" type="year" name="publishyear"value="{{old('publishyear')}}" id="purchasedate">
+                                    <input class="form-control" type="year" id="publishyear" name="publishyear" value="{{old('publishyear')}}" id="purchasedate">
                                     <span class="text-danger">{{ $errors->first('publishyear') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                     <label for="phy_details">Physical Details</label>
-                                    <input type="text" class="form-control" name="phydetails" value="{{old('phydetails')}}" placeholder="Physical Details">
+                                    <input type="text" class="form-control" id="phydetails" name="phydetails" value="{{old('phydetails')}}" placeholder="Physical Details">
                                     <span class="text-danger">{{ $errors->first('phydetails') }}</span>
                                 </div>
                                 </div>
@@ -278,55 +279,4 @@
 
 @endsection
 
-@section('js')
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.0.1/dist/js/adminlte.min.js"></script>
-
-<!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.js"></script> -->
-<!-- <script >
-$("#save_book").click(function(){
-
-    var newbook = {
-                    book_aNo: $("#InputCusID").val().trim(),
-                    book_isbn: $("#InputCusName").val().trim(),
-                    book_title: $("#InputAddress").val().trim()
-                    book_Author: $("#InputAddress").val().trim()
-                };
-
-    var ajaxConfig = {
-                    method: "POST",
-                    url:"http://localhost:8000/savebook",
-                    async: true,
-                    contentType: "application/json",
-                    data: JSON.stringify(newbook)
-                }
-
-
-                $.ajax(ajaxConfig).done(function(response,statusText,jxhr){
-                    alert("Added Successfully");
-                    loadAllCustomers();
-                    $('button[type="reset"]').trigger("click");
-                }).fail(function(jxhr,statusText,error){
-                    alert("Unable to save the customer, try again");
-                    console.log(error);
-                });
-
-}
-</script> -->
-
-        <!-- <div class="alert alert-success alert-dismissable" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Success! message sent successfully.
-        </div> -->
-        
-
-
-
-
-        
-@endsection
