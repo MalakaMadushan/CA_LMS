@@ -67,7 +67,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
+
 <script src="{{ asset('js/dashboard.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
@@ -93,7 +93,7 @@
 <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 
-
+<script src="{{ asset('js/custom.js') }}"></script>
 
 <!------- member function---delete modal------------------------ -->
 
@@ -136,6 +136,7 @@ $('#book_delete').on('show.bs.modal', function (event) {
 // end book delete function
 
   $(document).ready(function() {
+    document.getElementById("member_id").focus();
 
     $('#mdatatable').DataTable();
     $('#book_datatable').DataTable();
@@ -212,7 +213,7 @@ $('#book_delete').on('show.bs.modal', function (event) {
        
         for(var i=0;i<data2.length;i++){
           op+='<tr>';
-          op+='<td>'+data2[i].id+'</td><td>'+data2[i].book_title+'</td><td>'+data2[i].authors+'</td><td><button>Delete</button></td>';
+          op+='<td>'+data2[i].id+'</td><td>'+data2[i].accessionNo+'</td><td>'+data2[i].book_title+'</td><td>'+data2[i].authors+'</td><td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>';
           op+='</tr>';
         }
         $("#BookTable tbody").append(op);
@@ -226,6 +227,36 @@ $('#book_delete').on('show.bs.modal', function (event) {
     });
 
  });
+
+//  $("#form_barrow").submit(function() {
+//     search($("#bookB_details").get(0));
+//     return false;
+// });
+
+    var inputm = document.getElementById("member_id");
+    inputm.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("addbarrowmember").click();
+   $('#bookB_details').val('');
+   document.getElementById("bookB_details").focus();
+  }
+});
+
+    var input = document.getElementById("bookB_details");
+    input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("addbarrow").click();
+   $('#bookB_details').val('');
+   document.getElementById("bookB_details").focus();
+  }
+});
+
+// document.getElementById('form_barrow').addEventListener('submit', function(e) {
+//     search(document.getElementById('bookB_details'));
+//     e.preventDefault();
+// }, false);
 
 
 
