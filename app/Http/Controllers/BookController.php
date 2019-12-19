@@ -192,10 +192,8 @@ class BookController extends Controller
             ->join('book_categories', 'books.book_category_id', '=', 'book_categories.id')
             ->join('book_languages', 'books.language_id', '=', 'book_languages.id')
             ->join('book_publishers', 'books.publisher_id', '=', 'book_publishers.id')
-            ->join('book_phymedia', 'books.phymedium_id', '=', 'book_phymedia.id')
-            ->join('book_dds', 'books.dewey_decimal_id', '=', 'book_dds.id')
+            ->select('books.*', 'book_categories.category', 'book_languages.language', 'book_publishers.publisher')
             ->get();
-           
             return view('books.search_book')->with('Bdata',$bookdata);
             
         }

@@ -23,7 +23,7 @@ class CreateBooksTable extends Migration
             $table->string('language_id')->default(1);
             $table->string('publisher_id')->default(1);
             $table->string('phymedium_id')->default(1);
-            $table->string('dewey_decimal_id')->default(0);
+            $table->string('dewey_decimal_id')->default(1);
             $table->date('purchase_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('edition')->nullable();
             $table->string('price')->default(0.00);
