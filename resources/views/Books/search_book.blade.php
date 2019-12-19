@@ -62,12 +62,12 @@
                             <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>                  
                             <td>{{$data->book_title}}</td>                               
                             <td>{{$data->authors}}</td>                               
-                            <td>{{$data->book_category_id}}</td>                               
-                            <td>{{$data->language_id}}</td>                               
-                            <td>{{$data->publisher_id}}</td>      
+                            <td>{{$data->category}}</td>                               
+                            <td>{{$data->language}}</td>                               
+                            <td>{{$data->publisher}}</td>      
                             <td>{{$data->rackno}}{{$data->rowno}}</td>                                                      
                             <td>
-                            <a href="/update_member_view/{{$data->id}}" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-pencil" ></i></a> 
+                            <a href="/update_book_view/{{$data->id}}" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-pencil" ></i></a> 
 
                             <a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#book_delete" data-bookid="{{$data->id}}" data-book_title="{{$data->book_title}}"><i class="fa fa-trash" ></i></a>&nbsp;
 
