@@ -155,9 +155,9 @@ $('#book_delete').on('show.bs.modal', function (event) {
             url: '/codeview',  //**Eg. URL in route
             success: function(response){
                 if(response.success) {
-                    //$('#code_view_bq').html(response.codebq);
-                    $genaretedbar=response.codebq;
-                    alert('success');
+                    $('#code_view_bq').html(response.codebq);
+                   // $genaretedbar=response.codebq;
+                   // alert('success');
                 }       
             },
 
@@ -173,10 +173,58 @@ $('#book_delete').on('show.bs.modal', function (event) {
                 // });
         });
     });
+    // <!------------------------Issue book member catch by id--------->
+    $("#issue_member").change(function(){
+        var selectOption = $("#issue_member").val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        
+        $.ajax({
+            method: 'POST',
+            data: { selectOption: selectOption },
+            url: '/Issue_member',  //**Eg. URL in route
+            success: function(response){
+                if(response.success) {
+                    $('#view_memberid').html(response.Issue_member1);
+                   // $issuememberid=response.Issue_member;
+                    //alert('success');
+                }       
+            },
+
+        });
+    });
+
+
+    // <!------------------------End------------------------------------>
+
+
 });
   
 </script>
 <!-- ------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!------- function---add modal------------------------ -->
 <script>
    

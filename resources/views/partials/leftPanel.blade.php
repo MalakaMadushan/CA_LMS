@@ -26,7 +26,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-            <li class=""><a href="{!! url('/dashboard') !!}"><i class="fa fa-circle-o"></i> Dashboard </a></li>
+            <li class=""><a href="{!! url('/dashboard') !!}"><i class="fa fa-tachometer"></i> Dashboard </a></li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-book"></i>
@@ -44,7 +44,7 @@
            
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-pie-chart"></i>
+                    <i class="fa fa-handshake-o"></i>
                     <span>Book Lending</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -65,7 +65,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{!! url('/new_member') !!}"><i class="fa fa-circle-o"></i>New Member</a></li>
-                    <li><a href="{!! url('/search_member') !!}"><i class="fa fa-circle-o"></i> Search Menber</a></li>
+                    <li><a href="{!! url('/search_member') !!}"><i class="fa fa-circle-o"></i> Search Member</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Member Account</a></li>
                 </ul>
             </li>

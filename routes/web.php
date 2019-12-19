@@ -92,3 +92,5 @@ Route::get('export', 'SupportController@export')->name('export');
 Route::get('importExportView', 'SupportController@importExportView');
 Route::post('import_book', 'SupportController@import');
 Route::post('/codeview', 'SupportController@codeview');
+
+Route::post('/Issue_member', 'BookLendingController@Issue_member');

@@ -29,44 +29,43 @@
 <!-----------------------------------------form start--------------------------------------------------->
                         <form class="form-inline" method="" action="">
                         {{csrf_field()}}
-
+                        
                             <div class="form-group mx-sm-4 mb-2">
-                            <label for="">Books ID : </label>&nbsp;
-                            <input type="password" class="form-control" id="" placeholder="Books ID">
+                                <label for="">Books ID : </label>&nbsp;
+                                <input type="text" class="form-control" id="" placeholder="Books ID">
                             </div>
-                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
-                            <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
-
+                                <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
+                                <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
+                        
                             <div class="form-group col-md-6">
 
-                            <div class="form-group mx-sm-4 mb-2">
-                            <label for="">Member ID : </label>&nbsp;
-                            <input type="password" class="form-control" id="" placeholder="Member ID">
+                                <div class="form-group mx-sm-4 mb-2">
+                                    <label for="">Member ID : </label>&nbsp;
+                                    <input type="text" class="form-control" id="issue_member" name="issue_member_id" placeholder="Member ID">
+                                </div>
+                                <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
+                                <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
+
+
                             </div>
-                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
-                            <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
-
-
-
-                           </div>
+                           
                             <br><br>
-                            <div class="row">
+                            <div class="row text-center">
                                 <div class="col-lg-12">
                                 <!-- small box -->
-                                <div class="small-box bg-aqua" style="height:2.1rem;">
-                                <div class="d-flex p-2">
+                                    <div class="small-box bg-aqua col-lg-12 text-center " style="height:2.8rem;">
+                                    <div class="d-flex p-2 text-center">
                                 
-                                <h4 class="d-flex p-2 text-center">1505414 - &nbsp;
-                                Hirantha Rathnayaka
-                                &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                                </h4>
+                                        <h4 id="view_memberid" class="d-flex p-2 text-center">
+                                            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</h4>
+                                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                                 
-                                </div>
-                             </div>
+                                
+                                    </div>
+                                    </div>
 
 
-                            </div><br><br>
+                            </div></div>
 
                             <div class="form-row ">
                                 
@@ -126,8 +125,9 @@
                                 <button type="button" class="btn btn-warning btn-md" id="reset_issue">
                                 <i class="fa fa-times"></i> Reset</button>
                         </div> 
+                        
                         </form>
-
+                        
     <!-------------------------------form End-------------------------------------------------------------------------------------->                    
                     </div>
                    
