@@ -27,15 +27,15 @@
                         <div class="box-body">
 
 <!-----------------------------------------form start--------------------------------------------------->
-                        <form class="form-inline" method="" action="">
+                        <form class="form-inline" id="form_barrow" onSubmit="return false;">
                         {{csrf_field()}}
 
                             <div class="form-group mx-sm-4 mb-2">
                             <label for="">Books ID : </label>&nbsp;
-                            <input type="text" class="form-control" id="bookB_details" placeholder="Books ID">
+                            <input type="text" class="form-control" id="bookB_details" onfocus="this.value=''" placeholder="Books ID">
                             </div>
                             <button type="button" class="btn btn-primary" id="addbarrow"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></button>
+                            <button type="button" class="btn btn-success" id="addbarrow_serch"><i class="fa fa-search"></i></button>
                             
 
                             <div class="form-group col-md-6">
@@ -44,8 +44,8 @@
                             <label for="">Member ID : </label>&nbsp;
                             <input type="text" class="form-control" id="member_id" placeholder="Member ID">
                             </div>
-                            <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
-                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
+                            <button type="button" class="btn btn-primary" id="addbarrowmember"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="btn btn-success" id="addbarrowmember_serch"><i class="fa fa-search"></i></button>
                            
 
 
@@ -59,9 +59,8 @@
                                 <div class="d-flex p-2">
                                 
                                 <h4 id="member_Name"class="d-flex p-2 text-center">
-                                &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                                 </h4>
+                                <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
                                 
                                 </div>
                              </div>
@@ -72,12 +71,13 @@
                             <div class="form-row ">
                                 
                                 <table class="table table-hover" id="BookTable">
-                                    <thead>
+                                <thead class="thead-dark">
                                     <tr>
-                                        <td>Accession No</td>
-                                        <td>Title</td>
-                                        <td>Authors</td>
-                                        <td>&nbsp;</td>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Accession No</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Authors</th>
+                                    <th scope="col">&nbsp;</th>
                                         <!-- <td><a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a></td> -->
                                     </tr>    
                                     </thead>
@@ -91,7 +91,7 @@
                             
                         
                         <div class="box-footer clearfix pull-right">
-                                <button type="submit" class="btn btn-primary btn-md" id="issue_book">
+                                <button type="button" class="btn btn-primary btn-md" id="issue_book">
                                 <i class="fa fa-floppy-o"></i> Save</button>
                                 &nbsp; &nbsp;
                                 <button type="button" class="btn btn-warning btn-md" id="reset_issue">
