@@ -31,20 +31,21 @@
                         {{csrf_field()}}
                         
                             <div class="form-group mx-sm-4 mb-2">
-                                <label for="">Books ID : </label>&nbsp;
-                                <input type="text" class="form-control" id="" placeholder="Books ID">
+                            <label for="">Books ID : </label>&nbsp;
+                            <input type="text" class="form-control" id="" placeholder="Books ID">
                             </div>
                                 <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
                                 <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
                         
                             <div class="form-group col-md-6">
 
-                                <div class="form-group mx-sm-4 mb-2">
-                                    <label for="">Member ID : </label>&nbsp;
-                                    <input type="text" class="form-control" id="issue_member" name="issue_member_id" placeholder="Member ID">
-                                </div>
-                                <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
-                                <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
+                            <div class="form-group mx-sm-4 mb-2">
+                            <label for="">Member ID : </label>&nbsp;
+                            <input type="text" class="form-control" id="member_id" placeholder="Member ID">
+                            </div>
+                            <a href="" class="btn btn-success" data-toggle="" data-target=""><i class="fa fa-search"></i></a>
+                            <a href="" class="btn btn-primary" data-toggle="" data-target=""><i class="fa fa-plus"></i></a>
+
 
 
                             </div>
@@ -56,9 +57,10 @@
                                     <div class="small-box bg-aqua col-lg-12 text-center " style="height:2.8rem;">
                                     <div class="d-flex p-2 text-center">
                                 
-                                        <h4 id="view_memberid" class="d-flex p-2 text-center">
-                                            &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</h4>
-                                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                <h4 id="member_Name"class="d-flex p-2 text-center">
+                                &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                </h4>
                                 
                                 
                                     </div>

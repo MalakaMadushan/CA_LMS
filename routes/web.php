@@ -93,4 +93,8 @@ Route::get('importExportView', 'SupportController@importExportView');
 Route::post('import_book', 'SupportController@import');
 Route::post('/codeview', 'SupportController@codeview');
 
-Route::post('/Issue_member', 'BookLendingController@Issue_member');
+Route::post('/member_view', 'BookLendingController@Memberview');
+
+Route::get('pdfviewMember',array('as'=>'pdfviewMember','uses'=>'SupportController@pdfviewMember'));
+Route::get('pdfbarcodeall',array('as'=>'pdfbarcodeall','uses'=>'SupportController@pdfbarcodeall'));
+//Route::get('/pdfviewMember', 'SupportController@pdfviewMember');

@@ -155,27 +155,18 @@ $('#book_delete').on('show.bs.modal', function (event) {
             url: '/codeview',  //**Eg. URL in route
             success: function(response){
                 if(response.success) {
-                    $('#code_view_bq').html(response.codebq);
-                   // $genaretedbar=response.codebq;
-                   // alert('success');
+                    //$('#code_view_bq').html(response.codebq);
+                    $genaretedbar=response.codebq;
+                    //alert('success');
                 }       
             },
-
-                // .done(function(response) {
-                // console.log("response");
-                // //do something with the response
-                // })
-                // .fail(function() {
-                //     console.log("error");
-                // })
-                // .always(function() {
-                //     console.log("complete");
-                // });
         });
     });
-    // <!------------------------Issue book member catch by id--------->
-    $("#issue_member").change(function(){
-        var selectOption = $("#issue_member").val();
+
+    // ----------------------------------------------------------------------------
+
+    $("#member_id").change(function(){
+        var memberid = $("#member_id").val();
 
         $.ajaxSetup({
             headers: {
@@ -183,26 +174,19 @@ $('#book_delete').on('show.bs.modal', function (event) {
             }
         });
 
-        
         $.ajax({
             method: 'POST',
-            data: { selectOption: selectOption },
-            url: '/Issue_member',  //**Eg. URL in route
+            data: { memberid: memberid },
+            url: '/member_view',
             success: function(response){
                 if(response.success) {
-                    $('#view_memberid').html(response.Issue_member1);
-                   // $issuememberid=response.Issue_member;
-                    //alert('success');
+                    $('#member_Name').html(response.member_nme);
+                    alert('success');
                 }       
             },
-
         });
     });
-
-
-    // <!------------------------End------------------------------------>
-
-
+    // -----------------------------------------------------------------------
 });
   
 </script>

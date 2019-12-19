@@ -1,8 +1,16 @@
 <?php
 
+
 namespace App\Http\Controllers;
-use App\member;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Entities\Models\User;
+use App\member;
+use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class BookLendingController extends Controller
 {
@@ -12,20 +20,10 @@ class BookLendingController extends Controller
     public function returnbook(){
         return view('bookLending.return_book');
     }
-    public function Issue_member(Request $request){
-       $Issue_member = $request->selectOption; //**Your selected option
-        //$Memberid=$request->id;
-
-
-
-        // $Issue_member=member::find($id);
-       // $Issue_member = DB::table('members')->find($Memberid);
-        
-        $issuememberid=$Issue_member;
-       //dd($issuememberid);
-
-       
-        return response()->json(['success' => true, 'Issue_member1' => $issuememberid]);
+    public function Memberview(Request $request)
+    {
+        $memID = $request->memberid;
+        $mbr=member::find($memID);
+        return response()->json(['success' => true, 'member_nme' => $mbr->name." - ".$mbr->id]);
     }
-
 }
