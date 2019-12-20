@@ -66,6 +66,8 @@ Route::any('/genarete_code', 'SupportController@codeview')->name('books.new_book
 Route::get('/issue_book', 'BookLendingController@issuebook')->name('issue_book');
 Route::get('/return_book', 'BookLendingController@returnbook')->name('return_book');
 Route::post('/barrowbook_d','BookLendingController@barrowbookview');
+Route::post('/member_view', 'BookLendingController@Memberview');
+Route::post('/issue_save', 'BookLendingController@SaveIssue');
 
 //Board of Survey
 Route::get('/new_survey', 'BoardSurveyController@newsurvey')->name('newsurvey');
@@ -100,7 +102,6 @@ Route::get('importExportView', 'SupportController@importExportView');
 Route::post('import_book', 'SupportController@import');
 Route::post('/codeview', 'SupportController@codeview');
 
-Route::post('/member_view', 'BookLendingController@Memberview');
 
 Route::get('pdfviewMember',array('as'=>'pdfviewMember','uses'=>'SupportController@pdfviewMember'));
 Route::get('pdfbarcodeall',array('as'=>'pdfbarcodeall','uses'=>'SupportController@pdfbarcodeall'));

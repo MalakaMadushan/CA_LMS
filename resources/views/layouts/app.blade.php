@@ -144,7 +144,39 @@ $('#book_delete').on('show.bs.modal', function (event) {
     $('#book_datatable').DataTable();
 
     document.getElementById("member_id").focus();
-    // ----------------------------------------------------------------------------
+// -------------------------date------------------
+var today = new Date();
+var tomorrow = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
+$('#issuedte').attr('value', today);
+// -----------------------------------------------
+
+  var inputm = document.getElementById("member_id");
+  inputm.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+  event.preventDefault();
+  document.getElementById("addbarrowmember").click();
+  $('#member_id').val('');
+  document.getElementById("bookB_details").focus();
+}
+   $("#BookTable tbody").empty();
+
+  });
+    var input = document.getElementById("bookB_details");
+    input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("addbarrow").click();
+    $('#bookB_details').val('');
+    document.getElementById("bookB_details").focus();
+  }
+  });
+});
+
+   // ----------------------------------------------------------------------------
 
     $("#member_id").change(function(){
         var memberid = $("#member_id").val();
@@ -152,6 +184,7 @@ $('#book_delete').on('show.bs.modal', function (event) {
         $('#member_Name_id').val('');
         $('#member_Name').html('');
         $('#issue_error').html('');
+        $('#issue_success').html('');
 
         $.ajaxSetup({
             headers: {
@@ -176,14 +209,16 @@ $('#book_delete').on('show.bs.modal', function (event) {
             }
         });
     });
-    // -----------------------------------------------------------------------
+    // ---------------------------------------------------
 
-   
-    $('#addbarrow').on("click",function(){
+// ------------------------------------------------------
+$('#addbarrow').on("click",function(){
         var bookid = $("#bookB_details").val();
         var member_id1 = $("#member_Name_id").val();
         var op ="";
         var bexsist=false;
+        $('#issue_error').html('');
+        $('#issue_success').html('');
     
           if($('#member_Name_id').val())
           {
@@ -234,7 +269,7 @@ $('#book_delete').on('show.bs.modal', function (event) {
                           console.log("Error Occurred");
                           }
                       });
-                    // -------------------------------------------------------------
+// -------------------------------------------------------------
                }
                else{$('#issue_error').html('Book Allready Exsists');}
     
@@ -247,30 +282,60 @@ $('#book_delete').on('show.bs.modal', function (event) {
 
 
     });
-            var inputm = document.getElementById("member_id");
-            inputm.addEventListener("keyup", function(event) {
-            if (event.keyCode === 13) {
-            event.preventDefault();
-            document.getElementById("addbarrowmember").click();
-            $('#member_id').val('');
-            document.getElementById("bookB_details").focus();
-          }
-             $("#BookTable tbody").empty();
+    // -----------------------------------------------------
 
+    $('#issue_book').on("click",function(){
+
+    var oTable = document.getElementById('BookTable');
+    var rowLength = oTable.rows.length;
+    var mem_id = $("#member_Name_id").val();
+    var dteissue = $("#issuedte").val();
+    //var dteissue =new Date().toLocaleDateString();
+    for (j = 1; j < rowLength; j++)
+    {
+        var oCells = oTable.rows.item(j).cells;
+        var Bookid = oCells.item(0).innerHTML;
+        // -----------------------
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
-          var input = document.getElementById("bookB_details");
-          input.addEventListener("keyup", function(event) {
-          if (event.keyCode === 13) {
-          event.preventDefault();
-          document.getElementById("addbarrow").click();
-          $('#bookB_details').val('');
-          document.getElementById("bookB_details").focus();
-        }
+
+        $.ajax({
+            method: 'POST',
+            data:{
+                Bookid: Bookid,
+                mem_id: mem_id,
+                dteissue: dteissue
+               
+                 },
+            url: '/issue_save',
+            success: function(response){
+            $('#issue_success').html("Books Issue Sucessfully");
+            $('#bookB_details').val('');
+            $('#member_Name_id').val('');
+            $('#member_Name').html('');
+            $('#issue_error').html('');
+            $("#BookTable tbody").empty();
+            document.getElementById("member_id").focus();
+
+
+            },
+            error: function(response){
+            $('#issue_error').html('Books Issued Fali!');
+            }
         });
-});
+        // ----------------------
+
+
+    }
+
+    });
   
 </script>
 <!-- ------------------------------------------------- -->
+
 <!------- function---add modal------------------------ -->
 <script>
    

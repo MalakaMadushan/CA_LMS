@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Validator;
 use App\Entities\Models\User;
 use App\member;
 use App\book;
+use App\issue;
 use Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+
 
 class BookLendingController extends Controller
 {
@@ -37,5 +39,19 @@ class BookLendingController extends Controller
         $data2 = book::where('accessionNo',$request->bookid)->get();
         return response()->json($data2);
         // return response()->json(['B_acc' => $data->accessionNo,'B_nme' => $data->book_title,'B_id'=>$data->id,'B_ath'=>$data->authors]);
+    }
+
+    public function SaveIssue(Request $request)
+    {
+        
+        $mbr=new issue;
+        $mbr->Memberid=$request->mem_id;
+        $mbr->Bookid=$request->Bookid;
+        $mbr->Issuedate=$request->dteissue;
+        $mbr->Return=0;
+
+        $mbr->save();
+        return response()->json(['issue' => 'success']);
+
     }
 }
