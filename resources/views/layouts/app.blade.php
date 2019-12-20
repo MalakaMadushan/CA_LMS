@@ -142,6 +142,9 @@ $('#book_delete').on('show.bs.modal', function (event) {
 
     $('#mdatatable').DataTable();
     $('#book_datatable').DataTable();
+
+
+    
     document.getElementById("member_id").focus();
 // --------------------------------------------------
     $("#book_aNo").change(function(){
@@ -171,6 +174,7 @@ $('#book_delete').on('show.bs.modal', function (event) {
 
     $("#member_id").change(function(){
         var memberid = $("#member_id").val();
+        $('#member_Name_id').val('');
 
         $.ajaxSetup({
             headers: {
@@ -185,6 +189,7 @@ $('#book_delete').on('show.bs.modal', function (event) {
             success: function(response){
                 if(response.success) {
                     $('#member_Name').html(response.member_nme);
+                    $('#member_Name_id').val(response.member_id);
                     //alert('success');
                 }       
             },
@@ -192,76 +197,74 @@ $('#book_delete').on('show.bs.modal', function (event) {
     });
     // -----------------------------------------------------------------------
 
+   
     $('#addbarrow').on("click",function(){
   
-  var bookid = $("#bookB_details").val();
-  var op ="";
-  console.log(bookid);
-  
-  $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+  if($('#member_Name_id').val())
+  {
+        var bookid = $("#bookB_details").val();
+        var op ="";
+        console.log(bookid);
+      
+      $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });
 
-  $.ajax({
-    type:'post',
-    url: '/barrowbook_d',
-    data:{
-        bookid: bookid
-        //'_token':$('input[name=_token]').val(),
-       //'selectedid': sid//$('select[name =grpid]').val(),
-        },
-        success: function(data2){
-       
-        for(var i=0;i<data2.length;i++){
-          op+='<tr>';
-          op+='<td>'+data2[i].id+'</td><td>'+data2[i].accessionNo+'</td><td>'+data2[i].book_title+'</td><td>'+data2[i].authors+'</td><td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>';
-          op+='</tr>';
+      $.ajax({
+          type:'post',
+          url: '/barrowbook_d',
+          data:{
+              bookid: bookid
+              //'_token':$('input[name=_token]').val(),
+          //'selectedid': sid//$('select[name =grpid]').val(),
+              },
+              success: function(data2){
+          
+              for(var i=0;i<data2.length;i++){
+              op+='<tr>';
+              op+='<td>'+data2[i].id+'</td><td>'+data2[i].accessionNo+'</td><td>'+data2[i].book_title+'</td><td>'+data2[i].authors+'</td><td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>';
+              op+='</tr>';
+              }
+              $("#BookTable tbody").append(op);
+              //$('#bookdata').html(op);
+              //console.log("Data Correctly Processed");
+              console.log(data2);
+          },
+              error: function(){
+              console.log("Error Occurred");
+              }
+          });
+
+  }
+  else{
+     alert("NOt");
+    //  $('.alert').show()
+  }
+
+
+});
+        var inputm = document.getElementById("member_id");
+            inputm.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("addbarrowmember").click();
+            $('#member_id').val('');
+            document.getElementById("bookB_details").focus();
         }
-        $("#BookTable tbody").append(op);
-         //$('#bookdata').html(op);
-         //console.log("Data Correctly Processed");
-          console.log(data2);
-       },
-        error: function(){
-          console.log("Error Occurred");
-        }
+             $("#BookTable tbody").empty();
+
     });
-
- });
-
-//  $("#form_barrow").submit(function() {
-//     search($("#bookB_details").get(0));
-//     return false;
-// });
-
-    var inputm = document.getElementById("member_id");
-    inputm.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("addbarrowmember").click();
-   $('#bookB_details').val('');
-   document.getElementById("bookB_details").focus();
-  }
-});
-
-    var input = document.getElementById("bookB_details");
-    input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("addbarrow").click();
-   $('#bookB_details').val('');
-   document.getElementById("bookB_details").focus();
-  }
-});
-
-// document.getElementById('form_barrow').addEventListener('submit', function(e) {
-//     search(document.getElementById('bookB_details'));
-//     e.preventDefault();
-// }, false);
-
-
+        var input = document.getElementById("bookB_details");
+        input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("addbarrow").click();
+        $('#bookB_details').val('');
+        document.getElementById("bookB_details").focus();
+    }
+    });
 
 });
   
@@ -292,7 +295,7 @@ window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove(); 
     });
-}, 1500);
+}, 1000);
 
 </script>
 <!-- ---------------------------/------------------------------- -->

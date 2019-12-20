@@ -43,6 +43,7 @@
                             <div class="form-group mx-sm-4 mb-2">
                             <label for="">Member ID : </label>&nbsp;
                             <input type="text" class="form-control" id="member_id" placeholder="Member ID">
+                            <input type="hidden" name="member_id_select" class="form-control" id="member_Name_id">
                             </div>
                             <button type="button" class="btn btn-primary" id="addbarrowmember"><i class="fa fa-plus"></i></button>
                             <button type="button" class="btn btn-success" id="addbarrowmember_serch"><i class="fa fa-search"></i></button>
@@ -55,15 +56,14 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                 <!-- small box -->
-                                <div class="small-box bg-aqua" style="height:2.1rem;">
-                                <div class="d-flex p-2">
-                                
-                                <h4 id="member_Name"class="d-flex p-2 text-center">
-                                </h4>
-                                <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
-                                
-                                </div>
-                             </div>
+                                    <div class="small-box bg-aqua" style="height:2.1rem;">
+                                        <div class="d-flex p-6">
+                                        
+                                        <h4 id="member_Name"class="d-flex p-2 text-center"></h4>
+                                        <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+                                        
+                                        </div>
+                                    </div>
 
 
                             </div><br><br>
@@ -87,6 +87,8 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            @include('flash_massage')
 
                             
                         
