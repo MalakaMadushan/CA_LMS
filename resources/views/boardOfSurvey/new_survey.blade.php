@@ -68,11 +68,13 @@
                     <th scope="col">Accession No</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
-                    <th scope="col">Category</th>
+                    <!-- <th scope="col">Category</th>
                     <th scope="col">Language</th>
-                    <th scope="col">Publisher</th>
+                    <th scope="col">Publisher</th> -->
                     <th scope="col">Place</th>
                     <th scope="col">status</th>
+                    <th scope="col">Survey</th>
+                    <th scope="col">More</th>
                 </tr>
             </thead>
             <tbody>
@@ -82,17 +84,25 @@
                 <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>                  
                 <td>{{$data->book_title}}</td>                               
                 <td>{{$data->authors}}</td>                               
-                <td>{{$data->category}}</td>                               
+                <!-- <td>{{$data->category}}</td>                               
                 <td>{{$data->language}}</td>                               
-                <td>{{$data->publisher}}</td>      
-                <td>{{$data->rackno}}{{$data->rowno}}</td>                                                      
+                <td>{{$data->publisher}}</td>       -->
+                <td>{{$data->rackno}}{{$data->rowno}}</td>   
+                <td>Issued/Available</td>
+                <td><button class="btn btn-warning">Unmarked</button></td>                                                
                 <td>
-                <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>
+                <a href="" class="btn btn-success btn-sm"><i class="fa fa-search"></i></a>
                 </td>
                  </tr>                                  
-                 @endforeach                                       
-             </tbody>
+                 @endforeach                                          
+             </tbody> 
             </table>
+            <br> 
+                <div class="pull-right">
+                <button class="btn btn-primary btn-lg"><i class="fa fa-save">&nbsp;<strong>Save</strong></i></button>
+                <!-- <a href="" class="btn btn-success "><i class="fa fa-search">&nbsp;View</i></a>
+                <a href="" class="btn btn-danger "><i class="fa fa-refresh">&nbsp;Clear</i></a> -->
+                </div>
             </div>               
             </div>
           
