@@ -26,17 +26,16 @@ class BookLendingController extends Controller
        
         $memID = $request->memberid;
         $mbr=member::find($memID);
-        return response()->json(['success' => true, 'member_nme' => $mbr->name,'member_id'=>$mbr->id,'member_adds'=>$mbr->address1]);
+        return response()->json(['member_nme' => $mbr->name,'member_id'=>$mbr->id,'member_adds'=>$mbr->address1]);
+        
+        
     }
 
     public function barrowbookview(Request $request)
     {
 
-        // $this->validate($request,[
-        //     'member_id1'=>'required',
-        //     ]);
-
         $data2 = book::where('accessionNo',$request->bookid)->get();
         return response()->json($data2);
+        // return response()->json(['B_acc' => $data->accessionNo,'B_nme' => $data->book_title,'B_id'=>$data->id,'B_ath'=>$data->authors]);
     }
 }

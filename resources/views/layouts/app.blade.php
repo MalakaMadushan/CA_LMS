@@ -143,7 +143,7 @@ $('#book_delete').on('show.bs.modal', function (event) {
     $('#mdatatable').DataTable();
     $('#book_datatable').DataTable();
 
-
+    document.getElementById("member_id").focus();
     // ----------------------------------------------------------------------------
 
     $("#member_id").change(function(){
@@ -164,13 +164,16 @@ $('#book_delete').on('show.bs.modal', function (event) {
             data: { memberid: memberid },
             url: '/member_view',
             success: function(response){
-                if(response.success) {
-                    var mem_detail=response.member_id+" - "+response.member_nme+" ("+response.member_adds+")";
-                    $('#member_Name').html(mem_detail);
-                    $('#member_Name_id').val(response.member_id);
-                    //alert('success');
-                }       
+    
+                var mem_detail=response.member_id+" - "+response.member_nme+" ("+response.member_adds+")";
+                $('#member_Name').html(mem_detail);
+                $('#member_Name_id').val(response.member_id);
+            
             },
+            error: function(response){
+            $('#issue_error').html('Member not found !');
+            document.getElementById("member_id").focus();
+            }
         });
     });
     // -----------------------------------------------------------------------
@@ -180,60 +183,30 @@ $('#book_delete').on('show.bs.modal', function (event) {
         var bookid = $("#bookB_details").val();
         var member_id1 = $("#member_Name_id").val();
         var op ="";
-  
+        var bexsist=false;
+    
           if($('#member_Name_id').val())
           {
             var rowCount = $('#BookTable tr').length;
-            if(rowCount<3)
+            if(rowCount<4) //3+1 must get by settings
             {
               var oTable = document.getElementById('BookTable');
               var rowLength = oTable.rows.length;
-              alert(rowLength);
-
-              // ----------------------------------------
-              if(rowLength==1)
-              {
-                // -------------------------------------------------------
-                      $.ajaxSetup({
-                        headers: {
-                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                          }
-                        });
-
-                        $.ajax({
-                        type:'post',
-                        url: '/barrowbook_d',
-                        data:{
-                          bookid: bookid,
-                          member_id1: member_id1
-                          },
-                          success: function(data2){
-                      
-                          for(var i=0;i<data2.length;i++){
-                          op+='<tr>';
-                          op+='<td>'+data2[i].id+'</td><td>'+data2[i].accessionNo+'</td><td>'+data2[i].book_title+'</td><td>'+data2[i].authors+'</td><td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>';
-                          op+='</tr>';
-                          }
-                          $("#BookTable tbody").append(op);
-                          console.log(data2);
-                      },
-                          error: function(){
-                              
-                          console.log("Error Occurred");
-                          }
-                      });
-                    // -------------------------------------------------------------
-
-              }
-               for (j = 1; j <= rowLength; j++)
+              
+               for (j = 1; j < rowLength; j++)
                {
                 var oCells = oTable.rows.item(j).cells;
                 var cellVal = oCells.item(1).innerHTML;
-                  if(bookid!=cellVal)
-                  {
-                      
-                      // -------------------------------------------------------
-                      $.ajaxSetup({
+                  if(bookid==cellVal)
+                  { 
+                    bexsist=true;   
+                  }
+               }
+
+               if(bexsist==false)
+               {
+                   // -------------------------------------------------------
+                   $.ajaxSetup({
                         headers: {
                           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                           }
@@ -262,15 +235,15 @@ $('#book_delete').on('show.bs.modal', function (event) {
                           }
                       });
                     // -------------------------------------------------------------
-                  }
-                  else{$('#issue_error').html('Book Allready Exsists');}
-
                }
+               else{$('#issue_error').html('Book Allready Exsists');}
     
               }
               else{$('#issue_error').html('* Maximam Books allowd');}
             }
-             else{$('#issue_error').html('* Select Member First');}
+             else{$('#issue_error').html('* Select Member First');
+             document.getElementById("member_id").focus();
+           }
 
 
     });
