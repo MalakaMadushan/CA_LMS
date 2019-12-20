@@ -45,7 +45,10 @@ class MemberController extends Controller
 
     public function allmember()
     {
-        $Memberdata = DB::table('members')->join('member_categories', 'members.categoryid', '=', 'member_categories.id')->get();
+        $Memberdata = DB::table('members')
+        ->join('member_categories', 'members.categoryid', '=', 'member_categories.id')
+        ->select('members.*', 'member_categories.category')
+        ->get();
         return view('member.search_member')->with('Mdata',$Memberdata);
     }
 

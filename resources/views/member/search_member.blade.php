@@ -34,9 +34,7 @@
                         </div>
                     </div>
                    
-                </div>            
-            </div>
-
+                    </div>  
                     <div class="box-body">
                                 <div class="form-row">
                                    
@@ -85,16 +83,19 @@
 
                             </div>
                         </div>
-                                
- 
+                    </section>
+
+
+                    </div>
+
+                    
+                            
                     <!-- --------------------------end section1----------------------------------------------- -->
 
                 </section>
             </div>
 
 
-        </section>
-    </div>
 
 
 
