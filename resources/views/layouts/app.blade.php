@@ -142,35 +142,16 @@ $('#book_delete').on('show.bs.modal', function (event) {
 
     $('#mdatatable').DataTable();
     $('#book_datatable').DataTable();
-    document.getElementById("member_id").focus();
-// --------------------------------------------------
-    $("#book_aNo").change(function(){
-        var selectOption = $("#book_aNo").val();
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            method: 'POST',
-            data: { selectOption: selectOption },
-            url: '/codeview',  //**Eg. URL in route
-            success: function(response){
-                if(response.success) {
-                    //$('#code_view_bq').html(response.codebq);
-                    $genaretedbar=response.codebq;
-                    //alert('success');
-                }       
-            },
-        });
-    });
 
     // ----------------------------------------------------------------------------
 
     $("#member_id").change(function(){
         var memberid = $("#member_id").val();
+        $('#bookB_details').val('');
+        $('#member_Name_id').val('');
+        $('#member_Name').html('');
+        $('#issue_error').html('');
 
         $.ajaxSetup({
             headers: {
@@ -184,7 +165,9 @@ $('#book_delete').on('show.bs.modal', function (event) {
             url: '/member_view',
             success: function(response){
                 if(response.success) {
-                    $('#member_Name').html(response.member_nme);
+                    var mem_detail=response.member_id+" - "+response.member_nme+" ("+response.member_adds+")";
+                    $('#member_Name').html(mem_detail);
+                    $('#member_Name_id').val(response.member_id);
                     //alert('success');
                 }       
             },
@@ -192,77 +175,125 @@ $('#book_delete').on('show.bs.modal', function (event) {
     });
     // -----------------------------------------------------------------------
 
+   
     $('#addbarrow').on("click",function(){
+        var bookid = $("#bookB_details").val();
+        var member_id1 = $("#member_Name_id").val();
+        var op ="";
   
-  var bookid = $("#bookB_details").val();
-  var op ="";
-  console.log(bookid);
-  
-  $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          if($('#member_Name_id').val())
+          {
+            var rowCount = $('#BookTable tr').length;
+            if(rowCount<3)
+            {
+              var oTable = document.getElementById('BookTable');
+              var rowLength = oTable.rows.length;
+              alert(rowLength);
+
+              // ----------------------------------------
+              if(rowLength==1)
+              {
+                // -------------------------------------------------------
+                      $.ajaxSetup({
+                        headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                          }
+                        });
+
+                        $.ajax({
+                        type:'post',
+                        url: '/barrowbook_d',
+                        data:{
+                          bookid: bookid,
+                          member_id1: member_id1
+                          },
+                          success: function(data2){
+                      
+                          for(var i=0;i<data2.length;i++){
+                          op+='<tr>';
+                          op+='<td>'+data2[i].id+'</td><td>'+data2[i].accessionNo+'</td><td>'+data2[i].book_title+'</td><td>'+data2[i].authors+'</td><td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>';
+                          op+='</tr>';
+                          }
+                          $("#BookTable tbody").append(op);
+                          console.log(data2);
+                      },
+                          error: function(){
+                              
+                          console.log("Error Occurred");
+                          }
+                      });
+                    // -------------------------------------------------------------
+
+              }
+               for (j = 1; j <= rowLength; j++)
+               {
+                var oCells = oTable.rows.item(j).cells;
+                var cellVal = oCells.item(1).innerHTML;
+                  if(bookid!=cellVal)
+                  {
+                      
+                      // -------------------------------------------------------
+                      $.ajaxSetup({
+                        headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                          }
+                        });
+
+                        $.ajax({
+                        type:'post',
+                        url: '/barrowbook_d',
+                        data:{
+                          bookid: bookid,
+                          member_id1: member_id1
+                          },
+                          success: function(data2){
+                      
+                          for(var i=0;i<data2.length;i++){
+                          op+='<tr>';
+                          op+='<td>'+data2[i].id+'</td><td>'+data2[i].accessionNo+'</td><td>'+data2[i].book_title+'</td><td>'+data2[i].authors+'</td><td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>';
+                          op+='</tr>';
+                          }
+                          $("#BookTable tbody").append(op);
+                          console.log(data2);
+                      },
+                          error: function(){
+                              
+                          console.log("Error Occurred");
+                          }
+                      });
+                    // -------------------------------------------------------------
+                  }
+                  else{$('#issue_error').html('Book Allready Exsists');}
+
+               }
+    
+              }
+              else{$('#issue_error').html('* Maximam Books allowd');}
             }
-        });
+             else{$('#issue_error').html('* Select Member First');}
 
-  $.ajax({
-    type:'post',
-    url: '/barrowbook_d',
-    data:{
-        bookid: bookid
-        //'_token':$('input[name=_token]').val(),
-       //'selectedid': sid//$('select[name =grpid]').val(),
-        },
-        success: function(data2){
-       
-        for(var i=0;i<data2.length;i++){
-          op+='<tr>';
-          op+='<td>'+data2[i].id+'</td><td>'+data2[i].accessionNo+'</td><td>'+data2[i].book_title+'</td><td>'+data2[i].authors+'</td><td><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>';
-          op+='</tr>';
-        }
-        $("#BookTable tbody").append(op);
-         //$('#bookdata').html(op);
-         //console.log("Data Correctly Processed");
-          console.log(data2);
-       },
-        error: function(){
-          console.log("Error Occurred");
-        }
+
     });
+            var inputm = document.getElementById("member_id");
+            inputm.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("addbarrowmember").click();
+            $('#member_id').val('');
+            document.getElementById("bookB_details").focus();
+          }
+             $("#BookTable tbody").empty();
 
- });
-
-//  $("#form_barrow").submit(function() {
-//     search($("#bookB_details").get(0));
-//     return false;
-// });
-
-    var inputm = document.getElementById("member_id");
-    inputm.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("addbarrowmember").click();
-   $('#bookB_details').val('');
-   document.getElementById("bookB_details").focus();
-  }
-});
-
-    var input = document.getElementById("bookB_details");
-    input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("addbarrow").click();
-   $('#bookB_details').val('');
-   document.getElementById("bookB_details").focus();
-  }
-});
-
-// document.getElementById('form_barrow').addEventListener('submit', function(e) {
-//     search(document.getElementById('bookB_details'));
-//     e.preventDefault();
-// }, false);
-
-
-
+        });
+          var input = document.getElementById("bookB_details");
+          input.addEventListener("keyup", function(event) {
+          if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("addbarrow").click();
+          $('#bookB_details').val('');
+          document.getElementById("bookB_details").focus();
+        }
+        });
 });
   
 </script>
@@ -292,7 +323,7 @@ window.setTimeout(function() {
     $(".alert").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove(); 
     });
-}, 1500);
+}, 1000);
 
 </script>
 <!-- ---------------------------/------------------------------- -->

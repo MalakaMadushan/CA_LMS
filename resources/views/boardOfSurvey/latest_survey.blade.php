@@ -27,7 +27,15 @@
                         <div class="box-body">
 
 <!-----------------------------------------form start--------------------------------------------------->
-                        
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="survey_book_id">Book ID :</label>
+                                    <input type="text" class="form-control" id="" name="survey_book_id"  placeholder="Book ID :">
+                                    <button type="button" class="btn btn-primary" id=""><i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>    
+                        </form>
 
 
 

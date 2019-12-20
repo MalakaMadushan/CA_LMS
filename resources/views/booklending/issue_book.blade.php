@@ -27,80 +27,86 @@
                         <div class="box-body">
 
 <!-----------------------------------------form start--------------------------------------------------->
-                        <form class="form-inline" id="form_barrow" onSubmit="return false;">
-                        {{csrf_field()}}
-
-                            <div class="form-group mx-sm-4 mb-2">
-                            <label for="">Books ID : </label>&nbsp;
-                            <input type="text" class="form-control" id="bookB_details" onfocus="this.value=''" placeholder="Books ID">
-                            </div>
-                            <button type="button" class="btn btn-primary" id="addbarrow"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="btn btn-success" id="addbarrow_serch"><i class="fa fa-search"></i></button>
-                            
-
-                            <div class="form-group col-md-6">
-
-                            <div class="form-group mx-sm-4 mb-2">
-                            <label for="">Member ID : </label>&nbsp;
-                            <input type="text" class="form-control" id="member_id" placeholder="Member ID">
-                            </div>
-                            <button type="button" class="btn btn-primary" id="addbarrowmember"><i class="fa fa-plus"></i></button>
-                            <button type="button" class="btn btn-success" id="addbarrowmember_serch"><i class="fa fa-search"></i></button>
-                           
-
-
-
-                           </div>
-                            <br><br>
+                            <form class="form-inline" id="form_barrow" onSubmit="return false;">
+                            {{csrf_field()}}
                             <div class="row">
-                                <div class="col-lg-12">
-                                <!-- small box -->
-                                <div class="small-box bg-aqua" style="height:2.1rem;">
-                                <div class="d-flex p-2">
+                                <div class="form-group col-md-4 text-left">
                                 
-                                <h4 id="member_Name"class="d-flex p-2 text-center">
-                                </h4>
-                                <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <label for="">Member ID : </label>&nbsp;
+                                    <input type="text" class="form-control" id="member_id" placeholder="Member ID">
+                                    <input type="hidden" name="member_id_select" class="form-control" id="member_Name_id">
                                 
+                                    <button type="button" class="btn btn-primary" id="addbarrowmember"><i class="fa fa-plus"></i></button>
+                                    <button type="button" class="btn btn-success" id="addbarrowmember_serch"><i class="fa fa-search"></i></button> 
                                 </div>
-                             </div>
 
+                                 <div class="col-md-4 text-center">
+                                    <h4><span class="text-danger" id="issue_error"></span></h4>
+                                 </div> 
 
-                            </div><br><br>
-
-                            <div class="form-row ">
+                                <div class="form-group col-md-4 text-left">
+                                    <label for="">Books ID : </label>&nbsp;
+                                    <input type="text" class="form-control" id="bookB_details" onfocus="this.value=''" placeholder="Books ID">
                                 
-                                <table class="table table-hover" id="BookTable">
-                                <thead class="thead-dark">
-                                    <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Accession No</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Authors</th>
-                                    <th scope="col">&nbsp;</th>
-                                        <!-- <td><a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a></td> -->
-                                    </tr>    
-                                    </thead>
+                                    <button type="button" class="btn btn-primary" id="addbarrow" data-toggle="tooltip" data-placement="top"><i class="fa fa-plus"></i></button>
+                                    <button type="button" class="btn btn-success" id="addbarrow_serch"><i class="fa fa-search"></i></button>
 
-                                    <tbody id="bookdata">
-                                           
-                                    </tbody>
-                                </table>
+                                </div>
                             </div>
+                               
+                                <br><br>
+                                <div class="row text-center">
+                                    <div class="col-lg-12">
+                                    <!-- small box -->
+                                        <div class="small-box bg-aqua" style="height:2.5rem;">
+                                            <div class="d-flex">
+                                            
+                                            <h4 id="member_Name"class="d-flex p-2 text-center text-body"></h4>
+                                            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
+                                            
+                                            </div>
+                                        </div>
 
+
+                                </div></div>
+
+                                <div class="form-row ">
+                                    
+                                    <table class="table table-hover" id="BookTable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Accession No</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Authors</th>
+                                        <th scope="col">&nbsp;</th>
+                                            <!-- <td><a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> </a></td> -->
+                                        </tr>    
+                                        </thead>
+
+                                        <tbody class="tbody_data" id="bookdata">
+                                               
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                @include('flash_massage')
+
+                                
                             
+                            <div class="box-footer clearfix pull-right">
+                                    <button type="button" class="btn btn-primary btn-md" id="issue_book">
+                                    <i class="fa fa-floppy-o"></i> Save</button>
+                                    &nbsp; &nbsp;
+                                    <button type="button" class="btn btn-warning btn-md" id="reset_issue">
+                                    <i class="fa fa-times"></i> Reset</button>
+                            </div> 
+                            
+                            </form>
                         
-                        <div class="box-footer clearfix pull-right">
-                                <button type="button" class="btn btn-primary btn-md" id="issue_book">
-                                <i class="fa fa-floppy-o"></i> Save</button>
-                                &nbsp; &nbsp;
-                                <button type="button" class="btn btn-warning btn-md" id="reset_issue">
-                                <i class="fa fa-times"></i> Reset</button>
-                        </div> 
-                        </form>
-
     <!-------------------------------form End-------------------------------------------------------------------------------------->                    
                     </div>
+                </div>
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
 
