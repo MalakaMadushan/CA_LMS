@@ -7,11 +7,12 @@ use Illuminate\Support\Facades\Input;
 use Session;
 use Illuminate\Http\Request;
 use App\survey;
+use App\survey_temp;
 
 class BoardSurveyController extends Controller
 {
     public function survey(){
-        $data=book::all();
+        $data=survey_temp::all();
         return view('boardOfSurvey.survey')->with('Bdata',$data);
     }
     public function surveyhistory(){
@@ -19,12 +20,21 @@ class BoardSurveyController extends Controller
     }
 
     public function newsurvey(){
-        $c1 = DB("Connection1")->select("SELECT * from table");
 
-        foreach($c1 as $record){
+        survey_temp::query()->truncate();
+        $survey = new survey;
+        DB::table('books')->select('id','accessionNo','book_title','authors','price')->orderBy('id')->chunk(500, function($bookt) {
 
-        DB("Connection2")->table("table")->insert(get_object_vars($record));
+        foreach($bookt as $record) {
 
-        }
+            DB::table('survey_temps')->insert(get_object_vars($record));
+        
+            }
+        });
+
+            $data=survey_temp::all();
+            return view('boardOfSurvey.survey')->with('Bdata',$data);
+
+        
     }
 }

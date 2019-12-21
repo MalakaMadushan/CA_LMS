@@ -18,7 +18,7 @@
                               <div class="card-body">
                               <div class="form-group">
                                     <input type="file" name="file" class="form-control">
-                                    <input type="text" name="txt1" class="form-control">
+                                    <!-- <input type="text" name="txt1" class="form-control"> -->
                               </div>
                               <br>
 

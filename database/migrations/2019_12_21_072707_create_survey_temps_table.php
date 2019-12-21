@@ -14,14 +14,14 @@ class CreateSurveyTempsTable extends Migration
     public function up()
     {
         Schema::create('survey_temps', function (Blueprint $table) {
-            $table->string('surveyid');
-            $table->string('bookid')->primary();
+            $table->string('id')->primary();
             $table->string('accessionNo');
             $table->string('book_title');
             $table->string('authors')->nullable();
             $table->string('price')->default(0.00);
-            $table->string('survey');
-            $table->string('userid');
+            $table->string('survey')->default(0);
+            $table->string('surveyid')->nullable();
+            $table->string('userid')->nullable();
             $table->timestamps();
         });
     }
