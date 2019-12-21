@@ -8,7 +8,7 @@
                 <ol class="breadcrumb">
                     <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
                     <li><a ><i class="fa fa-briefcase"></i> Board Of Survey</a></li>
-                    <li class="active"><i class="fa fa-book"></i> New Survey</li>
+                    <li class="active"><i class="fa fa-book"></i>Survey</li>
             </ol>
         </section>
 
@@ -21,7 +21,11 @@
  
                     <div class="box box-info">
                         <div class="box-header ">
-                           <div class="pull-left header"> <h4> <i class="fa fa-book"> New Survey</i></h4></div>
+                           <div class="pull-left header"> <h4> <i class="fa fa-book"> Survey</i></h4></div>
+                           <div class="pull-right">
+                                <h4><button class="btn btn-md" data-toggle="modal" data-target="#start_new_survey" ><i class="fa fa-plus"></i></button></h4>
+                           </div>
+                           
                         </div>
 
                         <div class="box-body">
@@ -68,11 +72,7 @@
                     <th scope="col">Accession No</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
-                    <!-- <th scope="col">Category</th>
-                    <th scope="col">Language</th>
-                    <th scope="col">Publisher</th> -->
-                    <th scope="col">Place</th>
-                    <th scope="col">status</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Survey</th>
                     <th scope="col">More</th>
                 </tr>
@@ -84,11 +84,7 @@
                 <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>                  
                 <td>{{$data->book_title}}</td>                               
                 <td>{{$data->authors}}</td>                               
-                <!-- <td>{{$data->category}}</td>                               
-                <td>{{$data->language}}</td>                               
-                <td>{{$data->publisher}}</td>       -->
-                <td>{{$data->rackno}}{{$data->rowno}}</td>   
-                <td>Issued/Available</td>
+                <td>{{$data->price}}</td>  
                 <td><button class="btn btn-warning">Unmarked</button></td>                                                
                 <td>
                 <a href="" class="btn btn-success btn-sm"><i class="fa fa-search"></i></a>
@@ -109,56 +105,13 @@
 
         </div>
 
-
-
-
-
-
-
-
-        <!-----------------------------------------------------------End Table-------------------------------------------------------------------------------------------->
-
-
-
-                            
-                        </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-------------------------------form End-------------------------------------------------------------------------------------->                    
-                    </div>
+         
+        </form>
+        </div>
                    
-                    <!-- --------------------------end section1----------------------------------------------- -->
+        <!-- --------------------------end section1----------------------------------------------- -->
 
-                </section>
-
-
+    </section>
 
             </div>
             <!-- /.row (main row) -->
@@ -166,4 +119,5 @@
         </section>
         <!-- /.content -->
     </div>
+    @include('boardOfSurvey.new_survey_modal')
 @endsection

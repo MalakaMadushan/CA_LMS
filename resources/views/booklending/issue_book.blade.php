@@ -30,21 +30,19 @@
                             <form class="form-inline" id="form_barrow" onSubmit="return false;">
                             {{csrf_field()}}
                             <div class="row">
-                                <div class="form-group col-md-4 text-left">
-                                
-                                    <label for="">Member ID : </label>&nbsp;
+                                <div class="form-group col-md-7 text-left">
+                                    <label for="issuedte">Date : </label>&nbsp;
+                                    <input type="date" class="form-control" name="issuedte" id="issuedte">&nbsp;
+                                    <label for=""> Member ID : </label>&nbsp;
                                     <input type="text" class="form-control" id="member_id" placeholder="Member ID">
                                     <input type="hidden" name="member_id_select" class="form-control" id="member_Name_id">
                                 
                                     <button type="button" class="btn btn-primary" id="addbarrowmember"><i class="fa fa-plus"></i></button>
                                     <button type="button" class="btn btn-success" id="addbarrowmember_serch"><i class="fa fa-search"></i></button> 
+                                    
                                 </div>
 
-                                 <div class="col-md-4 text-center">
-                                    <h4><span class="text-danger" id="issue_error"></span></h4>
-                                 </div> 
-
-                                <div class="form-group col-md-4 text-left">
+                                <div class="form-group col-md-5 text-left">
                                     <label for="">Books ID : </label>&nbsp;
                                     <input type="text" class="form-control" id="bookB_details" onfocus="this.value=''" placeholder="Books ID">
                                 
@@ -53,6 +51,13 @@
 
                                 </div>
                             </div>
+                            <!-- <div class="row"> -->
+                                <div class="col-md-12 text-center mt-2">
+                                    <h5><span class="text-danger" id="issue_error"></span></h5>
+                                    <h5><span class="text-success" id="issue_success"></span></h5>
+                                </div> 
+                            <!-- </div> -->
+
                                
                                 <br><br>
                                 <div class="row text-center">

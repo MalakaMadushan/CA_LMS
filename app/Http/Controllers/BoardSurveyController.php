@@ -6,32 +6,35 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Session;
 use Illuminate\Http\Request;
+use App\survey;
+use App\survey_temp;
 
 class BoardSurveyController extends Controller
 {
+    public function survey(){
+        $data=survey_temp::all();
+        return view('boardOfSurvey.survey')->with('Bdata',$data);
+    }
+    public function surveyhistory(){
+        return view('boardOfSurvey.survey_history');
+    }
+
     public function newsurvey(){
 
-        $bookdata = DB::table('books')
-            
-        ->join('book_categories', 'books.book_category_id', '=', 'book_categories.id')
-        ->join('book_languages', 'books.language_id', '=', 'book_languages.id')
-        ->join('book_publishers', 'books.publisher_id', '=', 'book_publishers.id')
-        ->join('book_phymedia', 'books.phymedium_id', '=', 'book_phymedia.id')
-        ->join('book_dds', 'books.dewey_decimal_id', '=', 'book_dds.id')
-        ->get();
-        return view('boardOfSurvey.new_survey')->with('Bdata',$bookdata);
+        survey_temp::query()->truncate();
+        $survey = new survey;
+        DB::table('books')->select('id','accessionNo','book_title','authors','price')->orderBy('id')->chunk(500, function($bookt) {
 
+        foreach($bookt as $record) {
 
+            DB::table('survey_temps')->insert(get_object_vars($record));
+        
+            }
+        });
 
+            $data=survey_temp::all();
+            return view('boardOfSurvey.survey')->with('Bdata',$data);
 
-
-
-        //return view('boardOfSurvey.new_survey');
-    }
-    public function latestsurvey(){
-        return view('boardOfSurvey.latest_survey');
-    }
-    public function pastsurvey(){
-        return view('boardOfSurvey.past_survey');
+        
     }
 }
