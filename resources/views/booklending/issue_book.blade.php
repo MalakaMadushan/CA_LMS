@@ -30,7 +30,7 @@
                             <form class="form-inline" id="form_barrow" onSubmit="return false;">
                             {{csrf_field()}}
                             <div class="row">
-                                <div class="form-group col-md-6 text-left">
+                                <div class="form-group col-md-7 text-left">
                                     <label for="issuedte">Date : </label>&nbsp;
                                     <input type="date" class="form-control" name="issuedte" id="issuedte">&nbsp;
                                     <label for=""> Member ID : </label>&nbsp;
@@ -42,12 +42,7 @@
                                     
                                 </div>
 
-                                 <div class="col-md-2 text-left">
-                                    <h4><span class="text-danger" id="issue_error"></span></h4>
-                                    <h4><span class="text-success" id="issue_success"></span></h4>
-                                 </div> 
-
-                                <div class="form-group col-md-4 text-center">
+                                <div class="form-group col-md-5 text-left">
                                     <label for="">Books ID : </label>&nbsp;
                                     <input type="text" class="form-control" id="bookB_details" onfocus="this.value=''" placeholder="Books ID">
                                 
@@ -56,6 +51,13 @@
 
                                 </div>
                             </div>
+                            <!-- <div class="row"> -->
+                                <div class="col-md-12 text-center mt-2">
+                                    <h5><span class="text-danger" id="issue_error"></span></h5>
+                                    <h5><span class="text-success" id="issue_success"></span></h5>
+                                </div> 
+                            <!-- </div> -->
+
                                
                                 <br><br>
                                 <div class="row text-center">

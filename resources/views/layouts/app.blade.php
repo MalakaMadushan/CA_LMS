@@ -201,10 +201,12 @@ $('#issuedte').attr('value', today);
                 var mem_detail=response.member_id+" - "+response.member_nme+" ("+response.member_adds+")";
                 $('#member_Name').html(mem_detail);
                 $('#member_Name_id').val(response.member_id);
+                $('#member_id').val('');
             
             },
             error: function(response){
             $('#issue_error').html('Member not found !');
+            $('#member_id').val('');
             document.getElementById("member_id").focus();
             }
         });
@@ -232,7 +234,7 @@ $('#addbarrow').on("click",function(){
                {
                 var oCells = oTable.rows.item(j).cells;
                 var cellVal = oCells.item(1).innerHTML;
-                  if(bookid==cellVal)
+                  if(bookid.toUpperCase()==cellVal.toUpperCase())
                   { 
                     bexsist=true;   
                   }

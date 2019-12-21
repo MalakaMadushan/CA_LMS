@@ -130,9 +130,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{!! url('/new_survey') !!}"><i class="fa fa-circle-o"></i>New</a></li>
-                    <li><a href="{!! url('/latest_survey') !!}"><i class="fa fa-circle-o"></i>Latest</a></li>
-                    <li><a href="{!! url('/past_survey') !!}"><i class="fa fa-circle-o"></i> Past</a></li>
+                    <li><a href="{!! url('/survey') !!}"><i class="fa fa-circle-o"></i>Survey</a></li>
+                    <li><a href="{!! url('/survey_history') !!}"><i class="fa fa-circle-o"></i>History</a></li>
 
                 </ul>
             </li>
