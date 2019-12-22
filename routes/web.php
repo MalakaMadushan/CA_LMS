@@ -36,13 +36,8 @@ Route::get('/details_book', 'BookController@detailsbook')->name('details_book');
 
 Route::post('/savebook', 'BookController@store');
 
-// Route::get('/search_book', function () {
-//     $Bookdata=book::all();
-//     return view('books.search_book')->with('Bdata',$Bookdata);
-
-
-// });
-Route::get('/search_book', 'BookController@allbook');
+// Route::get('/search_book', 'BookController@allbook');
+Route::get('/search_book', 'BookController@allbook')->name('search_book.allbook');
 
 Route::post('/deleteBook', 'BookController@delete');
 Route::get('/back', 'BookController@back');
