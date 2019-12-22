@@ -203,12 +203,12 @@ class BookController extends Controller
                             $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Delete</button>';
                             return $button;
                         })
-                        ->addColumn('barcode', function ($data) {
-                            $code= '<div>{!!DNS1D::getBarcodeSVG("'.$data->id.'", "C128",1,70)!!}</div>';
-                            return  $code;
+                        // ->addColumn('barcode', function ($data) {
+                        //     $code= DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70);
+                        //     return  $code;
                             
-                        })
-                        ->rawColumns(['action','barcode'])
+                        // })
+                        ->rawColumns(['action'])
                         ->make(true);
             }
             return view('books.search_book');

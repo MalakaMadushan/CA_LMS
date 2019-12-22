@@ -46,7 +46,7 @@
                             <tr>
                                 <th scope="col">Book ID</th>
                                 <th scope="col">Accession No</th>
-                                <th scope="col">Barcode</th>
+                                <!-- <th scope="col">Barcode</th> -->
                                 <th scope="col">Title</th>
                                 <th scope="col">Author</th>
                                 <th scope="col">Category</th>
@@ -73,7 +73,7 @@
                                 columns:[
                                     {data: "id",name: "id"},
                                     {data: "accessionNo",name: "accessionNo"},
-                                    {data: "barcode",name: "barcode",orderable: false},
+                                    // {data: "barcode",name: "barcode",orderable: false},
                                     {data: "book_title",name: "book_title"},
                                     {data: "authors",name: "authors"},
                                     {data: "category",name: "category"},
