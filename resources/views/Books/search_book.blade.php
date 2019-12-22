@@ -41,7 +41,7 @@
             <div class="box-body">
                 <div class="form-row">
                                    
-                    <table class="table form-check-inline " id="book_datatable">
+                <table class="table form-check-inline " id="book_datatable">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Book ID</th>
@@ -53,32 +53,44 @@
                                 <th scope="col">Language</th>
                                 <th scope="col">Publisher</th>
                                 <th scope="col">Place</th>
-                                <th scope="col">status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($Bdata as $data)
-                            <tr>
-                            <td>{{$data->id}}</td>                        
-                            <td>{{$data->accessionNo}}</td> 
-                            <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>
-                            <td>{{$data->book_title}}</td>                               
-                            <td>{{$data->authors}}</td>                               
-                            <td>{{$data->category}}</td>                               
-                            <td>{{$data->language}}</td>                               
-                            <td>{{$data->publisher}}</td>      
-                            <td>{{$data->rackno}}{{$data->rowno}}</td>                                                      
-                            <td>
-                            <a href="/update_book_view/{{$data->id}}" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-pencil" ></i></a> 
+                            @push('scripts')
+                            <script>
 
-                            <a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#book_delete" data-bookid="{{$data->id}}" data-book_title="{{$data->book_title}}"><i class="fa fa-trash" ></i></a>&nbsp;
+                                $(document).ready(function() {
+                                
+                                
+                                $('#book_datatable').DataTable({
+                                processing: true,
+                                serverSide: true,
+
+                                ajax:{
+                                url: "{{ route('search_book.allbook') }}",
+                                },
+                                columns:[
+                                    {data: "id",name: "id"},
+                                    {data: "accessionNo",name: "accessionNo"},
+                                    {data: "barcode",name: "barcode",orderable: false},
+                                    {data: "book_title",name: "book_title"},
+                                    {data: "authors",name: "authors"},
+                                    {data: "category",name: "category"},
+                                    {data: "language",name: "language"},
+                                    {data: "publisher",name: "publisher"},
+                                    {data: "rackno",name: "rackno"},
+                                    {data: "action",name: "action",orderable: false}
+                                ]
+                                });
+                                // ----------------------------------
+
+                                });
 
 
-                            <a href="/recodeMember/{{$data->id}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a>
-
-                            </td>
-                             </tr>                                  
-                             @endforeach                                       
+                                </script>
+                            @endpush
+                                                                    
                          </tbody>
                         </table>
                         </div>               
@@ -133,37 +145,6 @@
 
 
 
-   <!-- <div class="modal modal-default fade" id="Modal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Remove Book</h4>
-                </div>
-                <form method="post" action="/deleteBook">
-                    {{ csrf_field() }}
-                    <div class="modal-body">
 
-                        <input type="hidden" id="book_id" name="book_id">
-                        <div class="row form-group">
-                            <div class="col-md-4">
-                                <h5 id="myModalLabel">Are you sure Remove Book - </h5>
-                            </div>
-                            <div class="col-md-8">
-                                <h4><label type="text"  id="bookname"></label></h4>
-                            </div>
-                        </div>
-                         
-
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger "><i class="fa fa-trash"></i> &nbsp; Delete</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
-    <!-- end book modal delete ------------------------------------------------------------------------------------------>
 
 @endsection

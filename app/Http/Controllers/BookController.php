@@ -188,13 +188,34 @@ class BookController extends Controller
 
         public function allbook()
         {
-            $bookdata = DB::table('books')
-            ->join('book_categories', 'books.book_category_id', '=', 'book_categories.id')
-            ->join('book_languages', 'books.language_id', '=', 'book_languages.id')
-            ->join('book_publishers', 'books.publisher_id', '=', 'book_publishers.id')
-            ->select('books.*', 'book_categories.category', 'book_languages.language', 'book_publishers.publisher')
-            ->get();
-            return view('books.search_book')->with('Bdata',$bookdata);
+            if(request()->ajax())
+            {
+                $bookdata = DB::table('books')
+                ->join('book_categories', 'books.book_category_id', '=', 'book_categories.id')
+                ->join('book_languages', 'books.language_id', '=', 'book_languages.id')
+                ->join('book_publishers', 'books.publisher_id', '=', 'book_publishers.id')
+                ->select('books.*', 'book_categories.category', 'book_languages.language', 'book_publishers.publisher')
+                ->get();
+                return datatables()->of($bookdata)
+                        ->addColumn('action', function($data){
+                            $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Edit</button>';
+                            $button .= '&nbsp;&nbsp;';
+                            $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Delete</button>';
+                            return $button;
+                        })
+                        ->addColumn('barcode', function ($data) {
+                            $code= '<div>{!!DNS1D::getBarcodeSVG("'.$data->id.'", "C128",1,70)!!}</div>';
+                            return  $code;
+                            
+                        })
+                        ->rawColumns(['action','barcode'])
+                        ->make(true);
+            }
+            return view('books.search_book');
+
+
+            
+            // return view('books.search_book')->with('Bdata',$bookdata);
             
         }
 
