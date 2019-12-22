@@ -25,12 +25,16 @@
             <div class="row">
                     <div class="pull-left header col-md-10"> 
                        <div class="pull-left header"> <h4> <i class="fa fa-search"> Search Books</i></h4></div>
+                        <div class="pull-right">
+                            
+                        </div>
                     </div>
                      <div class="pull-right header col-md-2"> 
                         <div class="form-check-inline">
                            <a href="{{ route('pdfbarcodeall',['download'=>'pdf']) }}" target="_blank"class=""><i class="fa fa-file-pdf-o m-right-xs"></i>PDF</a>&nbsp;
                             <a href="#" target="_blank"class=""><i class="fa fa-file-excel-o m-right-xs"></i>Excel</a>&nbsp;
                             <a href="#" target="_blank"class=""><i class="fa fa-file-word-o m-right-xs"></i>Word</a>&nbsp;
+                            <h4><button class="btn btn-warning btn-md" name="create_recode" id="create_recode" ><i class="fa fa-plus"></i></button></h4>
 
                         </div>      
                     </div>
@@ -62,7 +66,7 @@
 
                                 $(document).ready(function() {
                                 
-                                
+                                // ----------view-------------------------
                                 $('#book_datatable').DataTable({
                                 processing: true,
                                 serverSide: true,
@@ -83,7 +87,55 @@
                                     {data: "action",name: "action",orderable: false}
                                 ]
                                 });
-                                // ----------------------------------
+                                
+                               
+                                // -----------------insert--------------------
+                                $('#create_recode').click(function(){
+                                $('.modal-title').text("Add New Book");
+                                    $('#action_button').val("Add");
+                                    $('#action').val("Add");
+                                    $('#formModal').modal('show');
+                                });
+                                $('#sample_form').on('submit', function(event){
+                                event.preventDefault();
+                                
+                                if($('#action').val() == 'Add')
+                                {
+                                    // alert("ok");
+                                    $.ajax({
+                                        url:"{{ route('search_book.store') }}",
+                                        method:"POST",
+                                        data: new FormData(this),
+                                        contentType: false,
+                                        cache:false,
+                                        processData: false,
+                                        dataType:"json",
+                                        success:function(data)
+                                        {
+                                            var html = '';
+                                            if(data.errors)
+                                            {
+                                                html = '<div class="alert alert-danger">';
+                                                for(var count = 0; count < data.errors.length; count++)
+                                                    {
+                                                        html += '<p>' + data.errors[count] + '</p>';
+                                                    }
+                                                html += '</div>';
+                                            }
+                                            if(data.success)
+                                            {
+                                                html = '<div class="alert alert-success">' + data.success + '</div>';
+                                                $('#sample_form')[0].reset();
+                                                $('#book_datatable').DataTable().ajax.reload();
+                                            }
+                                            $('#form_result').html(html);
+                                        }
+                                    })
+                                }
+
+                                });
+                                // --------------------------------------
+
 
                                 });
 
@@ -107,10 +159,10 @@
         <!-- /.content -->
     </div>
 
-
+    @include('Books.action_books_modal')
     <!-- start book modal delete-------------------------------------------------------------------------------------------- -->
    
-    <div class="modal fade" id="book_delete" tabindex="-1" role="dialog" aria-labelledby="phymediumModalTitle" aria-hidden="true">
+                            <div class="modal fade" id="book_delete" tabindex="-1" role="dialog" aria-labelledby="phymediumModalTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                         <div class="modal-header">
@@ -141,9 +193,6 @@
                                         </div>
                                     </div>
                                     </div>
-
-
-
 
 
 

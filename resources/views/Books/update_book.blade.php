@@ -3,18 +3,9 @@
 
 @section('content')
 <div>
-        <!-- Content Header (Page header) -->
-        <section class="content-fulid mt-1">
-        <h2>&nbsp Update Books </h2>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fa fa-book"></i> Books</a></li>
-                    <li class="active"><i class="fa fa-plus"></i> Add Book</li>
-                </ol>
-                
-
-        </section>
-
+<div class="col-lg-2 col-md-2"></div>
+        <div class="col-lg-8 col-md-8">
+    
         <!-- Main content -->
         <section class="content">
 
@@ -23,6 +14,17 @@
                 <section class="col-lg-12 connectedSortable">
  
                     <div class="box box-info">
+                        <section class="content-fulid mt-1">
+                                <h2>&nbsp Update Books </h2>
+                                <ol class="breadcrumb">
+                                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                                    <li><a href="#"><i class="fa fa-book"></i> Books</a></li>
+                                    <li class="active"><i class="fa fa-plus"></i> Add Book</li>
+                                </ol>
+                                
+
+                        </section>
+
                         <div class="box-header ">
                            <div class="pull-left header"> <h4> <i class="fa fa-plus"> Update Books</i></h4></div>
                            <div class="pull-right">
@@ -177,7 +179,7 @@
                                 
                                 <div class="form-group col-md-4">
                                     <label for="purchase_date" >Purchase Date</label>
-                                    <input class="form-control" type="date" id="purchase_date" name="purchase_date" value="{{old('purchase_date')}} id="purchase_date">
+                                    <input class="form-control" type="date" id="purchase_date" name="purchase_date" value="{{old('purchase_date')}} "id="purchase_date" >
                                     <span class="text-danger">{{ $errors->first('purchase_date') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
@@ -268,13 +270,12 @@
                     </div>
                      @include('modal_add')
                 </section>
+                </div>
+                <div class="col-lg-2 col-md-2"></div>
             </div>
   
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
-                    @include('Support.import_export_modal')
-                
-            <!-- /.row (main row) -->
            
 
 @endsection
