@@ -223,8 +223,8 @@
                                         $("#BookTable tbody").append(op);
                                         console.log(data2);
                                     },
-                                        error: function(){
-                                            
+                                        error: function(data2){
+                                        $('#issue_error').html('Book Not Found');   
                                         console.log("Error Occurred");
                                         }
                                     });
