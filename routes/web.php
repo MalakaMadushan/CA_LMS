@@ -68,7 +68,7 @@ Route::post('/member_view', 'BookLendingController@Memberview');
 Route::post('/issue_save', 'BookLendingController@SaveIssue');
 
 //Board of Survey
-Route::get('/survey', 'BoardSurveyController@survey');
+Route::get('/survey', 'BoardSurveyController@survey')->name('survey.survey');
 Route::get('/survey_history', 'BoardSurveyController@surveyhistory');
 Route::post('/new_survey', 'BoardSurveyController@newsurvey');
 

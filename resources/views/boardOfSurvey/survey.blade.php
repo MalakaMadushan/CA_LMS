@@ -45,8 +45,8 @@
                                 <div class="form-group col-md-1">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <div class="small-box bg-aqua col-lg-12 text-center " style="height:10rem;">
-                                        <h4>SURVEY</h4><br>
+                                    <div class="small-box bg-aqua col-lg-12 text-center " style="height:9rem;">
+                                        <h4>SURVEY</h4>
                                         <h3>1520/12000</h3>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
 <div class="box-body">
     <div class="form-row">
                        
-        <table class="table form-check-inline " id="book_datatable">
+        <table class="table form-check-inline " id="survey_datatable">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Book ID</th>
@@ -74,24 +74,40 @@
                     <th scope="col">Author</th>
                     <th scope="col">Price</th>
                     <th scope="col">Survey</th>
-                    <th scope="col">More</th>
+                    
                 </tr>
             </thead>
             <tbody>
-            @foreach($Bdata as $data)
-                <tr>
-                <td>{{$data->id}}</td>                        
-                <td>{!!DNS1D::getBarcodeSVG($data->accessionNo, "C128",1,50)!!}</td>                  
-                <td>{{$data->book_title}}</td>                               
-                <td>{{$data->authors}}</td>                               
-                <td>{{$data->price}}</td>  
-                <td><button class="btn btn-warning">Unmarked</button></td>                                                
-                <td>
-                <a href="" class="btn btn-success btn-sm"><i class="fa fa-search"></i></a>
-                </td>
-                 </tr>                                  
-                 @endforeach                                          
-             </tbody> 
+                            @push('scripts')
+                            <script>
+
+                                $(document).ready(function() {
+                                
+                                // ----------view-------------------------
+                                $('#survey_datatable').DataTable({
+                                processing: true,
+                                serverSide: true,
+
+                                ajax:{
+                                url: "{{ route('survey.survey') }}",
+                                },
+                                columns:[
+                                    {data: "id",name: "id"},
+                                    {data: "accessionNo",name: "accessionNo"},
+                                    {data: "book_title",name: "book_title"},
+                                    {data: "authors",name: "authors"},
+                                    {data: "price",name: "price"},
+                                    {data: "survey",name: "survey",orderable: false}
+                                   
+                                ]
+                                });
+                                
+                                });
+
+                                </script>
+                            @endpush
+                                                                    
+                         </tbody>
             </table>
             <br> 
                 <div class="pull-right">
