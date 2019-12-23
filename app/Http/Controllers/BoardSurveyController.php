@@ -69,5 +69,15 @@ class BoardSurveyController extends Controller
         
     }
 
+    public function checkbook(Request $request)
+    {
+       
+        $data2 = survey_temp::where('accessionNo',$request->book_acc)->get();
+
+        return response()->json(['book_name' => $data2->book_title]);
+        
+    }
+
+
 
 }
