@@ -55,7 +55,7 @@ class BookController extends Controller
         return redirect()->back();
     }
 
-    public function store(Request $request)
+    public function store1(Request $request)
     {
 
         $book =new book;
@@ -99,6 +99,56 @@ class BookController extends Controller
 
             $book->save();
             return redirect()->back()->with('success','Book Add successfully!');
+    
+    }
+
+    public function store(Request $request)
+    {
+
+        $rules = array(
+            'accessionNo'   =>'required|max:100|min:5',
+            'isbn'          =>'required|max:100|min:5',
+            'book_title'    =>'required',
+            'authors'       =>'required',
+            'price'         =>'required',
+            'purchase_date' =>'required',
+            'phydetails'    =>'required',
+            'publishyear'   =>'required',
+            'note'          =>'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if($error->fails())
+        {
+            return response()->json(['errors' => $error->errors()->all()]);
+        }
+
+        $form_data = array(
+            'accessionNo'       =>  $request->accessionNo,
+            'isbn'              =>  $request->isbn,
+            'book_title'        =>  $request->book_title,
+            'authors'           =>  $request->authors,
+            'book_category_id'  =>  $request->book_category,
+            'language_id'       =>  $request->language,
+            'publisher_id'      =>  $request->publisher,
+            'phymedium_id'      =>  $request->phymedium,
+            'dewey_decimal_id'  =>  $request->dewey_decimal,
+            'purchase_date'     =>  $request->purchase_date,
+            'edition'           =>  $request->edition,
+            'price'             =>  $request->price,
+            'publishyear'       =>  $request->publishyear,
+            'phydetails'        =>  $request->phydetails,
+            'rackno'            =>  $request->rackno,
+            'rowno'             =>  $request->rowno,
+            'note'              =>  $request->note,
+          
+            
+        );
+
+        book::create($form_data);
+
+        return response()->json(['success' => 'Data Added successfully.']);
     
     }
 
@@ -188,6 +238,12 @@ class BookController extends Controller
 
         public function allbook()
         {
+            $Categorydata=book_category::all();
+            $Languagedata=book_language::all();
+            $Publisherdata=book_publisher::all();
+            $Phymediumdata=book_phymedium::all();
+            $Deweydecimaldata=book_dd::all();
+            
             if(request()->ajax())
             {
                 $bookdata = DB::table('books')
@@ -198,24 +254,23 @@ class BookController extends Controller
                 ->get();
                 return datatables()->of($bookdata)
                         ->addColumn('action', function($data){
-                            $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm">Edit</button>';
+                            $button = '<a href="/update_book_view/'.$data->id.'" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-pencil" ></i></a>';
                             $button .= '&nbsp;&nbsp;';
-                            $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm">Delete</button>';
+                            $button .= '<a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#book_delete" data-bookid="'.$data->id.'" data-book_title="'.$data->book_title.'"><i class="fa fa-trash" ></i></a>';
                             return $button;
-                        })
-                        ->addColumn('barcode', function ($data) {
-                            $code= '<div>{!!DNS1D::getBarcodeSVG("'.$data->id.'", "C128",1,70)!!}</div>';
-                            return  $code;
+                            
                             
                         })
-                        ->rawColumns(['action','barcode'])
+                        // ->addColumn('barcode', function ($data) {
+                        //     $code= DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70);
+                        //     return  $code;
+                            
+                        // })
+                        ->rawColumns(['action'])
                         ->make(true);
             }
-            return view('books.search_book');
-
-
-            
-            // return view('books.search_book')->with('Bdata',$bookdata);
+            return view('books.search_book')->with('Cat_data',$Categorydata)->with('Lang_data',$Languagedata)->with('Pub_data',$Publisherdata)
+            ->with('PhyMdm_data',$Phymediumdata)->with('DDC_data',$Deweydecimaldata);
             
         }
 

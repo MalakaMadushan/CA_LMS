@@ -29,12 +29,15 @@ Route::get('/dashboard', 'HomeController@dashboardV1')->name('dashboard-v1');
 // Route::get('/dashboard-v2', 'HomeController@dashboardV2')->name('dashboard-v2');
 
 //book routing path
+Route::resource('search_book', 'BookController');
 Route::get('/new_book', 'BookController@addbook')->name('new_book');
 
 // Route::get('/search_book', 'BookController@searchbook')->name('search_book');
 Route::get('/details_book', 'BookController@detailsbook')->name('details_book');
 
-Route::post('/savebook', 'BookController@store');
+Route::post('/savebook', 'BookController@store1');
+// Route::post('/savebook1', 'BookController@store1')->name('search_book.store1');
+
 
 // Route::get('/search_book', 'BookController@allbook');
 Route::get('/search_book', 'BookController@allbook')->name('search_book.allbook');

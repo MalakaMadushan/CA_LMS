@@ -24,24 +24,27 @@
                         <br><br><br>
                         <!-- <div>{!!DNS1D::getBarcodeHTML(8889899, 'C39')!!}</div><br>
                         <div>{!!DNS2D::getBarcodeSVG(5436564, 'QRCODE')!!}</div><br> -->
-                        @php
-                         $name3 = Input::get('txt3');
-                         echo $name3;
-                         echo DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70);
-                        @endphp
+                        
                         
                         <br><br><br>
-                        <!-- <div>{!!DNS1D::getBarcodeHTML("Shanuka123456", "C39",1,70,"Black", true)!!}</div><br>
+                        <div>{!!DNS1D::getBarcodeHTML("Shanuka123456", "C39",1,70,"Black", true)!!}</div><br>
                         <div>{!!DNS1D::getBarcodeHTML("Shanuka123456", "C39+",1,70,"Black", true)!!}</div><br>
                         <div>{!!DNS1D::getBarcodeHTML("Shanuka123456", "C128",1,70,"Black", true)!!}</div><br>
                         <div>{!!DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70)!!}</div><br>
                         <div>{!!DNS1D::getBarcodeHTML("4445645656", "CODE11")!!}</div><br>
-                         -->
-            
-                   
+                        
+                        <img src="' . DNS1D::getBarcodePNG("4", "C39+",3,33) . '" alt="barcode"   />
+                        <img src="data:image/png;base64,' . DNS1D::getBarcodePNG("4", "C39+",3,33) . '" alt="barcode"   />
+                   <br><br><br>
                         <!-- <div>{!!DNS1D::getBarcodeHTML(6435636, 'MSI+')!!}</div><br>
                         <div>{!!DNS1D::getBarcodeHTML(25547, 'POSTNET')!!}</div><br> -->
-
+                        @php
+                            echo DNS1D::getBarcodeSVG("4445645656", "PHARMA2T",3,33);
+                            echo DNS1D::getBarcodeHTML("4445645656", "PHARMA2T",3,33);
+                            
+                            echo DNS1D::getBarcodePNGPath("4445645656", "PHARMA2T",3,33);
+                            
+                        @endphp
 
                         
                     </div>
