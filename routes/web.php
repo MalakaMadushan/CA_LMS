@@ -68,10 +68,12 @@ Route::post('/member_view', 'BookLendingController@Memberview');
 Route::post('/issue_save', 'BookLendingController@SaveIssue');
 
 //Board of Survey
+Route::resource('survey', 'BoardSurveyController');
 Route::get('/survey', 'BoardSurveyController@survey')->name('survey.survey');
 Route::get('/survey_history', 'BoardSurveyController@surveyhistory');
 Route::post('/new_survey', 'BoardSurveyController@newsurvey');
-Route::post('/ckeck_book', 'BoardSurveyController@checkbook');
+Route::post('/ckeck_book', 'BoardSurveyController@bookcheck');
+
 
 
 

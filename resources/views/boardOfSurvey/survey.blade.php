@@ -19,7 +19,7 @@
                 <!-- --------------------------- section 1------------------------------------- -->
             <section class="col-lg-12 connectedSortable">
  
-                    <div class="box box-info">
+                <div class="box box-info">
                         <div class="box-header ">
                            <div class="pull-left header"> <h4> <i class="fa fa-book"> Survey</i></h4></div>
                            <div class="pull-right">
@@ -28,39 +28,58 @@
                            
                         </div>
 
-                    <div class="box-body">
-                        
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <div class="form-group mx-sm-4 mb-2">
-                                        <label for="">Book ID : </label>&nbsp;
-                                        <input type="text" class="form-control" id="book_capture" placeholder="Book ID">
+                            <div class="box-body">
+                                
+                                <form onSubmit="return false;">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <div class="form-group mx-sm-4 mb-2">
+                                                <label for="">Book ID : </label>&nbsp;
+                                                <input type="text" class="form-control" id="book_capture" placeholder="Book ID">
+                                            </div>
+                                            <button type="button" class="btn btn-primary" id="book_check"><i class="fa fa-plus"></i></button>
+                                            <button type="button" class="btn btn-success" id=""><i class="fa fa-search"></i></button>
+                                        </div>
+                                        <div class="form-group col-md-3 text-center">
+                                           <h4> <label id="book_capturename"></label></h4>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div class="small-box bg-aqua col-lg-12 text-center " style="height:9rem;">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <h4>Total Count- </h4>
+                                                    </div>
+                                                    <div class="col-md-6 text-left">
+                                                        <h3 id="total_count">{{ $Bcount }}</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 text-primary">
+                                                        <h4>Survey Count- </h4>
+                                                    </div>
+                                                    <div class="col-md-6 text-left">
+                                                        <span type="hidden" id="survey_count"><h3>{{ $Scount }}</h3></span>
+                                                        <h3 id="survey_countb"></h3>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="book_check"><i class="fa fa-plus"></i></button>
-                                    <button type="button" class="btn btn-success" id=""><i class="fa fa-search"></i></button>
-                                </div>
-                                <div class="form-group col-md-3 text-center">
-                                    <label id="book_capture_name"></label>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <div class="small-box bg-aqua col-lg-12 text-center " style="height:9rem;">
-                                        <h4>SURVEY</h4>
-                                        <h3>1520/12000</h3>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-2" >
-                                    <!-- <label for="">View </label>&nbsp; -->
-                                        <button type="button" class="btn btn-success form-control" id=""><i class="fa fa-edit">&nbsp;View</i></button>
-                                        &nbsp;
-                                        <button type="button" class="btn btn-danger form-control" id=""><i class="fa fa-refresh">&nbsp;Clear</i></button>
-                                   
-                                </div>
+                                        <div class="form-group col-md-2" >
+                                            <!-- <label for="">View </label>&nbsp; -->
+                                                <button type="button" class="btn btn-success form-control" id=""><i class="fa fa-edit">&nbsp;View</i></button>
+                                                &nbsp;
+                                                <button type="button" class="btn btn-danger form-control" id=""><i class="fa fa-refresh">&nbsp;Clear</i></button>
+                                           
+                                        </div>
+                                </form>
                             </div> 
 
 
-                        </form>
-                    </div>
+                        
+                
 
                         <div class="box-body">
                             <div class="form-row">
@@ -101,33 +120,53 @@
                                         
                                     ]
                                     });
+                                    
+                                    document.getElementById("book_capture").focus();
+                                    // -----------------------------------------------------------------------
+                                    var input = document.getElementById("book_capture");
+                                    input.addEventListener("keyup", function(event) {
+                                    if (event.keyCode === 13) {
+                                    event.preventDefault();
+                                    document.getElementById("book_check").click();
+                                    $('#book_capture').val('');
+                                    document.getElementById("book_capture").focus();
+                                    }
+                                    });
+
+                                    
 
                                     });
 
                                 // ----------------------------------------------------------------------------
 
-                                    $("#book_check").click(function(){
+
+                                    $('#book_check').on("click",function(){
                                         var book_acc = $("#book_capture").val();
+                                        load=0;
+
                                         $.ajaxSetup({
                                             headers: {
-                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                             }
                                         });
 
                                         $.ajax({
                                             method: 'POST',
-                                            data: { book_acc: book_acc },
                                             url: '/ckeck_book',
+                                            data: { book_acc: book_acc },
                                             
-
+                                            
                                             success: function(response){
-                                                $('#book_capture_name').html(response.book_name);
-                                                //$('#survey_datatable').DataTable().ajax.reload();
-                                    
+
+                                               
+                                                $('#survey_count').html('');
+                                                $('#book_capturename').html(response.book_name);
+                                                $('#survey_countb').html(response.survey_count);
+                                                $('#survey_datatable').DataTable().ajax.reload();
+                                               
                                             },
                                             error: function(response){
-                                                $('#book_capture_name').html("Error");  
-                                                
+                                                $('#book_capturename').html("Book Not Found..!");
                                             }
                                         });
                                     });
@@ -154,6 +193,7 @@
                    
 
     </section>
+
 
 </div>
 

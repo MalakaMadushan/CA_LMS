@@ -32,8 +32,12 @@ class BoardSurveyController extends Controller
                     ->rawColumns(['survey'])
                     ->make(true);
         }
+        $bookcount = DB::table('survey_temps')->count();
 
-        return view('boardOfSurvey.survey');
+        $survey_c = survey_temp::where('survey','1')->get();
+        $survey_count = count($survey_c);
+
+        return view('boardOfSurvey.survey')->with('Bcount',$bookcount)->with('Scount',$survey_count);
     }
     public function surveyhistory(){
         return view('boardOfSurvey.survey_history');
@@ -69,12 +73,26 @@ class BoardSurveyController extends Controller
         
     }
 
-    public function checkbook(Request $request)
+    // public function checkbook(Request $request)
+    // {
+       
+    //     $data_B = survey_temp::where('accessionNo',$request->book_acc)->get();
+
+    //     return response()->json(['book_name' => $data_B->book_title]);
+        
+    // }
+
+    public function bookcheck(Request $request)
     {
        
-        $data2 = survey_temp::where('accessionNo',$request->book_acc)->get();
-
-        return response()->json(['book_name' => $data2->book_title]);
+        $data_B = survey_temp::where('accessionNo',$request->book_acc)->get();
+        
+        $data_update=survey_temp::find($data_B[0]->id);
+        $data_update->survey=1;
+        $data_update->save();
+        $survey_c = survey_temp::where('survey','1')->get();
+        return response()->json(['book_name' => $data_B[0]->book_title,'survey_count' =>count($survey_c)]);
+        
         
     }
 

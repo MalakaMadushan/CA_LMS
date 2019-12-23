@@ -171,9 +171,8 @@ class BookController extends Controller
 
     public function updatebook(Request $request)
     {
-
-        $book =new book;
-        
+        $book=book::find($request->id);
+     
         // validation part add new book
         $this->validate($request,[
 
