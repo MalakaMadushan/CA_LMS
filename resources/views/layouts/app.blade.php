@@ -94,6 +94,7 @@
 <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 
 <script src="{{ asset('js/custom.js') }}"></script>
+
 @stack('scripts')
 
 <!-- member function--------datatable&modal------------------------ -->
