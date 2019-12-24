@@ -31,7 +31,7 @@
                                 
                                 <form onSubmit="return false;" class="form-inline">
                                     <div class="form-row">
-                                        <div class="form-group col-md-4 text-left">
+                                        <div class="form-group col-md-4 text-center">
                                             <div class="row form-inline">
                                                 <label for="">Book ID : </label>&nbsp;
                                                  <input type="text" class="form-control" id="book_capture" placeholder="Book ID">&nbsp;
@@ -52,38 +52,38 @@
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <div class="small-box bg-green col-lg-12 text-center " style="height:9rem;">
+                                            <div class="small-box bg-aqua col-lg-12 text-center " style="height:9rem;">
                                                 <div class="row">
                                                     <!-- <div class="icon">
                                                         <i class="ion ion-pie-graph"></i>
                                                     </div> -->
                                                     <h4> <label>Book details</label></h4>
-                                                    <h4> <label id="book_capturename"></label></h4>
+                                                    <h4 class="text-black"> <label id="book_capturename"></label></h4>
                                                 </div>
                                             </div>
 
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <div class="small-box bg-aqua col-lg-12 text-center " style="height:9rem;">
+                                            <div class="small-box bg-olive col-lg-12 text-center " style="height:9rem;">
                                                 <div class="row">
                                                     <!-- <div class="icon">
                                                         <i class="ion ion-stats-bars"></i>
                                                     </div> -->
                                                     <div class="col-md-6">
-                                                    <h4> <label>Total &nbsp;&nbsp; -></label></h4>
+                                                    <h4  class=" text-black"> <label>Total &nbsp;&nbsp; -</label></h4>
                                                         
                                                     </div>
                                                     <div class="col-md-6 text-left">
-                                                        <h3 id="total_count">{{ $Bcount }}</h3>
+                                                        <h3 id="total_count" class="">{{ $Bcount }}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                    <h4> <label>Survey -></label></h4>
+                                                    <h4  class=" text-black"> <label>Survey -</label></h4>
                                                     </div>
                                                     <div class="col-md-6 text-left">
-                                                        <span type="hidden" id="survey_count"><h3>{{ $Scount }}</h3></span>
+                                                        <span type="hidden" id="survey_count" class=""><h3>{{ $Scount }}</h3></span>
                                                         <h3 id="survey_countb"></h3>
                                                     </div>
                                                     
@@ -107,8 +107,8 @@
                         
                 
 
-                        <div class="box-body">
-                            <div class="form-row">
+                        <div class="box box-info">
+                            <div class="box-header">
                                                
                                 <table class="table table-responsive " id="survey_datatable">
                                     <thead class="thead-dark">
