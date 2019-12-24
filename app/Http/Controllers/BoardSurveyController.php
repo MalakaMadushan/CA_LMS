@@ -8,6 +8,8 @@ use Session;
 use Illuminate\Http\Request;
 use App\survey;
 use App\survey_temp;
+use App\Exports\SurveyTempExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BoardSurveyController extends Controller
 {
@@ -24,9 +26,7 @@ class BoardSurveyController extends Controller
                         else
                         {$button = '<label class="btn btn-default btn-sm"><i class="fa fa-minus" ></i></label>';}
                         
-                        return $button;
-                        
-                        
+                        return $button;  
                     })
                     
                     ->rawColumns(['survey'])
@@ -39,6 +39,8 @@ class BoardSurveyController extends Controller
 
         return view('boardOfSurvey.survey')->with('Bcount',$bookcount)->with('Scount',$survey_count);
     }
+
+
     public function surveyhistory(){
         return view('boardOfSurvey.survey_history');
     }
@@ -69,7 +71,7 @@ class BoardSurveyController extends Controller
         {
             DB::table('survey_temps')->insert($chunk->toArray());
         }
-
+        return redirect()->back();
         
     }
 
@@ -86,14 +88,21 @@ class BoardSurveyController extends Controller
     {
        
         $data_B = survey_temp::where('accessionNo',$request->book_acc)->get();
-        
         $data_update=survey_temp::find($data_B[0]->id);
+
         $data_update->survey=1;
+        $data_update->suggestion=$request->sugge;
         $data_update->save();
+
         $survey_c = survey_temp::where('survey','1')->get();
         return response()->json(['book_name' => $data_B[0]->book_title,'survey_count' =>count($survey_c)]);
         
         
+    }
+
+    public function export_temp() 
+    {
+        return Excel::download(new SurveyTempExport, 'survey.xlsx');
     }
 
 

@@ -73,6 +73,7 @@ Route::get('/survey', 'BoardSurveyController@survey')->name('survey.survey');
 Route::get('/survey_history', 'BoardSurveyController@surveyhistory');
 Route::post('/new_survey', 'BoardSurveyController@newsurvey');
 Route::post('/ckeck_book', 'BoardSurveyController@bookcheck');
+Route::get('/export_surveytemp', 'BoardSurveyController@export_temp')->name('export_temp');
 
 
 
