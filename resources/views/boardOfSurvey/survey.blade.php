@@ -33,7 +33,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-4 text-center">
                                             <div class="row form-inline">
-                                                <label for="">Book ID : </label>&nbsp;
+                                                <label for="">Book ID &nbsp;&nbsp;&nbsp;&nbsp;: </label>&nbsp;
                                                  <input type="text" class="form-control" id="book_capture" placeholder="Book ID">&nbsp;
                                                  
                                                 <button type="button" class="btn btn-primary" id="book_check"><i class="fa fa-plus"></i></button>
@@ -44,8 +44,8 @@
                                             <br>
 
                                             <div class="row form-inline">
-                                                <label for="">Remark : </label>&nbsp;
-                                                <input type="text" class="form-control" id="book_remark" placeholder="Remark">&nbsp;
+                                                <label for="">Suggestion: </label>&nbsp;
+                                                <input type="text" class="form-control" id="book_suggestion" placeholder="suggestion">&nbsp;
                                                 <button type="button" class="btn btn-warning mt-1" id="book_check"><i class="fa fa-minus"></i></button>
                                                 
                                             </div>
@@ -93,8 +93,8 @@
                                         </div>
                                         <div class="form-group col-md-2 text-center" >
                                             
-                                                <button type="button" class="btn btn-primary" id=""><i class="fa fa-edit">Report1</i></button><br><br>
-                                                <button type="button" class="btn btn-warning" id=""><i class="fa fa-edit">Report2</i></button>
+                                                <a href="/export_surveytemp" class="btn btn-primary" id=""><i class="fa fa-bar-chart">Report1</i></a><br><br>
+                                                <button type="button" class="btn btn-warning" id=""><i class="fa fa-line-chart">Report2</i></button>
                                                 
                                            
                                         </div>
@@ -119,6 +119,7 @@
                                             <th scope="col">Author</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Survey</th>
+                                            <th scope="col">suggestion</th>
                                             
                                         </tr>
                                     </thead>
@@ -142,7 +143,8 @@
                                         {data: "book_title",name: "book_title"},
                                         {data: "authors",name: "authors"},
                                         {data: "price",name: "price"},
-                                        {data: "survey",name: "survey",orderable: false}
+                                        {data: "survey",name: "survey",orderable: false},
+                                        {data: "suggestion",name: "suggestion"},
                                         
                                     ]
                                     });
@@ -159,6 +161,17 @@
                                     }
                                     });
 
+                                    var input_s = document.getElementById("book_suggestion");
+                                    input_s.addEventListener("keyup", function(event) {
+                                    if (event.keyCode === 13) {
+                                    event.preventDefault();
+                                    document.getElementById("book_check").click();
+                                    $('#book_capture').val('');
+                                    $('#book_suggestion').val('');
+                                    document.getElementById("book_capture").focus();
+                                    }
+                                    });
+
                                     
 
                                     });
@@ -168,6 +181,7 @@
 
                                     $('#book_check').on("click",function(){
                                         var book_acc = $("#book_capture").val();
+                                        var sugge = $("#book_suggestion").val();
                                         load=0;
 
                                         $.ajaxSetup({
@@ -179,7 +193,10 @@
                                         $.ajax({
                                             method: 'POST',
                                             url: '/ckeck_book',
-                                            data: { book_acc: book_acc },
+                                            data: { 
+                                                book_acc: book_acc,
+                                                sugge   : sugge
+                                            },
                                             
                                             
                                             success: function(response){
