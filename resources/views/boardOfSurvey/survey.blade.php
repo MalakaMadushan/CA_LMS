@@ -22,58 +22,84 @@
                 <div class="box box-info">
                         <div class="box-header ">
                            <div class="pull-left header"> <h4> <i class="fa fa-book"> Survey</i></h4></div>
-                           <div class="pull-right">
-                                <h4><button class="btn btn-md" data-toggle="modal" data-target="#start_new_survey" ><i class="fa fa-plus"></i></button></h4>
-                           </div>
+                           <div class="pull-right header"> <h4> <a href="" data-toggle="modal" data-target="#start_new_survey" ><i class="fa fa-plus"></i>&nbsp;New</a></h4></div>
+                           
                            
                         </div>
 
                             <div class="box-body">
                                 
-                                <form onSubmit="return false;">
+                                <form onSubmit="return false;" class="form-inline">
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <div class="form-group mx-sm-4 mb-2">
+                                        <div class="form-group col-md-4 text-left">
+                                            <div class="row form-inline">
                                                 <label for="">Book ID : </label>&nbsp;
-                                                <input type="text" class="form-control" id="book_capture" placeholder="Book ID">
+                                                 <input type="text" class="form-control" id="book_capture" placeholder="Book ID">&nbsp;
+                                                 
+                                                <button type="button" class="btn btn-primary" id="book_check"><i class="fa fa-plus"></i></button>
+                                                
+                                                <!-- <button type="button" class="btn btn-success" id=""><i class="fa fa-search"></i></button>  -->
+
                                             </div>
-                                            <button type="button" class="btn btn-primary" id="book_check"><i class="fa fa-plus"></i></button>
-                                            <button type="button" class="btn btn-success" id=""><i class="fa fa-search"></i></button>
+                                            <br>
+
+                                            <div class="row form-inline">
+                                                <label for="">Remark : </label>&nbsp;
+                                                <input type="text" class="form-control" id="book_remark" placeholder="Remark">&nbsp;
+                                                <button type="button" class="btn btn-warning mt-1" id="book_check"><i class="fa fa-minus"></i></button>
+                                                
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-3 text-center">
-                                           <h4> <label id="book_capturename"></label></h4>
+
+                                        <div class="form-group col-md-3">
+                                            <div class="small-box bg-green col-lg-12 text-center " style="height:9rem;">
+                                                <div class="row">
+                                                    <!-- <div class="icon">
+                                                        <i class="ion ion-pie-graph"></i>
+                                                    </div> -->
+                                                    <h4> <label>Book details</label></h4>
+                                                    <h4> <label id="book_capturename"></label></h4>
+                                                </div>
+                                            </div>
+
                                         </div>
+
                                         <div class="form-group col-md-3">
                                             <div class="small-box bg-aqua col-lg-12 text-center " style="height:9rem;">
                                                 <div class="row">
+                                                    <!-- <div class="icon">
+                                                        <i class="ion ion-stats-bars"></i>
+                                                    </div> -->
                                                     <div class="col-md-6">
-                                                        <h4>Total Count- </h4>
+                                                    <h4> <label>Total &nbsp;&nbsp; -></label></h4>
+                                                        
                                                     </div>
                                                     <div class="col-md-6 text-left">
                                                         <h3 id="total_count">{{ $Bcount }}</h3>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6 text-primary">
-                                                        <h4>Survey Count- </h4>
+                                                    <div class="col-md-6">
+                                                    <h4> <label>Survey -></label></h4>
                                                     </div>
                                                     <div class="col-md-6 text-left">
                                                         <span type="hidden" id="survey_count"><h3>{{ $Scount }}</h3></span>
                                                         <h3 id="survey_countb"></h3>
                                                     </div>
-                                                </div>
-                                                
+                                                    
+                                                </div> 
                                             </div>
 
                                         </div>
-                                    </div>
-                                        <div class="form-group col-md-2" >
-                                            <!-- <label for="">View </label>&nbsp; -->
-                                                <button type="button" class="btn btn-success form-control" id=""><i class="fa fa-edit">&nbsp;View</i></button>
-                                                &nbsp;
-                                                <button type="button" class="btn btn-danger form-control" id=""><i class="fa fa-refresh">&nbsp;Clear</i></button>
+                                        <div class="form-group col-md-2 text-center" >
+                                            
+                                                <button type="button" class="btn btn-primary" id=""><i class="fa fa-edit">Report1</i></button><br><br>
+                                                <button type="button" class="btn btn-warning" id=""><i class="fa fa-edit">Report2</i></button>
+                                                
                                            
                                         </div>
+                                    </div>
+                                        
                                 </form>
                             </div> 
 
@@ -84,7 +110,7 @@
                         <div class="box-body">
                             <div class="form-row">
                                                
-                                <table class="table form-check-inline " id="survey_datatable">
+                                <table class="table table-responsive " id="survey_datatable">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">Book ID</th>
