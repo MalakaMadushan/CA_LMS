@@ -52,12 +52,12 @@
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <div class="small-box bg-aqua col-lg-12 text-center " style="height:9rem;">
+                                            <div class="small-box  col-lg-12 text-center " style="height:9rem;">
                                                 <div class="row">
                                                     <!-- <div class="icon">
                                                         <i class="ion ion-pie-graph"></i>
                                                     </div> -->
-                                                    <h4> <label>Book details</label></h4>
+                                                    <!-- <h4> <label>Book details</label></h4> -->
                                                     <h4 class="text-black"> <label id="book_capturename"></label></h4>
                                                 </div>
                                             </div>
@@ -65,7 +65,7 @@
                                         </div>
 
                                         <div class="form-group col-md-3">
-                                            <div class="small-box bg-olive col-lg-12 text-center " style="height:9rem;">
+                                            <div class="small-box bg-aqua col-lg-12 text-center " style="height:9rem;">
                                                 <div class="row">
                                                     <!-- <div class="icon">
                                                         <i class="ion ion-stats-bars"></i>
@@ -130,9 +130,14 @@
                                     $(document).ready(function() {
                                     
                                     // -----------------------------------
+                                    
                                     $('#survey_datatable').DataTable({
                                     processing: true,
                                     serverSide: true,
+                                    dom: 'Bfrtip',
+                                    buttons: [
+                                        'copy', 'excel', 'pdf'
+                                    ],
 
                                     ajax:{
                                     url: "{{ route('survey.survey') }}",
