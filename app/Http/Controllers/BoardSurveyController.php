@@ -10,6 +10,7 @@ use App\survey;
 use App\survey_temp;
 use App\Exports\SurveyTempExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\survey_suggetion;
 
 class BoardSurveyController extends Controller
 {
@@ -18,7 +19,11 @@ class BoardSurveyController extends Controller
 
         if(request()->ajax())
         {
-            $surveydata=survey_temp::all();
+            // $surveydata=survey_temp::all();
+            $surveydata = DB::table('survey_temps')
+                ->join('survey_suggetions', 'survey_temps.suggestion_id', '=', 'survey_suggetions.id')
+                ->select('survey_temps.*', 'survey_suggetions.Suggetion')
+                ->get();
             return datatables()->of($surveydata)
                     ->addColumn('survey', function($data){
                         if($data->survey==1)
@@ -37,7 +42,9 @@ class BoardSurveyController extends Controller
         $survey_c = survey_temp::where('survey','1')->get();
         $survey_count = count($survey_c);
 
-        return view('boardOfSurvey.survey')->with('Bcount',$bookcount)->with('Scount',$survey_count);
+        $survey_sug=survey_suggetion::all();
+
+        return view('boardOfSurvey.survey')->with('Bcount',$bookcount)->with('Scount',$survey_count)->with('sdata',$survey_sug);
     }
 
 
@@ -58,7 +65,7 @@ class BoardSurveyController extends Controller
                 'accessionNo'      => $value->accessionNo,
                 'book_title'       => $value->book_title, 
                 'authors'          => $value->authors,
-                'price'            => $value->price,  
+                'price'            => $value->price,
             ];
 
             $insert_data[] = $data;
@@ -91,7 +98,7 @@ class BoardSurveyController extends Controller
         $data_update=survey_temp::find($data_B[0]->id);
 
         $data_update->survey=1;
-        $data_update->suggestion=$request->sugge;
+        $data_update->suggestion_id=$request->sugge;
         $data_update->save();
 
         $survey_c = survey_temp::where('survey','1')->get();
