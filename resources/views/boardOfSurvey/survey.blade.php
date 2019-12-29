@@ -31,22 +31,29 @@
                                 
                                 <form onSubmit="return false;" class="form-inline">
                                     <div class="form-row">
-                                        <div class="form-group col-md-4 text-center">
+                                        <div class="form-group col-md-4 text-left">
                                             <div class="row form-inline">
                                                 <label for="">Book ID &nbsp;&nbsp;&nbsp;&nbsp;: </label>&nbsp;
                                                  <input type="text" class="form-control" id="book_capture" placeholder="Book ID">&nbsp;
                                                  
                                                 <button type="button" class="btn btn-primary" id="book_check"><i class="fa fa-plus"></i></button>
+                                                <button type="button" class="btn btn-warning mt-1" id="book_check"><i class="fa fa-minus"></i></button>
                                                 
                                                 <!-- <button type="button" class="btn btn-success" id=""><i class="fa fa-search"></i></button>  -->
 
                                             </div>
                                             <br>
 
-                                            <div class="row form-inline">
+                                            <div class="row">
                                                 <label for="">Suggestion: </label>&nbsp;
-                                                <input type="text" class="form-control" id="book_suggestion" placeholder="suggestion">&nbsp;
-                                                <button type="button" class="btn btn-warning mt-1" id="book_check"><i class="fa fa-minus"></i></button>
+                                                <!-- <input type="text" class="form-control" id="book_suggestion" placeholder="suggestion">&nbsp; -->
+                                                <select class="form-control" id="book_suggestion" name="book_suggestion">
+                                                    <!-- <option value="1" selected disabled hidden>-Choose Suggetion-</option> -->
+                                                        @foreach($sdata as $sitem)
+                                                            <option value="{{ $sitem->id }}">{{ $sitem->Suggetion }}</option>
+                                                        @endforeach
+                                                </select>
+                                                
                                                 
                                             </div>
                                         </div>
@@ -149,7 +156,7 @@
                                         {data: "authors",name: "authors"},
                                         {data: "price",name: "price"},
                                         {data: "survey",name: "survey",orderable: false},
-                                        {data: "suggestion",name: "suggestion"},
+                                        {data: "Suggetion",name: "Suggetion"},
                                         
                                     ]
                                     });
@@ -162,6 +169,7 @@
                                     event.preventDefault();
                                     document.getElementById("book_check").click();
                                     $('#book_capture').val('');
+                                    $('#book_suggestion').prop('selectedIndex',0);
                                     document.getElementById("book_capture").focus();
                                     }
                                     });
@@ -172,7 +180,7 @@
                                     event.preventDefault();
                                     document.getElementById("book_check").click();
                                     $('#book_capture').val('');
-                                    $('#book_suggestion').val('');
+                                    $('#book_suggestion').prop('selectedIndex',0);
                                     document.getElementById("book_capture").focus();
                                     }
                                     });

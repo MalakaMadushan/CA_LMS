@@ -17,7 +17,7 @@ class SurveyTempExport implements FromCollection, WithHeadings, ShouldAutoSize
     */
     public function collection()
     {
-        $survey= DB::table('survey_temps')->select('id','accessionNo','book_title','authors','price','survey','suggestion')->get();
+        $survey= DB::table('survey_temps')->select('id','accessionNo','book_title','authors','price','survey','suggestion_id')->get();
         // return survey_temp::all();
         return $survey;
     }
