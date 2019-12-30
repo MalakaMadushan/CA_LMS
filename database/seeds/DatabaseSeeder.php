@@ -190,5 +190,17 @@ $mul_rows_book_ddecimal= [
 $insert= DB::table('book_dds')->insert($mul_rows_book_ddecimal);
 // -------------------------------------------------------------
 
+$mul_rows_survey_suggetion= [
+            
+    ['Suggetion'=>''],
+    ['Suggetion'=>'Remove'],
+    ['Suggetion'=>'Distroy'],
+    ['Suggetion'=>'Repair'],
+    
+
+];
+$insert= DB::table('survey_suggetions')->insert($mul_rows_survey_suggetion);
+// -------------------------------------------------------------
+
     }
 }
