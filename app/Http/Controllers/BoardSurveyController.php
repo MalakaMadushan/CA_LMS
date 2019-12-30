@@ -8,6 +8,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\survey;
 use App\survey_temp;
+use App\survey_detail;
 use App\Exports\SurveyTempExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\survey_suggetion;
@@ -51,9 +52,11 @@ class BoardSurveyController extends Controller
 
 
     public function surveyhistory(){
-        return view('boardOfSurvey.survey_history');
-    }
 
+        $survey_history=survey::all();
+        return view('boardOfSurvey.survey_history')->with('Sdata',$survey_history);
+    }
+// ---------------------------------------------------------------------------------------------------------------
     public function newsurvey(){
 
         $bookcount = DB::table('books')->count();
@@ -108,6 +111,7 @@ class BoardSurveyController extends Controller
     //     return response()->json(['book_name' => $data_B->book_title]);
         
     // }
+// --------------------------------------------------------------------------------------------------------------
 
     public function bookcheck(Request $request)
     {
@@ -124,14 +128,52 @@ class BoardSurveyController extends Controller
         return response()->json(['book_name' => $data_B[0]->book_title,'survey_count' =>count($survey_c)]); 
         
     }
+// ----------------------------------------------------------------------------------------------------------------
 
     public function finalize(Request $request)
     {
+        $survey_c = survey_temp::where('survey','1')->get();
+
+        $insert_data = [];
+        $json=survey_temp::all();
+        $serveyIID=$json[0]->surveyid;
+
+        foreach ($json as $value) {
+            $data = [
+                'Bookid'           => $value->id,
+                'accessionNo'      => $value->accessionNo,
+                'book_title'       => $value->book_title, 
+                'authors'          => $value->authors,
+                'price'            => $value->price,
+                'survey'           => $value->survey,
+                'suggestion_id'    => $value->suggestion_id,
+                'surveyid'         => $value->surveyid,
+                'userid'           => $value->userid,
+            ];
+
+            $insert_data[] = $data;
+            
+        }
+
+        $insert_data = collect($insert_data);
+        $chunks = $insert_data->chunk(1000);
+
+        foreach ($chunks as $chunk)
+        {
+            DB::table('survey_details')->insert($chunk->toArray());
+        }
+        // ----------------------------
+        $svr=survey::find($serveyIID);
+        $svr->end_date=Carbon::now();
+        $svr->surveyBooks=count($survey_c);
+        $svr->finalize=1;
+        $svr->save();
 
         survey_temp::query()->truncate();
     
         
     }
+// ----------------------------------------------------------------------------------------------------------
 
     public function export_temp() 
     {
