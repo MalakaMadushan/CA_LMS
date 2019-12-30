@@ -191,7 +191,6 @@
 
                                 // ----------------------------------------------------------------------------
 
-
                                     $('#book_check').on("click",function(){
                                         var book_acc = $("#book_capture").val();
                                         var sugge = $("#book_suggestion").val();
@@ -228,6 +227,33 @@
                                     });
                                 // ------------------------------------------------------------------------
 
+
+                                $('#finalize').on("click",function(){
+
+                                        $.ajaxSetup({
+                                            headers: {
+                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                            }
+                                        });
+
+                                        $.ajax({
+                                            method: 'POST',
+                                            url: '/finalize_suevey',
+                                            data: { },
+                                            
+                                            success: function(response){
+
+                                                $('#book_capturename').html("Survey Finalized Successfully");
+                                                location.reload();
+                                               
+                                            },
+                                            error: function(response){
+                                                $('#book_capturename').html("Error Survey Finalizing");
+                                            }
+                                        });
+                                    });
+                                // ------------------------------------------------------------------------
+
                                  </script>
                                 @endpush
                                                                     
@@ -235,7 +261,7 @@
                         </table>
                 
                             <div class="pull-right">
-                                <button class="btn btn-primary btn-lg"><i class="fa fa-save">&nbsp;<strong>Save</strong></i></button>
+                                <button class="btn btn-primary btn-lg" id="finalize"><i class="fa fa-save">&nbsp;<strong>Finalize</strong></i></button>
                                 <!-- <a href="" class="btn btn-success "><i class="fa fa-search">&nbsp;View</i></a>
                                 <a href="" class="btn btn-danger "><i class="fa fa-refresh">&nbsp;Clear</i></a> -->
                             </div>

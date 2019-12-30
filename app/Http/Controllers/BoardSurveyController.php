@@ -11,6 +11,8 @@ use App\survey_temp;
 use App\Exports\SurveyTempExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\survey_suggetion;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class BoardSurveyController extends Controller
 {
@@ -54,10 +56,25 @@ class BoardSurveyController extends Controller
 
     public function newsurvey(){
 
+        $bookcount = DB::table('books')->count();
+
+        $removeBook = book::where('status','0')->get();
+        $removeBook_count = count($removeBook);
+
+        $svr=new survey;
+        $svr->start_date=Carbon::now();
+        $svr->TotalBooks=$bookcount;
+        $svr->removedBooks=$removeBook_count;
+        $svr->save();
+        // -------------------------
+
         survey_temp::query()->truncate();
+        $surveyID=survey::max('id');
+
 
         $insert_data = [];
-        $json= DB::table('books')->select('id','accessionNo','book_title','authors','price')->get();
+        // $json= DB::table('books')->select('id','accessionNo','book_title','authors','price')->get();
+        $json = book::where('status',1)->select('id','accessionNo','book_title','authors','price')->get();
 
         foreach ($json as $value) {
             $data = [
@@ -66,6 +83,7 @@ class BoardSurveyController extends Controller
                 'book_title'       => $value->book_title, 
                 'authors'          => $value->authors,
                 'price'            => $value->price,
+                'surveyid'         => $surveyID,
             ];
 
             $insert_data[] = $data;
@@ -97,13 +115,21 @@ class BoardSurveyController extends Controller
         $data_B = survey_temp::where('accessionNo',$request->book_acc)->get();
         $data_update=survey_temp::find($data_B[0]->id);
 
+        $data_update->userid=Auth::id();
         $data_update->survey=1;
         $data_update->suggestion_id=$request->sugge;
         $data_update->save();
 
         $survey_c = survey_temp::where('survey','1')->get();
-        return response()->json(['book_name' => $data_B[0]->book_title,'survey_count' =>count($survey_c)]);
+        return response()->json(['book_name' => $data_B[0]->book_title,'survey_count' =>count($survey_c)]); 
         
+    }
+
+    public function finalize(Request $request)
+    {
+
+        survey_temp::query()->truncate();
+    
         
     }
 

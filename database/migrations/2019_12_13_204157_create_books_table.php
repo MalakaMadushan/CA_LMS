@@ -34,6 +34,7 @@ class CreateBooksTable extends Migration
             $table->string('note')->nullable();
             $table->string('status')->default(1);
             $table->string('br_qr_code')->nullable();
+            $table->string('barrow')->default(0);
             $table->timestamps();
         });
     }
