@@ -139,7 +139,7 @@ class MemberController extends Controller
             'new_data'=>'required|max:50|min:3'
             ]);
 
-            $mbr->category=$request->new_data;
+                $mbr->category=$request->new_data;
                 $mbr->save();
                 return redirect()->back()->with('success','Category Add successfully!');
 
