@@ -21,42 +21,63 @@
  
                     <div class="box box-info">
                         <div class="box-header ">
-                           <div class="pull-left header"> <h4> <i class="fa fa-book"> Past Survey</i></h4></div>
+                           <div class="pull-left header"> <h4> <i class="fa fa-book">Survey History</i></h4></div>
                         </div>
 
                         <div class="box-body">
+                            <div class="form-row">
+                                   
+                                <table class="table " id="sdatatable">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                        <th scope="col">Survey ID</th>
+                                        <th scope="col">Start Date</th>
+                                        <th scope="col">End Date</th>
+                                        <th scope="col">TotalBooks</th>
+                                        <th scope="col">RemovedBooks</th>
+                                        <th scope="col">surveyBooks</th>
+                                        <th scope="col">finalize</th>
+                                        <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($Sdata as $data)
+                                        <tr>
+                                       
+                                            <td>{{$data->id}}</td>
+                                            <td>{{$data->start_date}}</td>
+                                            <td>{{$data->end_date}}</td>
+                                            <td>{{$data->TotalBooks}}</td>
+                                            <td>{{$data->removedBooks}}</td>
+                                            <td>{{$data->surveyBooks}}</td>
+                                            <td>{{$data->finalize}}</td>
+                                            <td>
+             
+                                                <a href="" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-search" ></i></a>&nbsp; 
 
-<!-----------------------------------------form start--------------------------------------------------->
-                        
+                                                <a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-memberid="{{$data->id}}" data-membername="{{$data->name}}"><i class="fa fa-trash" ></i></a>&nbsp;
+                                                
 
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    @push('scripts')
+                                        <script>
+                                          $(document).ready(function() {
+    
+                                                $('#sdatatable').DataTable();
+                                               
+                                            });
 
+                                        </script>
+                                    @endpush
+                                    </tbody>
+                                </table>
 
+                                </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-------------------------------form End-------------------------------------------------------------------------------------->                    
+                
+                        </div>
                     </div>
                    
                     <!-- --------------------------end section1----------------------------------------------- -->
