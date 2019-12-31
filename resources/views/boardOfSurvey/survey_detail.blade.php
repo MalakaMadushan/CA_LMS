@@ -32,37 +32,37 @@
                                                 <h4  class=" text-black "> <label>Survey ID</label></h4>  
                                             </div>
                                             <div class="col-md-1">
-                                                <h4  class="" id="sid"> <label>01</label></h4>  
+                                                <h4  class="" id="s_id"> <label>{{$survy->id}}</label></h4>  
                                             </div>
                                             <div class="col-md-1 text-left">
                                                 <h4  class=" text-black "> <label>Start Date</label></h4>  
                                             </div>
                                             <div class="col-md-1">
-                                                <h4  class=""> <label>2019-12-30</label></h4>  
+                                                <h4  class="" id="ssdate"> <label>{{$survy->start_date}}</label></h4>  
                                             </div>
                                             <div class="col-md-1 text-left">
                                                 <h4  class=" text-black "> <label>End date</label></h4>  
                                             </div>
                                             <div class="col-md-1">
-                                                <h4  class=""> <label>2020-01-07</label></h4>  
+                                                <h4  class="" id="sedate"> <label>{{$survy->end_date}}</label></h4>  
                                             </div>
                                             <div class="col-md-1 text-left">
                                                 <h4  class=" text-black "> <label>Total Count</label></h4>  
                                             </div>
                                             <div class="col-md-1">
-                                                <h4  class=""> <label>10658</label></h4>  
+                                                <h4  class="" id="tot_count"> <label>{{$survy->TotalBooks}}</label></h4>  
                                             </div>
                                             <div class="col-md-1 text-left">
                                                 <h4  class=" text-black "> <label>Removed Count</label></h4>  
                                             </div>
                                             <div class="col-md-1">
-                                                <h4  class=""> <label>56</label></h4>  
+                                                <h4  class="" id="remov_count"> <label>{{$survy->removedBooks}}</label></h4>  
                                             </div>
                                             <div class="col-md-1 text-left">
                                                 <h4  class=" text-black"> <label>Survey Count</label></h4>  
                                             </div>
                                             <div class="col-md-1">
-                                                <h4  class=""> <label>6582</label></h4>  
+                                                <h4  class="" id="servy_count"> <label>{{$survy->surveyBooks}}</label></h4>  
                                             </div>
                                         </div>
                                         <!-- -------------------------------------------------------------- -->
@@ -76,11 +76,11 @@
 
                         <div class="box-body">
                             <div class="form-row">
-                                   
+                            <input type="hidden" name="sid" id="sid" value="{{$Sdata}}">  
                                 <table class="table " id="sdatatable">
                                     <thead class="thead-dark">
                                         <tr>
-                                        <th scope="col">Book ID</th>
+                                        <!-- <th scope="col">Book ID</th> -->
                                         <th scope="col">Accession No</th>
                                         <th scope="col">Title</th>
                                         <th scope="col">Author</th>
@@ -93,8 +93,13 @@
                                     
                                     @push('scripts')
                                     <script>
-                                         $(document).ready(function() {
+                                        $(document).ready(function() {
+                                        $('#sid').val("{{$Sdata}}");
+
+                                        var seid = $("#sid").val();
+                                        alert(seid);
                                         
+                                        // var ssid = $(this).attr('id');
                                         
                                         // ----------view-------------------------
                                         $('#sdatatable').DataTable({
@@ -102,11 +107,11 @@
                                         serverSide: true,
 
                                         ajax:{
-                                            url: '/survey_details/{id}',
+                                            url: '/survey_details/'+seid,
                                         },
                                         
                                         columns:[
-                                            {data: "id",name: "id"},
+                                            // {data: "id",name: "id"},
                                             {data: "accessionNo",name: "accessionNo"},
                                             {data: "book_title",name: "book_title"},
                                             {data: "authors",name: "authors"},

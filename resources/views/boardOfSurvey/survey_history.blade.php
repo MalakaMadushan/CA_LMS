@@ -53,10 +53,10 @@
                                             <td>{{$data->finalize}}</td>
                                             <td>
              
-                                                <a href="/survey_details/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-search" ></i></a>&nbsp; 
+                                            <a href="/survey_details/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-search" ></i></a>&nbsp; 
 
-                                                <a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-memberid="{{$data->id}}" data-membername="{{$data->name}}"><i class="fa fa-trash" ></i></a>&nbsp;
-                                                
+                                            <a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete_servey" data-servyid="{{$data->id}}" data-surveydte="{{$data->start_date}}"><i class="fa fa-trash" ></i></a>&nbsp;
+                                            
 
                                             </td>
                                         </tr>
@@ -68,6 +68,19 @@
                                                 $('#sdatatable').DataTable();
                                                
                                             });
+
+                                            $('#Modal_delete_servey').on('show.bs.modal', function (event) {
+  
+                                                var button = $(event.relatedTarget) 
+
+                                                var s_id = button.data('servyid') 
+                                                var s_dte = button.data('start_date')
+                                                var modal = $(this)
+
+                                                document.getElementById("servyid").value= s_id; 
+                                                document.getElementById("svr_dte").innerHTML = s_id;
+                                            })
+                                        
 
                                         </script>
                                     @endpush
@@ -87,9 +100,43 @@
 
 
             </div>
-            <!-- /.row (main row) -->
 
+            
         </section>
-        <!-- /.content -->
+
     </div>
+    <!-- start modal delete-------------------------------------------------------------------------------------------- -->
+    <div class="modal modal-default fade" id="Modal_delete_servey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Remove Survey</h4>
+                            </div>
+                            <form method="post" action="/deleteSurvey">
+                                {{ csrf_field() }}
+                                <div class="modal-body">
+
+                                    <input type="hidden" id="servyid" name="servyid">
+                                    <div class="row form-group">
+                                        <div class="col-md-4">
+                                            <h5 id="myModalLabel">Are you sure Remove Survey - </h5>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h4><label type="text"  id="svr_dte"></label></h4>
+                                        </div>
+                                    </div>
+                                        
+
+                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-danger "><i class="fa fa-trash"></i> &nbsp; Delete</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    <!-- end modal delete ------------------------------------------------------------------------------------------>
+
 @endsection

@@ -37,7 +37,7 @@
                                                  <input type="text" class="form-control" id="book_capture" placeholder="Book ID">&nbsp;
                                                  
                                                 <button type="button" class="btn btn-primary" id="book_check"><i class="fa fa-plus"></i></button>
-                                                <button type="button" class="btn btn-warning mt-1" id="book_check"><i class="fa fa-minus"></i></button>
+                                                <button type="button" class="btn btn-warning mt-1" id="book_uncheck"><i class="fa fa-minus"></i></button>
                                                 
                                                 <!-- <button type="button" class="btn btn-success" id=""><i class="fa fa-search"></i></button>  -->
 
@@ -205,6 +205,43 @@
                                         $.ajax({
                                             method: 'POST',
                                             url: '/ckeck_book',
+                                            data: { 
+                                                book_acc: book_acc,
+                                                sugge   : sugge
+                                            },
+                                            
+                                            
+                                            success: function(response){
+
+                                               
+                                                $('#survey_count').html('');
+                                                $('#book_capturename').html(response.book_name);
+                                                $('#survey_countb').html(response.survey_count);
+                                                $('#survey_datatable').DataTable().ajax.reload();
+                                               
+                                            },
+                                            error: function(response){
+                                                $('#book_capturename').html("Book Not Found..!");
+                                            }
+                                        });
+                                    });
+                                // ------------------------------------------------------------------------
+     
+
+                                 $('#book_uncheck').on("click",function(){
+                                        var book_acc = $("#book_capture").val();
+                                        var sugge = $("#book_suggestion").val();
+                                       
+
+                                        $.ajaxSetup({
+                                            headers: {
+                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                            }
+                                        });
+
+                                        $.ajax({
+                                            method: 'POST',
+                                            url: '/unckeck_book',
                                             data: { 
                                                 book_acc: book_acc,
                                                 sugge   : sugge
