@@ -9,6 +9,8 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Illuminate\Support\Facades\DB;
+use App\survey;
+use App\survey_detail;
 
 class SurveyTempExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
@@ -17,7 +19,15 @@ class SurveyTempExport implements FromCollection, WithHeadings, ShouldAutoSize
     */
     public function collection()
     {
-        $survey= DB::table('survey_temps')->select('id','accessionNo','book_title','authors','price','survey','suggestion_id')->get();
+        $survey = DB::table('survey_temps')
+                ->join('survey_suggetions', 'survey_temps.suggestion_id', '=', 'survey_suggetions.id')
+                ->select('survey_temps.id','survey_temps.accessionNo','survey_temps.book_title','survey_temps.authors','survey_temps.price','survey_temps.survey','survey_suggetions.Suggetion')
+                ->get();
+
+                // $surveydata = survey_temp::where('surveyid',$ssid)
+                // ->join('survey_suggetions', 'survey_details.suggestion_id', '=', 'survey_suggetions.id')
+                // ->select('survey_details.*', 'survey_suggetions.Suggetion')
+                // ->get();
         // return survey_temp::all();
         return $survey;
     }
