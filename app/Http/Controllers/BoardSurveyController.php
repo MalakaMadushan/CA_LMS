@@ -129,6 +129,23 @@ class BoardSurveyController extends Controller
         
     }
 // ----------------------------------------------------------------------------------------------------------------
+public function bookuncheck(Request $request)
+    {
+       
+        $data_B = survey_temp::where('accessionNo',$request->book_acc)->get();
+        $data_update=survey_temp::find($data_B[0]->id);
+
+        $data_update->userid=Auth::id();
+        $data_update->survey=0;
+        $data_update->suggestion_id=$request->sugge;
+        $data_update->save();
+
+        $survey_c = survey_temp::where('survey','1')->get();
+        return response()->json(['book_name' => $data_B[0]->book_title,'survey_count' =>count($survey_c)]); 
+        
+    }
+// ----------------------------------------------------------------------------------------------------------------
+
 
     public function finalize(Request $request)
     {
@@ -179,16 +196,18 @@ class BoardSurveyController extends Controller
     {
         return Excel::download(new SurveyTempExport, 'survey.xlsx');
     }
-
+   
 // ----------------------------------------------------------------------------------------------------------
+    
     public function survey_details(Request $request)
     {
-        
-        $surveydata = survey_detail::where('surveyid',$request->id)
+        $ssid=$request->id;
+
+        $surveydata = survey_detail::where('surveyid',$ssid)
         ->join('survey_suggetions', 'survey_details.suggestion_id', '=', 'survey_suggetions.id')
         ->select('survey_details.*', 'survey_suggetions.Suggetion')
         ->get();
-
+        
         if(request()->ajax())
         {   
             
@@ -205,11 +224,31 @@ class BoardSurveyController extends Controller
             ->rawColumns(['survey'])
             ->make(true);
         }
+        $sve=new survey;
+        $sve=survey::find($ssid);
+        return view('boardOfSurvey.survey_detail')->with('Sdata',$ssid)->with('survy',$sve);
         
-        return view('boardOfSurvey.survey_detail');
+
+    }
+    public function survey_details_load(Request $request)
+    {
         
+      
         
     }
 // --------------------------------------------------------------------------------------------------------------
+
+public function deleteSurvey(Request $request)
+{
+    $survey_d = survey_detail::where('surveyid',$request->servyid);
+    $survey_d->delete();
+
+    $mbr=new survey;
+    $mbr=survey::find($request->servyid);
+    $mbr->delete();
+
+    return redirect()->back();
+
+}
 
 }

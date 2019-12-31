@@ -43,12 +43,19 @@ Route::post('/savebook', 'BookController@store1');
 Route::get('/search_book', 'BookController@allbook')->name('search_book.allbook');
 
 Route::post('/deleteBook', 'BookController@delete');
+
 Route::get('/back', 'BookController@back');
+
 Route::post('/save_Book_category', 'BookController@addcategory');
+
 Route::post('/save_Book_language', 'BookController@addlanguage');
+
 Route::post('/save_Book_publisher', 'BookController@addpublisher');
+
 Route::post('/save_Book_phymedium', 'BookController@addphymedium');
+
 Route::post('/save_Book_Ddecimal', 'BookController@addDdecimal');
+
 Route::post('/update_book', 'BookController@updatebook');
 
  Route::get('/update_book_view/{id}', 'BookController@updateview');
@@ -62,23 +69,37 @@ Route::any('/genarete_code', 'SupportController@codeview')->name('books.new_book
 
 //book lending routing path
 Route::get('/issue_book', 'BookLendingController@issuebook')->name('issue_book');
+
 Route::get('/return_book', 'BookLendingController@returnbook')->name('return_book');
+
 Route::post('/barrowbook_d','BookLendingController@barrowbookview');
+
 Route::post('/member_view', 'BookLendingController@Memberview');
+
 Route::post('/issue_save', 'BookLendingController@SaveIssue');
 
 //Board of Survey
 Route::resource('survey', 'BoardSurveyController');
+
 Route::get('/survey', 'BoardSurveyController@survey')->name('survey.survey');
+
 Route::get('/survey_history', 'BoardSurveyController@surveyhistory');
+
 Route::post('/new_survey', 'BoardSurveyController@newsurvey');
+
 Route::post('/ckeck_book', 'BoardSurveyController@bookcheck');
+
+Route::post('/unckeck_book', 'BoardSurveyController@bookuncheck');
+
 Route::post('/finalize_suevey', 'BoardSurveyController@finalize');
+
 Route::get('/export_surveytemp', 'BoardSurveyController@export_temp')->name('export_temp');
-Route::get('/survey_details/{id}', 'BoardSurveyController@survey_details')->name('survey.survey_details');
 
+Route::get('/survey_details/{id}', 'BoardSurveyController@survey_details');
 
+Route::get('/survey_details_load', 'BoardSurveyController@survey_details_load')->name('survey.survey_details');
 
+Route::post('/deleteSurvey', 'BoardSurveyController@deleteSurvey');
 
 
 
@@ -103,11 +124,15 @@ Route::get('/back', 'MemberController@back');
 
 //Support routing Path
 Route::get('export', 'SupportController@export')->name('export');
+
 Route::get('importExportView', 'SupportController@importExportView');
+
 Route::post('import_book', 'SupportController@import');
+
 Route::post('/codeview', 'SupportController@codeview');
 
 
 Route::get('pdfviewMember',array('as'=>'pdfviewMember','uses'=>'SupportController@pdfviewMember'));
+
 Route::get('pdfbarcodeall',array('as'=>'pdfbarcodeall','uses'=>'SupportController@pdfbarcodeall'));
 //Route::get('/pdfviewMember', 'SupportController@pdfviewMember');

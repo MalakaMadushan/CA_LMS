@@ -99,17 +99,17 @@
 
 <!-- member function--------datatable&modal------------------------ -->
 <script>
-    $('#Modal_delete').on('show.bs.modal', function (event) {
+$('#Modal_delete').on('show.bs.modal', function (event) {
   
-  var button = $(event.relatedTarget) 
+    var button = $(event.relatedTarget) 
 
-  var m_id = button.data('memberid') 
-  var m_name = button.data('membername')
-  var modal = $(this)
+    var m_id = button.data('memberid') 
+    var m_name = button.data('membername')
+    var modal = $(this)
 
- // modal.find('.modal-body #memid').val(m_id);
-  document.getElementById("memid").value= m_id; 
-  document.getElementById("memname").innerHTML = m_name;
+    // modal.find('.modal-body #memid').val(m_id);
+    document.getElementById("memid").value= m_id; 
+    document.getElementById("memname").innerHTML = m_name;
 })
 
 // <!--end  member function--------datatable&modal------------------------ -->
