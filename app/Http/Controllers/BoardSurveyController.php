@@ -10,6 +10,7 @@ use App\survey;
 use App\survey_temp;
 use App\survey_detail;
 use App\Exports\SurveyTempExport;
+use App\Exports\SurveyTempExport1;
 use Maatwebsite\Excel\Facades\Excel;
 use App\survey_suggetion;
 use Illuminate\Support\Facades\Auth;
@@ -194,7 +195,12 @@ public function bookuncheck(Request $request)
 
     public function export_temp() 
     {
-        return Excel::download(new SurveyTempExport, 'survey.xlsx');
+        return Excel::download(new SurveyTempExport, 'Survey All.xlsx');
+    }
+
+    public function export_temp1() 
+    {
+        return Excel::download(new SurveyTempExport1, 'Survey Uncheck.xlsx');
     }
    
 // ----------------------------------------------------------------------------------------------------------

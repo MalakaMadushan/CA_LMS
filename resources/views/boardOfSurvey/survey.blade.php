@@ -100,8 +100,9 @@
                                         </div>
                                         <div class="form-group col-md-2 text-center" >
                                             
-                                                <a href="/export_surveytemp" class="btn btn-primary" id=""><i class="fa fa-bar-chart">Report1</i></a><br><br>
-                                                <button type="button" class="btn btn-warning" id=""><i class="fa fa-line-chart">Report2</i></button>
+                                                <a href="/export_surveytemp" class="btn btn-primary" id=""><i class="fa fa-bar-chart">&nbsp;&nbsp;Report All &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i></a><br><br>
+                                                <a href="/export_surveytemp1" class="btn btn-warning" id=""><i class="fa fa-line-chart">&nbsp;Report UnCheck</i></a>
+                                                
                                                 
                                            
                                         </div>
@@ -255,6 +256,9 @@
                                                 $('#book_capturename').html(response.book_name);
                                                 $('#survey_countb').html(response.survey_count);
                                                 $('#survey_datatable').DataTable().ajax.reload();
+                                                $('#book_capture').val('');
+                                                $('#book_suggestion').prop('selectedIndex',0);
+                                                document.getElementById("book_capture").focus();
                                                
                                             },
                                             error: function(response){

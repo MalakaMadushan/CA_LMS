@@ -95,6 +95,8 @@ Route::post('/finalize_suevey', 'BoardSurveyController@finalize');
 
 Route::get('/export_surveytemp', 'BoardSurveyController@export_temp')->name('export_temp');
 
+Route::get('/export_surveytemp1', 'BoardSurveyController@export_temp1')->name('export_temp1');
+
 Route::get('/survey_details/{id}', 'BoardSurveyController@survey_details');
 
 Route::get('/survey_details_load', 'BoardSurveyController@survey_details_load')->name('survey.survey_details');
