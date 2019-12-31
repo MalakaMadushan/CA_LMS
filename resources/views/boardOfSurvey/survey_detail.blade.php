@@ -97,7 +97,7 @@
                                         $('#sid').val("{{$Sdata}}");
 
                                         var seid = $("#sid").val();
-                                        alert(seid);
+                                        
                                         
                                         // var ssid = $(this).attr('id');
                                         
