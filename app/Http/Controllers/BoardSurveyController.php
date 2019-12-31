@@ -180,6 +180,36 @@ class BoardSurveyController extends Controller
         return Excel::download(new SurveyTempExport, 'survey.xlsx');
     }
 
+// ----------------------------------------------------------------------------------------------------------
+    public function survey_details(Request $request)
+    {
+        
+        $surveydata = survey_detail::where('surveyid',$request->id)
+        ->join('survey_suggetions', 'survey_details.suggestion_id', '=', 'survey_suggetions.id')
+        ->select('survey_details.*', 'survey_suggetions.Suggetion')
+        ->get();
 
+        if(request()->ajax())
+        {   
+            
+            return datatables()->of($surveydata)
+            ->addColumn('survey', function($data){
+                if($data->survey==1)
+                {$button = '<label class="btn btn-success btn-sm"><i class="fa fa-check" ></i></label>';}
+                else
+                {$button = '<label class="btn btn-default btn-sm"><i class="fa fa-minus" ></i></label>';}
+                
+                return $button;  
+            })
+            
+            ->rawColumns(['survey'])
+            ->make(true);
+        }
+        
+        return view('boardOfSurvey.survey_detail');
+        
+        
+    }
+// --------------------------------------------------------------------------------------------------------------
 
 }
