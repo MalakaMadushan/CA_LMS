@@ -53,7 +53,7 @@
                                             <td>{{$data->finalize}}</td>
                                             <td>
              
-                                                <a href="" class="btn btn-success btn-sm" target="_blank"><i class="fa fa-search" ></i></a>&nbsp; 
+                                                <a href="/survey_details/{{$data->id}}" class="btn btn-success btn-sm"><i class="fa fa-search" ></i></a>&nbsp; 
 
                                                 <a class="btn btn-danger btn-sm " data-toggle="modal" data-target="#Modal_delete" data-memberid="{{$data->id}}" data-membername="{{$data->name}}"><i class="fa fa-trash" ></i></a>&nbsp;
                                                 

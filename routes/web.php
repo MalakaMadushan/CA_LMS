@@ -75,6 +75,7 @@ Route::post('/new_survey', 'BoardSurveyController@newsurvey');
 Route::post('/ckeck_book', 'BoardSurveyController@bookcheck');
 Route::post('/finalize_suevey', 'BoardSurveyController@finalize');
 Route::get('/export_surveytemp', 'BoardSurveyController@export_temp')->name('export_temp');
+Route::get('/survey_details/{id}', 'BoardSurveyController@survey_details')->name('survey.survey_details');
 
 
 
