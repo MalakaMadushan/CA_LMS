@@ -12,6 +12,7 @@ use App\survey_detail;
 use App\Exports\SurveyTempExport;
 use App\Exports\SurveyTempExport1;
 use App\Exports\SurveyAllBook;
+use App\Exports\SurveyCheckBook;
 use Maatwebsite\Excel\Facades\Excel;
 use App\survey_suggetion;
 use Illuminate\Support\Facades\Auth;
@@ -209,7 +210,12 @@ public function bookuncheck(Request $request)
 
     public function export_surveyAll(Request $request) 
     {
-        return Excel::download(new SurveyAllBook($request->id), 'Survey All Book.xlsx');
+        return Excel::download(new SurveyAllBook($request->id), 'Survey All Books.xlsx');
+    }
+
+    public function export_surveyCheck(Request $request) 
+    {
+        return Excel::download(new SurveyCheckBook($request->id), 'Survey Checked Books.xlsx');
     }
    
 // ----------------------------------------------------------------------------------------------------------
