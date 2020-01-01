@@ -23,6 +23,7 @@ class CreateSurveyDetailsTable extends Migration
             $table->string('survey');
             $table->string('suggestion_id');
             $table->string('surveyid');
+            $table->string('status');
             $table->string('userid')->nullable();
             $table->timestamps();
         });

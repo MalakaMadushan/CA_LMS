@@ -97,6 +97,8 @@ Route::get('/export_surveytemp', 'BoardSurveyController@export_temp')->name('exp
 
 Route::get('/export_surveytemp1', 'BoardSurveyController@export_temp1')->name('export_temp1');
 
+Route::get('/export_surveyAll_book/{id}', 'BoardSurveyController@export_surveyAll');
+
 Route::get('/survey_details/{id}', 'BoardSurveyController@survey_details');
 
 Route::get('/survey_details_load', 'BoardSurveyController@survey_details_load')->name('survey.survey_details');

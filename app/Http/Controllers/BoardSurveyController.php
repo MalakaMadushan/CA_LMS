@@ -11,6 +11,7 @@ use App\survey_temp;
 use App\survey_detail;
 use App\Exports\SurveyTempExport;
 use App\Exports\SurveyTempExport1;
+use App\Exports\SurveyAllBook;
 use Maatwebsite\Excel\Facades\Excel;
 use App\survey_suggetion;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,8 @@ class BoardSurveyController extends Controller
         if(request()->ajax())
         {
             // $surveydata=survey_temp::all();
-            $surveydata = DB::table('survey_temps')
+            // $surveydata = DB::table('survey_temps')
+            $surveydata = survey_temp::where('status',1)
                 ->join('survey_suggetions', 'survey_temps.suggestion_id', '=', 'survey_suggetions.id')
                 ->select('survey_temps.*', 'survey_suggetions.Suggetion')
                 ->get();
@@ -77,8 +79,8 @@ class BoardSurveyController extends Controller
 
 
         $insert_data = [];
-        // $json= DB::table('books')->select('id','accessionNo','book_title','authors','price')->get();
-        $json = book::where('status',1)->select('id','accessionNo','book_title','authors','price')->get();
+        $json= DB::table('books')->select('id','accessionNo','book_title','authors','price','status')->get();
+        // $json = book::where('status',1)->select('id','accessionNo','book_title','authors','price')->get();
 
         foreach ($json as $value) {
             $data = [
@@ -88,6 +90,7 @@ class BoardSurveyController extends Controller
                 'authors'          => $value->authors,
                 'price'            => $value->price,
                 'surveyid'         => $surveyID,
+                'status'           => $value->status,
             ];
 
             $insert_data[] = $data;
@@ -166,6 +169,7 @@ public function bookuncheck(Request $request)
                 'survey'           => $value->survey,
                 'suggestion_id'    => $value->suggestion_id,
                 'surveyid'         => $value->surveyid,
+                'status'           => $value->status,
                 'userid'           => $value->userid,
             ];
 
@@ -202,14 +206,22 @@ public function bookuncheck(Request $request)
     {
         return Excel::download(new SurveyTempExport1, 'Survey Uncheck.xlsx');
     }
+
+    public function export_surveyAll(Request $request) 
+    {
+        return Excel::download(new SurveyAllBook($request->id), 'Survey All Book.xlsx');
+    }
    
 // ----------------------------------------------------------------------------------------------------------
     
     public function survey_details(Request $request)
     {
         $ssid=$request->id;
-
-        $surveydata = survey_detail::where('surveyid',$ssid)
+       
+        $surveydata = survey_detail::where([
+            ['surveyid',$ssid],
+            ['status',1]
+        ])
         ->join('survey_suggetions', 'survey_details.suggestion_id', '=', 'survey_suggetions.id')
         ->select('survey_details.*', 'survey_suggetions.Suggetion')
         ->get();
