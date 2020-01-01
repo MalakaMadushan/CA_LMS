@@ -76,7 +76,7 @@
 
                         <div class="box-body">
                             <div class="form-row">
-                            <input type="hidden" name="sid" id="sid" value="{{$Sdata}}">  
+                            <input type="hidden" name="id" id="id" value="{{$Sdata}}">  
                                 <table class="table " id="sdatatable">
                                     <thead class="thead-dark">
                                         <tr>
@@ -94,9 +94,9 @@
                                     @push('scripts')
                                     <script>
                                         $(document).ready(function() {
-                                        $('#sid').val("{{$Sdata}}");
+                                        $('#id').val("{{$Sdata}}");
 
-                                        var seid = $("#sid").val();
+                                        var seid = $("#id").val();
                                         
                                         
                                         // var ssid = $(this).attr('id');
@@ -131,7 +131,14 @@
 
                                 </div>
 
-                
+                                <a href="/export_surveyAll_book/{{$survy->id}}" class="btn btn-primary" id=""><i class="fa fa-bar-chart">&nbsp;&nbsp;All Book Report &nbsp;&nbsp;</i></a> &nbsp;&nbsp;
+
+                                <a href="/export_surveytemp1" class="btn btn-success" id=""><i class="fa fa-line-chart">&nbsp;&nbsp;Suevey Report</i></a>&nbsp;&nbsp;
+
+                                <a href="/export_surveytemp" class="btn btn-danger" id=""><i class="fa fa-pie-chart">&nbsp;&nbsp;Removed Book Report &nbsp;&nbsp;</i></a> &nbsp;&nbsp;
+
+                                <a href="/export_surveytemp1" class="btn btn-warning" id=""><i class="fa fa-bar-chart">&nbsp;&nbsp;UnCheck Book Report</i></a>&nbsp;&nbsp;
+
                         </div>
                     </div>
                    

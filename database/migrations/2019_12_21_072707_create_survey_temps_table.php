@@ -22,6 +22,7 @@ class CreateSurveyTempsTable extends Migration
             $table->string('survey')->default(0);
             $table->string('suggestion_id')->default(1);
             $table->string('surveyid')->nullable();
+            $table->string('status')->nullable();
             $table->string('userid')->nullable();
             $table->timestamps();
         });
