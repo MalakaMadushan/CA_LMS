@@ -4976,3 +4976,9 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+.dash-image{
+  text text-align: center;
+  width: 50%;
+
+}

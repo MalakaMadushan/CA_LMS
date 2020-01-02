@@ -79,12 +79,30 @@
                 </div>
                 <!-- ./col -->
             </div>
-            <!-- /.row -->
-            <!-- Main row -->
-            <div class="row">
-                <!-- --------------------------- section 1------------------------------------- -->
-                <section class="col-lg-6 connectedSortable">
- 
+            
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="box box-info">
+                        <div class="box-header ">
+                           <div class=" header"> <h3><i class="fa fa-inbox">Library Management System - Bulathkohupitiya Pradeshiya Sabha</i></h3></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <img src="dist/img/dash2.png" class="dash-image" alt="User Image">
+                </div>
+                
+            </div>
+            
+            
+
+
+            <!-- <div class="row">
+                <div class="col-md-6 ">
                     <div class="box box-info">
                         <div class="box-header ">
                            <div class="pull-left header"> <h3><i class="fa fa-inbox"> Books</i></h3></div>
@@ -109,10 +127,13 @@
                                 <i class="fa fa-arrow-circle-right"></i></button>
                         </div>
                     </div>
-                    <!-- -------------------------------------------------------------------- -->
+                
+                </div>
+                --------------------------------------------------------------------
+                 <div class="col-md-6 ">
                     <div class="box box-info">
                         <div class="box-header ">
-                           <div class="pull-left header"> <h3><i class="fa fa-inbox"> Members</i></h3></div>
+                           <div class="pull-left header"> <h3><i class="fa fa-inbox"> Books</i></h3></div>
                         </div>
 
                         <div class="box-body">
@@ -134,69 +155,14 @@
                                 <i class="fa fa-arrow-circle-right"></i></button>
                         </div>
                     </div>
-                    <!-- ------------------------------------------------------------------------- -->
-
-                </section>
-
-                <!-- ------------------------------------------Section 2-------------------------------------- -->
-                <section class="col-lg-6 connectedSortable">
- 
-                    <div class="box box-info">
-                        <div class="box-header ">
-                           <div class="pull-left header"> <h3><i class="fa fa-inbox"> Barrow</i></h3></div>
-                        </div>
-
-                        <div class="box-body">
-                            <form action="#" method="post">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject">
-                                </div>
-                                <div>
-                                         <textarea class="textarea" placeholder="Message"
-                                        style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="box-footer clearfix">
-                            <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                                <i class="fa fa-arrow-circle-right"></i></button>
-                        </div>
-                    </div>
-                    <!-- -------------------------------------------------------------------- -->
-                    <div class="box box-info">
-                        <div class="box-header ">
-                           <div class="pull-left header"> <h3><i class="fa fa-inbox"> Status</i></h3></div>
-                        </div>
-
-                        <div class="box-body">
-                            <form action="#" method="post">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject">
-                                </div>
-                                <div>
-                                         <textarea class="textarea" placeholder="Message"
-                                        style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="box-footer clearfix">
-                            <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                                <i class="fa fa-arrow-circle-right"></i></button>
-                        </div>
-                    </div>
-                    <!-- ------------------------------------------------------------------------- -->
-
-                </section>
-
-
+                
+                </div>
 
             </div>
+                
+
+
+            
             <!-- /.row (main row) -->
 
         </section>
