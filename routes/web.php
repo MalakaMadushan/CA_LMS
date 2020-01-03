@@ -99,6 +99,8 @@ Route::get('/export_surveytemp1', 'BoardSurveyController@export_temp1')->name('e
 
 Route::get('/export_surveyAll_book/{id}', 'BoardSurveyController@export_surveyAll');
 
+Route::get('/export_surveyCheck_book/{id}', 'BoardSurveyController@export_surveyCheck');
+
 Route::get('/survey_details/{id}', 'BoardSurveyController@survey_details');
 
 Route::get('/survey_details_load', 'BoardSurveyController@survey_details_load')->name('survey.survey_details');

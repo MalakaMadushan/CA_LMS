@@ -156,7 +156,6 @@ class BookController extends Controller
     public function updateview($id)
     {
         $book=book::find($id);
-        //$mbr = DB::table('members')->find($id);
         $Categorydata=book_category::all();
         $Languagedata=book_language::all();
         $Publisherdata=book_publisher::all();
@@ -177,15 +176,12 @@ class BookController extends Controller
         $this->validate($request,[
 
             'accessionNo'=>'required|max:100|min:5',
-            'isbn'=>'required|max:100|min:5',
             'book_title'=>'required',
             'authors'=>'required',
             'price'=>'required',
             'purchase_date'=>'required',
-            'phydetails'=>'required',
-            'publishyear'=>'required',
             'br_qr_code'=>'required',
-            'note'=>'required',
+ 
 
             ]);
 
@@ -207,13 +203,14 @@ class BookController extends Controller
             $book->rowno=$request->rowno;
             $book->note=$request->note;
             $book->br_qr_code=$request->br_qr_code;
+            $book->status=$request->status;
             
 
             $book->save();
             echo "<script>";
             echo "window.close();";
             echo "</script>";
-            return view('books.search_book')->with('Cat_data',$Categorydata)->with('success','Book Add successfully!');
+           // return view('books.search_book')->with('Cat_data',$Categorydata)->with('success','Book Add successfully!');
     
     }
 

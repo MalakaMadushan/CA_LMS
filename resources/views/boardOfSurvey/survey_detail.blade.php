@@ -133,7 +133,7 @@
 
                                 <a href="/export_surveyAll_book/{{$survy->id}}" class="btn btn-primary" id=""><i class="fa fa-bar-chart">&nbsp;&nbsp;All Book Report &nbsp;&nbsp;</i></a> &nbsp;&nbsp;
 
-                                <a href="/export_surveytemp1" class="btn btn-success" id=""><i class="fa fa-line-chart">&nbsp;&nbsp;Suevey Report</i></a>&nbsp;&nbsp;
+                                <a href="/export_surveyCheck_book/{{$survy->id}}" class="btn btn-success" id=""><i class="fa fa-line-chart">&nbsp;&nbsp;Suevey Report</i></a>&nbsp;&nbsp;
 
                                 <a href="/export_surveytemp" class="btn btn-danger" id=""><i class="fa fa-pie-chart">&nbsp;&nbsp;Removed Book Report &nbsp;&nbsp;</i></a> &nbsp;&nbsp;
 

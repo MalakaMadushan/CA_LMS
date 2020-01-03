@@ -34,20 +34,51 @@
                        
                         <div class="box-body">
                         @include('flash_massage')
-                            <form action="/savebook" method="post" name="book_save" id="book_save">
+                            <form action="/update_book" method="post" name="book_save" id="book_save">
                             {{ csrf_field() }}
+
+                            @push('scripts')
+                            <script>
+                                $(document).ready(function() {
+
+                                    $('#book_aNo').val("{{$selectdata->accessionNo}}");
+                                    $('#book_isbn').val("{{$selectdata->isbn}}");
+                                    $('#book_title').val("{{$selectdata->book_title}}");
+                                    $('#authors').val("{{$selectdata->authors}}");
+                                    $('#purchase_date').val("{{$selectdata->purchase_date}}");
+                                    $('#edition').val("{{$selectdata->edition}}");
+                                    $('#price').val("{{$selectdata->price}}");
+                                    $('#publishyear').val("{{$selectdata->publishyear}}");
+                                    $('#phydetails').val("{{$selectdata->phydetails}}");
+                                    $('#rackno').val("{{$selectdata->rackno}}");
+                                    $('#rowno').val("{{$selectdata->rowno}}");
+                                    $('#note').val("{{$selectdata->note}}");
+
+                                    $('#book_category').val("{{$selectdata->book_category_id}}");
+                                    $('#language').val("{{$selectdata->language_id}}");
+                                    $('#publisher').val("{{$selectdata->publisher_id}}");
+                                    $('#phymedium').val("{{$selectdata->phymedium_id}}");
+                                    $('#dewey_decimal').val("{{$selectdata->dewey_decimal_id}}");
+                                    $('input:radio[name="status"]').filter('[value="{{$selectdata->status}}"]').attr('checked', true);
+                                    
+                                });
+
+                            </script>
+                        @endpush  
+
+                            <input type="hidden" name="id" id="id" value="{{$selectdata->id}}">
                             <div class="form-row">
 
                                 <div class="form-group col-md-4">
                                     <label for="accessionNo">Accession Number</label>
-                                    <input type="text" class="form-control" id="book_aNo" name="accessionNo" value="{{old('accessionNo')}}" placeholder="Accession Number:">
+                                    <input type="text" class="form-control" id="book_aNo" name="accessionNo" value="{{$selectdata->accessionNo}}" placeholder="Accession Number:">
                                     <span class="text-danger" >{{ $errors->first('accessionNo') }}</span>
                                 </div>
-                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-3">
                                     <div class="form-check-inline">
-                                        <label class="form-check-label"></label>
-                                            <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
-                                            <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode
+                                    <label class="form-check-label"></label>
+                                            <!-- <input type="radio" class="form-check-input" name="br_qr_code" value="bar_code"> BarCode
+                                            <input type="radio" class="form-check-input" name="br_qr_code" value="qr_code"> QRCode -->
                                             <!-- <button class="btn btn-primary"><i class="fa fa-circle-o">Genarete</i></button> -->
 
                                     </div>
@@ -56,9 +87,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-5">
                                     <label for="isbn">ISBN</label>
-                                    <input type="text" class="form-control" id="book_isbn" name="isbn"  value="{{old('isbn')}}"  placeholder="ISBN">
+                                    <input type="text" class="form-control" id="book_isbn" name="isbn"  value="{{$selectdata->isbn}}"  placeholder="ISBN">
                                     <span class="text-danger">{{ $errors->first('isbn') }}</span>
                                 </div>
 
@@ -69,12 +100,12 @@
                                 
                                 <div class="form-group col-md-12">
                                     <label for="book_title">Title</label>
-                                    <textarea class="form-control" id="book_title" name="book_title" value="{{old('book_title')}}" placeholder="Title" rows="2"></textarea>
+                                    <textarea class="form-control" id="book_title" name="book_title" value="{{$selectdata->book_title}}" placeholder="Title" rows="2"></textarea>
                                     <span class="text-danger">{{ $errors->first('book_title') }}</span>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="authors">Authors</label>
-                                    <textarea class="form-control" id="authors" name="authors" value="{{old('authors')}}" placeholder="Author" rows="2"></textarea>
+                                    <textarea class="form-control" id="authors" name="authors" value="{{$selectdata->authors}}" placeholder="Author" rows="2"></textarea>
                                     <span class="text-danger">{{ $errors->first('authors') }}</span>
                                 </div>
                                 
@@ -84,7 +115,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="book_category">Category</label> &nbsp; &nbsp;
-                                    <select class="form-control" id="book_category" name="book_category" value="{{old('category')}}">
+                                    <select class="form-control" id="book_category" name="book_category" value="{{$selectdata->book_category_id}}">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     @foreach($Cat_data as $item)
                                             <option value="{{ $item->id }}">{{ $item->category }}</option>
@@ -102,7 +133,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="language">Language</label>
-                                    <select class="form-control" id="language" name="language" value="{{old('language')}}">
+                                    <select class="form-control" id="language" name="language" value="{{$selectdata->language_id}}">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     @foreach($Lang_data as $item)
                                             <option value="{{ $item->id }}">{{ $item->language }}</option>
@@ -123,7 +154,7 @@
                                 
                                 <div class="form-group col-md-4">
                                     <label for="publisher">Publisher</label>
-                                    <select class="form-control" id="publisher" name="publisher" value="{{old('publisher')}}">
+                                    <select class="form-control" id="publisher" name="publisher" value="{{$selectdata->publisher_id}}">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     @foreach($Pub_data as $item)
                                             <option value="{{ $item->id }}">{{ $item->publisher}}</option>
@@ -140,7 +171,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="phymedium">Physical Medium</label>
-                                    <select class="form-control" id="phymedium" name="phymedium" value="{{old('phymedia')}}">
+                                    <select class="form-control" id="phymedium" name="phymedium" value="">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     @foreach($PhyMdm_data as $item)
                                             <option value="{{ $item->id }}">{{ $item->phymedia}}</option>
@@ -162,14 +193,14 @@
 
                             <div class="form-group col-md-4">
                                     <label for="dewey_decimal">Dewey Decimal Classification</label>
-                                    <select class="form-control" id="dewey_decimal" name="dewey_decimal" value="{{old('ddecimal')}}">
+                                    <select class="form-control" id="dewey_decimal" name="dewey_decimal" value="{{$selectdata->dewey_decimal_id}}">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     @foreach($DDC_data as $item)
                                             <option value="{{ $item->id }}">{{ $item->ddecimal}}</option>
                                         @endforeach
                                     </select>
                                     <span class="text-danger">{{ $errors->first('ddecimal') }}</span>
-                                </div>
+                            </div>
                                 <div class="form-group col-md-2">
                                 <label for="new_dewey_decimal"> New DDC </label> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal" data-backdrop="static" data-opp_name="Book Dewey Decimal"
@@ -179,7 +210,7 @@
                                 
                                 <div class="form-group col-md-4">
                                     <label for="purchase_date" >Purchase Date</label>
-                                    <input class="form-control" type="date" id="purchase_date" name="purchase_date" value="{{old('purchase_date')}} "id="purchase_date" >
+                                    <input class="form-control" type="date" id="purchase_date" name="purchase_date" value="{{$selectdata->purchase_date}} "id="purchase_date" >
                                     <span class="text-danger">{{ $errors->first('purchase_date') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
@@ -200,7 +231,7 @@
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                     <label for="price">Price</label>
-                                    <input type="value" class="form-control" id="price" name="price"  value="{{old('price')}}" placeholder="Price:">
+                                    <input type="value" class="form-control" id="price" name="price"  value="" placeholder="Price:">
                                     <span class="text-danger">{{ $errors->first('price') }}</span>
                                 </div>
 
@@ -210,13 +241,13 @@
 
                             <div class="form-group col-md-4">
                                     <label for="publishyear">Publication year</label>
-                                    <input class="form-control" type="year" id="publishyear" name="publishyear" value="{{old('publishyear')}}" id="purchasedate">
+                                    <input class="form-control" type="year" id="publishyear" name="publishyear" value="" id="purchasedate">
                                     <span class="text-danger">{{ $errors->first('publishyear') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                     <label for="phy_details">Physical Details</label>
-                                    <input type="text" class="form-control" id="phydetails" name="phydetails" value="{{old('phydetails')}}" placeholder="Physical Details">
+                                    <input type="text" class="form-control" id="phydetails" name="phydetails" value="" placeholder="Physical Details">
                                     <span class="text-danger">{{ $errors->first('phydetails') }}</span>
                                 </div>
                                 </div>
@@ -244,8 +275,18 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="note">Note</label>
-                                    <textarea class="form-control" id="note" name="note" placeholder="Note" value="{{old('note')}}" rows="3"></textarea>
+                                    <textarea class="form-control" id="note" name="note" placeholder="Note" value="" rows="3"></textarea>
                                     <span class="text-danger">{{ $errors->first('note') }}</span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="remove">Change Status</label>
+                                    <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="status" value="1">Active
+                                    </label> &nbsp;
+                                    <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="status" value="0">Remove
+                                    </label> &nbsp;
+                                    <span class="text-danger">{{ $errors->first('status') }}</span>
                                 </div>
 
                             </div>
@@ -264,9 +305,7 @@
                             
                         </div>
                     </section>
-                        
-                       
-                        
+                     
                     </div>
                      @include('modal_add')
                 </section>
