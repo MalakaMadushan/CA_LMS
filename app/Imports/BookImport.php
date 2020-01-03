@@ -33,7 +33,7 @@ class BookImport implements ToModel
             'rowno'    => $row[15],
             'note'    => $row[16],
             'status'    => $row[17],
-            'br_qr_code'    => $row[18],
+            //'br_qr_code'    => $row[18],
         ]);
     }
 }

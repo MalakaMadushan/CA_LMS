@@ -57,6 +57,7 @@
                                 <th scope="col">Language</th>
                                 <th scope="col">Publisher</th>
                                 <th scope="col">Place</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -84,8 +85,16 @@
                                     {data: "language",name: "language"},
                                     {data: "publisher",name: "publisher"},
                                     {data: "rackno",name: "rackno"},
+                                    {data: "status",name: "status",orderable: false},
                                     {data: "action",name: "action",orderable: false}
-                                ]
+                                ],
+                                "createdRow": function( row, data, dataIndex ) {
+                                    if ( data['status'] == "Removed" ) {        
+                                        $('td', row).addClass('bg-red');
+                                        //$(row).addClass('bg_red');
+                                    }
+     
+                                 }
                                 });
                                 
                                

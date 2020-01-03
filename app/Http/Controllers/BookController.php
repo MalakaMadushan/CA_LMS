@@ -170,7 +170,7 @@ class BookController extends Controller
 
     public function updatebook(Request $request)
     {
-        $book=book::find($request->id);
+        
      
         // validation part add new book
         $this->validate($request,[
@@ -180,10 +180,11 @@ class BookController extends Controller
             'authors'=>'required',
             'price'=>'required',
             'purchase_date'=>'required',
-            'br_qr_code'=>'required',
+           
  
 
             ]);
+            $book=book::find($request->id);
 
             $book->accessionNo=$request->accessionNo;
             $book->isbn=$request->isbn;
@@ -205,7 +206,7 @@ class BookController extends Controller
             $book->br_qr_code=$request->br_qr_code;
             $book->status=$request->status;
             
-
+            
             $book->save();
             echo "<script>";
             echo "window.close();";
@@ -257,12 +258,18 @@ class BookController extends Controller
                             
                             
                         })
-                        // ->addColumn('barcode', function ($data) {
-                        //     $code= DNS1D::getBarcodeSVG("Shanuka123456", "C128",1,70);
-                        //     return  $code;
+                        ->addColumn('status', function ($data) {
+                            if($data->status==0)
+                            {
+                                $sts = 'Removed';
+                                
+                            }
+                            else
+                            {$sts = 'Active';}
+                            return  $sts;
                             
-                        // })
-                        ->rawColumns(['action'])
+                        })
+                        ->rawColumns(['action','status'])
                         ->make(true);
             }
             return view('books.search_book')->with('Cat_data',$Categorydata)->with('Lang_data',$Languagedata)->with('Pub_data',$Publisherdata)

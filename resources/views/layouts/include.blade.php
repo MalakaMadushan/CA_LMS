@@ -96,6 +96,16 @@
     $('input:radio[name="title"]').filter('[value="{{$selectdata->title}}"]').attr('checked', true);
     $('input:radio[name="gender"]').filter('[value="{{$selectdata->gender}}"]').attr('checked', true);
 
+    $('#book_category').val("{{$selectdata->book_category_id}}");
+    $('#language').val("{{$selectdata->language_id}}");
+    $('#publisher').val("{{$selectdata->publisher_id}}");
+    $('#phymedium').val("{{$selectdata->phymedium_id}}");
+    $('#dewey_decimal').val("{{$selectdata->dewey_decimal_id}}");
+    $('input:radio[name="status"]').filter('[value="{{$selectdata->status}}"]').attr('checked', true);
+    $('#purchase_date').val("{{$selectdata->purchase_date}}");
+    $('#rackno').val("{{$selectdata->rackno}}");
+    $('#rowno').val("{{$selectdata->rowno}}");
+
   } );  
 </script>
 

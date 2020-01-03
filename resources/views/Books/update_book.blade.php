@@ -34,37 +34,10 @@
                        
                         <div class="box-body">
                         @include('flash_massage')
-                            <form action="/update_book" method="post" name="book_save" id="book_save">
+                            <form action="/updatebook" method="post" name="book_save" id="book_save">
                             {{ csrf_field() }}
 
-                            @push('scripts')
-                            <script>
-                                $(document).ready(function() {
-
-                                    $('#book_aNo').val("{{$selectdata->accessionNo}}");
-                                    $('#book_isbn').val("{{$selectdata->isbn}}");
-                                    $('#book_title').val("{{$selectdata->book_title}}");
-                                    $('#authors').val("{{$selectdata->authors}}");
-                                    $('#purchase_date').val("{{$selectdata->purchase_date}}");
-                                    $('#edition').val("{{$selectdata->edition}}");
-                                    $('#price').val("{{$selectdata->price}}");
-                                    $('#publishyear').val("{{$selectdata->publishyear}}");
-                                    $('#phydetails').val("{{$selectdata->phydetails}}");
-                                    $('#rackno').val("{{$selectdata->rackno}}");
-                                    $('#rowno').val("{{$selectdata->rowno}}");
-                                    $('#note').val("{{$selectdata->note}}");
-
-                                    $('#book_category').val("{{$selectdata->book_category_id}}");
-                                    $('#language').val("{{$selectdata->language_id}}");
-                                    $('#publisher').val("{{$selectdata->publisher_id}}");
-                                    $('#phymedium').val("{{$selectdata->phymedium_id}}");
-                                    $('#dewey_decimal').val("{{$selectdata->dewey_decimal_id}}");
-                                    $('input:radio[name="status"]').filter('[value="{{$selectdata->status}}"]').attr('checked', true);
-                                    
-                                });
-
-                            </script>
-                        @endpush  
+                            
 
                             <input type="hidden" name="id" id="id" value="{{$selectdata->id}}">
                             <div class="form-row">
@@ -100,12 +73,12 @@
                                 
                                 <div class="form-group col-md-12">
                                     <label for="book_title">Title</label>
-                                    <textarea class="form-control" id="book_title" name="book_title" value="{{$selectdata->book_title}}" placeholder="Title" rows="2"></textarea>
+                                    <textarea class="form-control" id="book_title" name="book_title" value="{{$selectdata->book_title}}" placeholder="Title" rows="2">{{$selectdata->book_title}}</textarea>
                                     <span class="text-danger">{{ $errors->first('book_title') }}</span>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="authors">Authors</label>
-                                    <textarea class="form-control" id="authors" name="authors" value="{{$selectdata->authors}}" placeholder="Author" rows="2"></textarea>
+                                    <textarea class="form-control" id="authors" name="authors" value="{{$selectdata->authors}}" placeholder="Author" rows="2">{{$selectdata->authors}}</textarea>
                                     <span class="text-danger">{{ $errors->first('authors') }}</span>
                                 </div>
                                 
@@ -118,7 +91,7 @@
                                     <select class="form-control" id="book_category" name="book_category" value="{{$selectdata->book_category_id}}">
                                     <option value="" selected disabled hidden>Choose here</option>
                                     @foreach($Cat_data as $item)
-                                            <option value="{{ $item->id }}">{{ $item->category }}</option>
+                                            <option value="{{ $item->id }}">{{ $item->category  }}</option>
                                         @endforeach
                                     </select>
                                     <span class="text-danger">{{ $errors->first('category') }}</span>
@@ -231,7 +204,7 @@
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                     <label for="price">Price</label>
-                                    <input type="value" class="form-control" id="price" name="price"  value="" placeholder="Price:">
+                                    <input type="value" class="form-control" id="price" name="price"  value="{{$selectdata->price}}" placeholder="Price:">
                                     <span class="text-danger">{{ $errors->first('price') }}</span>
                                 </div>
 
@@ -241,13 +214,13 @@
 
                             <div class="form-group col-md-4">
                                     <label for="publishyear">Publication year</label>
-                                    <input class="form-control" type="year" id="publishyear" name="publishyear" value="" id="purchasedate">
+                                    <input class="form-control" type="year" id="publishyear" name="publishyear" value="{{$selectdata->publishyear}}" id="purchasedate">
                                     <span class="text-danger">{{ $errors->first('publishyear') }}</span>
                                 </div>
                                 <div class="form-group col-md-2"></div>
                                 <div class="form-group col-md-4">
                                     <label for="phy_details">Physical Details</label>
-                                    <input type="text" class="form-control" id="phydetails" name="phydetails" value="" placeholder="Physical Details">
+                                    <input type="text" class="form-control" id="phydetails" name="phydetails" value="{{$selectdata->phydetails}}" placeholder="Physical Details">
                                     <span class="text-danger">{{ $errors->first('phydetails') }}</span>
                                 </div>
                                 </div>
@@ -275,7 +248,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="note">Note</label>
-                                    <textarea class="form-control" id="note" name="note" placeholder="Note" value="" rows="3"></textarea>
+                                    <textarea class="form-control" id="note" name="note" placeholder="Note" value="{{$selectdata->note}}" rows="3">{{$selectdata->note}}</textarea>
                                     <span class="text-danger">{{ $errors->first('note') }}</span>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -293,12 +266,16 @@
 
 
                         <div class="box-footer clearfix pull-right">
-                            <button type="submit" class="btn btn-primary btn-md" value="Save" id="save_book" onclick="showAlert();" >
-                            <i class="fa fa-floppy-o"></i> Save</button>
+                                <button type="submit" class="btn btn-success btn-md" id="save_books">Save
+                                <i class="fa fa-floppy-o"></i></button>
                             &nbsp; &nbsp;
                             <button type="button" class="btn btn-warning btn-md" id="reset_book">
                             <i class="fa fa-times"></i> Reset</button>
-                        </div>   
+                        </div>  
+
+                        @push('scripts')
+                            
+                            @endpush   
                         </form>
                             </div>
                             
@@ -318,5 +295,14 @@
            
 
 @endsection
+
+<script>
+$(document).ready(function() {
+
+    
+    
+});
+
+</script>
 
 
