@@ -96,26 +96,6 @@
     $('input:radio[name="title"]').filter('[value="{{$selectdata->title}}"]').attr('checked', true);
     $('input:radio[name="gender"]').filter('[value="{{$selectdata->gender}}"]').attr('checked', true);
 
-
-    $('#book_aNo').val("{{$selectdata->accessionNo}}");
-    $('#book_isbn').val("{{$selectdata->isbn}}");
-    $('#book_title').val("{{$selectdata->book_title}}");
-    $('#authors').val("{{$selectdata->authors}}");
-    $('#purchase_date').val("{{$selectdata->purchase_date}}");
-    $('#edition').val("{{$selectdata->edition}}");
-    $('#price').val("{{$selectdata->price}}");
-    $('#publishyear').val("{{$selectdata->publishyear}}");
-    $('#phydetails').val("{{$selectdata->phydetails}}");
-    $('#rackno').val("{{$selectdata->rackno}}");
-    $('#rowno').val("{{$selectdata->rowno}}");
-    $('#note').val("{{$selectdata->note}}");
-
-    $('#book_category').val("{{$selectdata->book_category_id}}");
-    $('#language').val("{{$selectdata->language_id}}");
-    $('#publisher').val("{{$selectdata->publisher_id}}");
-    $('#phymedium').val("{{$selectdata->phymedium_id}}");
-    $('#dewey_decimal').val("{{$selectdata->dewey_decimal_id}}");
-    
   } );  
 </script>
 
