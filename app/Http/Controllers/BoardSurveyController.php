@@ -123,14 +123,19 @@ class BoardSurveyController extends Controller
        
         $data_B = survey_temp::where('accessionNo',$request->book_acc)->get();
         $data_update=survey_temp::find($data_B[0]->id);
+        if($data_B[0]->status==1)
+        {
+            $data_update->userid=Auth::id();
+            $data_update->survey=1;
+            $data_update->suggestion_id=$request->sugge;
+            $data_update->save();
 
-        $data_update->userid=Auth::id();
-        $data_update->survey=1;
-        $data_update->suggestion_id=$request->sugge;
-        $data_update->save();
+            $survey_c = survey_temp::where('survey','1')->get();
+            return response()->json(['book_name' => $data_B[0]->book_title,'survey_count' =>count($survey_c)]); 
 
-        $survey_c = survey_temp::where('survey','1')->get();
-        return response()->json(['book_name' => $data_B[0]->book_title,'survey_count' =>count($survey_c)]); 
+        }
+
+        
         
     }
 // ----------------------------------------------------------------------------------------------------------------
