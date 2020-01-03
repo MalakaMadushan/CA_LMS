@@ -17,8 +17,9 @@
                               
                               <div class="card-body">
                               <div class="form-group">
-                              <label for="purchase_date" >Start Date</label>
-                              <input class="form-control" type="date" name="Survey_startDte" id="Survey_startDte"> 
+                              <label class="text-red" for="purchase_date" >Warning!! - If start new survey ,Current Unfinalize Survey details Will Discard. </label>
+                              <label class="" for="purchase_date" >Click Start for New Survey. Click close to stay currnt Survey  </label>
+                              <!-- <input class="form-control" type="date" name="Survey_startDte" id="Survey_startDte">  -->
                                  
                               </div>
                               <br>

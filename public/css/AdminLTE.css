@@ -24,6 +24,11 @@ body {
   overflow-y: auto;
 }
 /* Layout */
+body.modal-open {
+  width: 100% !important;
+  padding-right: 0 !important;
+  overflow-y: scroll !important;
+}
 .wrapper {
   height: 100%;
   position: relative;
@@ -4978,7 +4983,7 @@ table.text-center th {
 }
 
 .dash-image{
-  text text-align: center;
+  text-align: center;
   width: 50%;
 
 }

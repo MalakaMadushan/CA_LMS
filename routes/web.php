@@ -56,7 +56,7 @@ Route::post('/save_Book_phymedium', 'BookController@addphymedium');
 
 Route::post('/save_Book_Ddecimal', 'BookController@addDdecimal');
 
-Route::post('/update_book', 'BookController@updatebook');
+Route::post('/updatebook', 'BookController@updatebook');
 
  Route::get('/update_book_view/{id}', 'BookController@updateview');
  
