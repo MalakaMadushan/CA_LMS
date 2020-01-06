@@ -99,6 +99,7 @@
                     <li><a href="#"><i class="fa fa-circle-o"></i> Members Details Report</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Members Summary Report</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Fine Report</a></li>
+                    <li><a href="{!! url('barcode_genarete') !!}"><i class="fa fa-circle-o"></i> Barcode Genarete</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> User Details Report</a></li>
                 </ul>
             </li>
