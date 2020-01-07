@@ -31,7 +31,7 @@
                     </div>
                      <div class="pull-right header col-md-2"> 
                         <div class="form-check-inline">
-                           <a href="{{ route('pdfbarcodeall',['download'=>'pdf']) }}" target="_blank"class=""><i class="fa fa-file-pdf-o m-right-xs"></i>PDF</a>&nbsp;
+                           <!-- <a href="{{ route('pdfbarcodeall',['download'=>'pdf']) }}" target="_blank"class=""><i class="fa fa-file-pdf-o m-right-xs"></i>PDF</a>&nbsp; -->
                             <a href="#" target="_blank"class=""><i class="fa fa-file-excel-o m-right-xs"></i>Excel</a>&nbsp;
                             <a href="#" target="_blank"class=""><i class="fa fa-file-word-o m-right-xs"></i>Word</a>&nbsp;
                             <h4><button class="btn btn-warning btn-md" name="create_recode" id="create_recode" ><i class="fa fa-plus"></i></button></h4>

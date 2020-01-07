@@ -81,16 +81,16 @@ class SupportController extends Controller
 
     public function pdfbarcodeall(Request $request)
     {
-        $barcde = DB::table('Member')->pluck('accessionNo');
+        $barcde = DB::table('books')->pluck('accessionNo');
         return view('Reports.barcode_print')->with('code',$barcde);
         
-        // if($request->has('download')){
+        if($request->has('download')){
 
-        //     PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+            PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
         
-        //     $barcde = PDF::loadView('Reports.barcode_print', compact('barcde'))->setPaper('a4', 'landscape')->setWarnings(false);
-        //     return $barcde->download('Barcode_all.pdf');
-        // }
+            $barcde = PDF::loadView('Reports.barcode_print', compact('barcde'))->setPaper('a4', 'landscape')->setWarnings(false);
+            return $barcde->download('Barcode_all.pdf');
+        }
 
     }
 

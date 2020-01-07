@@ -141,4 +141,7 @@ Route::post('/codeview', 'SupportController@codeview');
 Route::get('pdfviewMember',array('as'=>'pdfviewMember','uses'=>'SupportController@pdfviewMember'));
 
 Route::get('pdfbarcodeall',array('as'=>'pdfbarcodeall','uses'=>'SupportController@pdfbarcodeall'));
-//Route::get('/pdfviewMember', 'SupportController@pdfviewMember');
+
+
+//Report routing Path
+Route::get('barcode_genarete','ReportController@barcodegenarete');
